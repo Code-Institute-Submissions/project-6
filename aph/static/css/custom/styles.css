@@ -1,0 +1,51 @@
+/* 
+General
+*/
+
+a,
+.fas,
+.fab,
+.navbar-light .navbar-brand {
+	color: #5cb85c;
+	opacity: 0.7;
+}
+
+a:hover,
+.fas:hover,
+.fab:hover,
+a:active,
+.fas:active,
+.fab:active {
+	opacity: 1;
+	color: #5cb85c;
+
+}
+
+/* 
+Nav
+*/
+
+nav {
+
+}
+
+/* 
+Main
+*/
+
+main {
+	min-height: 100vh
+}
+
+/* 
+Footer 
+*/
+
+footer {
+	padding: 30px 0px 100px;
+	color: #b9b9b9;
+}
+
+hr {
+	border-bottom: 1px solid #5cb85c;
+}

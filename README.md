@@ -12,3 +12,4 @@
 #### 0.1
 
 - Created fundamental for `pages` app (for pages such as `index.html` or `about.html`)
+- Added fundamentals for `base.html`
