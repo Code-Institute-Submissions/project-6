@@ -1,0 +1,33 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+	<!-- Custom CSS -->
+	<link rel="stylesheet" href="{% static 'css/custom/styles.css' %}">
+
+	{% block css %} {% endblock css %}
+
+	<!-- Scripts -->
+	{% block head_js %} {% endblock head_js %}
+
+	<title> {{page_title}} </title>
+</head>
+
+<body>
+
+	<!-- Main Content -->
+	{% block main_content %} {% endblock main_content %}
+
+	<!-- Scripts -->
+	{% block js %} {% endblock js %}
+
+	<script src="{% static 'js/custom/main.js' %}"></script>	
+</body>
+
+</html>
