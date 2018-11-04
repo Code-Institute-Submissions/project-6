@@ -1,7 +1,7 @@
 
 ### Custom ###
 /venv
-/static/img
+aph/static/img
 .vscode
 jupyter_tests.py
 /plants-data
@@ -14,6 +14,7 @@ __pycache__/
 local_settings.py
 db.sqlite3
 /media
+/static
 
 # Unit test / coverage reports
 htmlcov/
