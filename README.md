@@ -18,3 +18,14 @@
 
 - Created fundamental for `listings` app (for pages such as `plants.html`, `plant.html` or `search.html`)
 - separated `templates` and `static` for each of the app
+- Added testing via Django build in tests
+
+### Tests
+
+#### pages app
+
+- tested views
+  
+#### listings app
+
+- tested views

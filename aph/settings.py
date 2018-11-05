@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 	'pages.apps.PagesConfig',
+	'listings.apps.ListingsConfig',
 ]
 
 MIDDLEWARE = [
@@ -122,5 +123,6 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'aph/static'),
-    os.path.join(BASE_DIR, 'pages/static')
+    os.path.join(BASE_DIR, 'pages/static'),
+    os.path.join(BASE_DIR, 'pages/listings'),
 ]
