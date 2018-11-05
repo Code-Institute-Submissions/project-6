@@ -2,6 +2,7 @@
 General
 */
 
+
 a,
 .fas,
 .fab,
@@ -13,9 +14,7 @@ a,
 a:hover,
 .fas:hover,
 .fab:hover,
-a:active,
-.fas:active,
-.fab:active {
+a:active {
 	opacity: 1;
 	color: #5cb85c;
 
