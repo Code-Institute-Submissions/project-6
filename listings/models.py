@@ -1,6 +1,8 @@
 from django.db import models
 from datetime import datetime
 
+from accounts.models import User
+
 class Listing(models.Model):
 	""" 
 	Model for creating a single listing (house)
@@ -26,6 +28,6 @@ class Listing(models.Model):
 	is_published = models.BooleanField(default=True)
 	paid_fee = models.BooleanField(default=False)
 	list_date = models.DateTimeField(default=datetime.now, blank=True)
-	#seller = models.ForeignKey(Seller, on_delete=models.CASCADE)
+	#seller = models.ForeignKey(User, on_delete=models.CASCADE)
 	def __str__(self):
 		return self.title

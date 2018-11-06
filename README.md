@@ -29,6 +29,8 @@ As I did not have enough data as well as I thought that this project will be too
 - Added `if` statment to swap between testing and production database
 - Created single listing model 
 - Added fundamental for `accounts` app
+- Create `User` model
+- Tested both `User` and `Listing` model
 
 
 ### Tests
@@ -40,3 +42,8 @@ As I did not have enough data as well as I thought that this project will be too
 #### listings app
 
 - tested views
+- tested listing model
+
+#### accounts app
+
+- tested User model

@@ -40,6 +40,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 	'pages.apps.PagesConfig',
 	'listings.apps.ListingsConfig',
+	'accounts.apps.AccountsConfig',
 ]
 
 MIDDLEWARE = [
@@ -132,5 +133,8 @@ STATIC_URL = '/static/'
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'aph/static'),
     os.path.join(BASE_DIR, 'pages/static'),
-    os.path.join(BASE_DIR, 'pages/listings'),
+    os.path.join(BASE_DIR, 'listings/static'),
 ]
+
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
