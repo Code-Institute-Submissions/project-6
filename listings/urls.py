@@ -3,7 +3,7 @@ from django.urls import path
 from listings import views as listings
 
 urlpatterns = [
-	path('', listings.plants, name="plants"),
-	path('<int:plant_id>', listings.plant, name="plant"),
+	path('', listings.houses, name="houses"),
+	path('<int:plant_id>', listings.house, name="house"),
 	path('search', listings.search, name="search")
 ]

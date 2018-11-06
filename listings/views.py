@@ -1,17 +1,17 @@
 from django.shortcuts import render
 
-def plants(request):
+def house(request):
 	""" 
 	Main route for all plants
 	"""
-	return render(request, 'plants.html')
+	return render(request, 'house.html')
 
 
-def plant(request):
+def houses(request):
 	""" 
 	Main route for a single plant
 	"""
-	return render(request, 'plant.html')
+	return render(request, 'houses.html')
 
 def search(request):
 	""" 

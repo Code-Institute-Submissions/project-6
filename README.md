@@ -20,6 +20,17 @@
 - separated `templates` and `static` for each of the app
 - Added testing via Django build in tests
 
+### 0.3
+
+As I did not have enough data as well as I thought that this project will be too similar to my 4th project I decided to change the project slightly.
+
+- Changed `plants.html` and  `plant.html` to match the project defination
+- Added env variables to hide keys
+- Added `if` statment to swap between testing and production database
+- Created single listing model 
+- Added fundamental for `accounts` app
+
+
 ### Tests
 
 #### pages app
