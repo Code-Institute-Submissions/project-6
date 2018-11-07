@@ -30,7 +30,7 @@ As I did not have enough data as well as I thought that this project will be too
 - Created single listing model 
 - Added fundamental for `accounts` app
 - Create `User` model
-- Tested both `User` and `Listing` model
+- Created small up to fake users and listing using `django faker`
 
 
 ### Tests

@@ -1,6 +1,7 @@
 
 ### Custom ###
 /venv
+p3.6-testing-env
 aph/static/img
 .vscode
 jupyter_tests.py
@@ -15,6 +16,7 @@ local_settings.py
 db.sqlite3
 /media
 /static
+
 
 # Unit test / coverage reports
 htmlcov/
