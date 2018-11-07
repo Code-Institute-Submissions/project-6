@@ -53,13 +53,6 @@ def gen_listing(how_many):
         garage = random.randint(1,3)
         square_feet = random.randint(500,1000)
         main_img = fake.file_path(depth=1, category=None, extension=None)
-        """ 
-		img_1 = models.ImageField(upload_to='media/imgs/', blank=True)
-		img_2 = models.ImageField(upload_to='media/imgs/', blank=True)
-		img_3 = models.ImageField(upload_to='media/imgs/', blank=True)
-		img_4 = models.ImageField(upload_to='media/imgs/', blank=True)
-		img_5 = models.ImageField(upload_to='media/imgs/', blank=True) 
-		"""
         is_published = bool(random.getrandbits(1))
         paid_fee = True
         list_date = fake.past_date(start_date="-10y")
