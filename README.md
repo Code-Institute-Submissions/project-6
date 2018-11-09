@@ -20,7 +20,7 @@
 - separated `templates` and `static` for each of the app
 - Added testing via Django build in tests
 
-### 0.3
+#### 0.3
 
 As I did not have enough data as well as I thought that this project will be too similar to my 4th project I decided to change the project slightly.
 
@@ -31,6 +31,12 @@ As I did not have enough data as well as I thought that this project will be too
 - Added fundamental for `accounts` app
 - Create `User` model
 - Created small up to fake users and listing using `django faker`
+
+#### 0.4
+
+- Added img to db
+- Created fundamentals for `houses.html`
+- Customized the Admin dashboard
 
 
 ### Tests
@@ -43,7 +49,9 @@ As I did not have enough data as well as I thought that this project will be too
 
 - tested views
 - tested listing model
+- added `max-height` to `.card-img-overlay ` as it was covering the `<a>`
 
 #### accounts app
 
 - tested User model
+

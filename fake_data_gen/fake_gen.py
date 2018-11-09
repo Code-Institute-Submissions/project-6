@@ -14,24 +14,23 @@ from django.shortcuts import get_object_or_404
 fake = Faker()
 
 
-
-		
 def gen_user():
-	""" 
+    """ 
 	Generate random user base on the shema and add the user to db
 	"""
-	name = fake.name()
-	email = fake.email()
-	phone = fake.msisdn()
-	is_seller = bool(random.getrandbits(1))
-	joined = fake.date()
+    name = fake.name()
+    email = fake.email()
+    phone = fake.msisdn()
+    is_seller = bool(random.getrandbits(1))
+    joined = fake.past_date(start_date="-4y", tzinfo=None)
 
-	user = User(
-		name=name, email=email, phone=int(phone), is_seller=is_seller, joined=joined
-	)
-	user.save()
-	print(name)
-	return user
+    user = User(
+        name=name, email=email, phone=int(phone), is_seller=is_seller, joined=joined
+    )
+    user.save()
+    print(name)
+    return user
+
 
 def gen_listing(how_many):
     """ 
@@ -40,22 +39,27 @@ def gen_listing(how_many):
     listings = 0
     while listings < how_many:
         title = fake.street_name()
-        address = title
         city = fake.city()
         state = fake.state()
         zipcode = fake.postalcode()
 
         description = ""
-        price = random.randint(50000,10000000)
+        price = random.randint(100000, 500000)
 
-        bedrooms = random.randint(1,10)
-        bathrooms = random.randint(1,5)
-        garage = random.randint(1,3)
-        square_feet = random.randint(500,1000)
-        main_img = fake.file_path(depth=1, category=None, extension=None)
+        bedrooms = random.randint(1, 4)
+        bathrooms = random.randint(1, 2)
+        garage = random.randint(0, 1)
+        square_feet = random.randint(500, 1000)
+        main_img = f"fake_data/main/1 ({listings + 1}).jpeg"
+        img_1 = f"fake_data/others/1 ({listings + 1}).jpeg"
+        img_2 = f"fake_data/others/1 ({listings + 1}).jpeg"
+        img_3 = f"fake_data/others/1 ({listings + 1}).jpeg"
+        img_4 = f"fake_data/others/1 ({listings + 1}).jpeg"
+        img_5 = f"fake_data/others/1 ({listings + 1}).jpeg"
+		
         is_published = bool(random.getrandbits(1))
         paid_fee = True
-        list_date = fake.past_date(start_date="-10y")
+        list_date = fake.past_date(start_date="-2y", tzinfo=None)
         seller = gen_user()
 
         listing = Listing(
@@ -71,22 +75,29 @@ def gen_listing(how_many):
             garage=garage,
             square_feet=square_feet,
             main_img=main_img,
-			is_published=is_published,
-			paid_fee=paid_fee,
-			list_date=list_date,
-			seller=seller
+            img_1=img_1,
+            img_2=img_2,
+            img_3=img_3,
+            img_4=img_4,
+            img_5=img_5,
+            is_published=is_published,
+            paid_fee=paid_fee,
+            list_date=list_date,
+            seller=seller,
         )
         listing.save()
         print(title)
         listings += 1
 
+
 def fake_data():
 
-	gen_listing(int(input("How many ?")))
+    gen_listing(int(input("How many ?")))
 
 
 def main():
     fake_data()
+
 
 if __name__ == "__main__":
     main()
