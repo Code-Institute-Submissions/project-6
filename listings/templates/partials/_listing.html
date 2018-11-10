@@ -1,4 +1,5 @@
 {% block css %}
+
 <style>
 	.card-img-top {
 		height: 230px;
@@ -7,28 +8,37 @@
 	.card-img-overlay {
 		max-height: max-content;
 	}
+
+	#listings {
+		min-width: 100%;
+	}
 </style>
 {% endblock css %}
-
-
-<section class="py-4">
+<!-- Listings -->
+<section id="listings" class="py-5">
 	<div class="container">
 		<div class="row">
-			{% if listings %}
-			{% for house in listings %}
+			{% if listings %} {% for house in listings %}
 			<div class="col-md-6 col-lg-4 mb-4">
 				<div class="card">
-					<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}">
+					<img
+						class="card-img-top"
+						src="{{ house.main_img.url }}"
+						alt="{{ house.title }}"
+					/>
 					<div class="card-img-overlay">
 						<h2>
-							<span class="badge badge-secondary text-white">£{{ house.price }}</span>
+							<span class="badge badge-secondary text-white"
+								>£{{ house.price }}</span
+							>
 						</h2>
 					</div>
 					<div class="card-body">
-						<div class="listing-heading text-center">
+						<div class="text-center">
 							<h4>{{ house.title }}</h4>
 							<p>
-								<i class="fas fa-map-marker"></i> {{ house.city }} {{ house.state }}, {{ house.zipcode }}
+								<i class="fas fa-map-marker"></i> {{ house.city }}
+								{{ house.state }}, {{ house.zipcode }}
 							</p>
 						</div>
 						<div class="row py-2 text-secondary">
@@ -47,29 +57,28 @@
 								<i class="fas fa-bath"></i> Bathrooms: {{ house.bathrooms }}
 							</div>
 						</div>
-						<hr>
+						<hr />
 						<div class="row py-2 text-secondary">
 							<div class="col-12">
-								<i class="fas fa-user"></i> {{ house.seller }}
+								<i class="fas fa-user"></i> {{ house.seller | title }}
 							</div>
 						</div>
 						<div class="row text-secondary pb-2">
 							<div class="col-12">
-								<i class="fas fa-clock"></i> {{ house.list_date | timesince }}
+								<i class="fas fa-clock"></i> {{ house.list_date | date }}
 							</div>
 						</div>
-						<hr>
+						<hr />
 						<div class="row">
-							<a href="" class="btn btn-outline-success btn-block">See Details</a>
+							<a href="" class="btn btn-outline-success btn-block"
+								>See Details</a
+							>
 						</div>
 					</div>
 				</div>
 			</div>
-			{% endfor %}
-			{% else %}
-			<div class="col-md-12">
-				<p>No Listings Available</p>
-			</div>
+			{% endfor %} {% else %}
+			<div class="col-md-12"><p>No Listings Available</p></div>
 			{% endif %}
 		</div>
 	</div>

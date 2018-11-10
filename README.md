@@ -37,6 +37,10 @@ As I did not have enough data as well as I thought that this project will be too
 - Added img to db
 - Created fundamentals for `houses.html`
 - Customized the Admin dashboard
+- Added Showcase section to `index.html`
+- Added More Information section to `index.html`
+- Added fundamentals Contact us section to `index.html`
+- Added `_page-header.html`
 
 
 ### Tests

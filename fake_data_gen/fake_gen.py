@@ -16,7 +16,7 @@ fake = Faker()
 
 def gen_user():
     """ 
-	Generate random user base on the shema and add the user to db
+	Generate random user base on the schema and add the user to db
 	"""
     name = fake.name()
     email = fake.email()
@@ -34,7 +34,7 @@ def gen_user():
 
 def gen_listing(how_many):
     """ 
-	Generate random listing base on the shema and add the user to listing
+	Generate random listing base on the schema and add the user to listing
 	"""
     listings = 0
     while listings < how_many:

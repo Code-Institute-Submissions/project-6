@@ -2,7 +2,6 @@
 General
 */
 
-
 a,
 i,
 .navbar-light .navbar-brand {
@@ -16,7 +15,6 @@ a:hover,
 a:active {
 	opacity: 1;
 	color: #5cb85c;
-
 }
 
 /* 
@@ -24,7 +22,25 @@ Nav
 */
 
 nav {
-	
+}
+
+/* 
+Page Header
+*/
+
+#page-header {
+	height: 70vh;
+	background: url("/media/index-bg.jpeg") no-repeat center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
+
+#page-header h1 {
+	font-family: "Great Vibes", cursive;
+	color: #ffffff;
 }
 
 /* 
@@ -32,7 +48,7 @@ Main
 */
 
 main {
-	min-height: 100vh
+	min-height: 100vh;
 }
 
 /* 

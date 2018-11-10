@@ -1,0 +1,56 @@
+
+	#listings {
+        position: relative;
+        top: -100px;
+	}
+	.pokus {
+		background-color: black;
+		min-height: 150px;
+	}
+	#more-info {
+		background: url("/media/index-bg.jpeg") no-repeat center;
+		background-attachment: fixed;
+		-webkit-background-size: cover;
+		-moz-background-size: cover;
+		-o-background-size: cover;
+		background-size: cover;
+	}
+
+	#more-info .card {
+		min-height: 420px;
+		background-color: rgba(0,0,0,0.5);
+		color: #ffffff;
+		box-shadow: 0 0 10px rgba(0,0,0,0.3);
+		transition: all 0.7s ease;
+	}
+
+	#more-info .card:hover {
+		background-color: #ffffff;
+		color: #000000;
+	}
+
+	#more-info .card-header {
+		border: 0;
+		background-color: transparent;
+	}
+
+	#more-info .card h2 {
+		font-family: "Great Vibes", cursive;
+	}
+
+	#more-info .card:hover h2 {
+		color: #5cb85c;
+	}
+
+	#more-info .card i {
+		color: #ffffff;
+	}
+
+	#more-info .card:hover i {
+		color: #5cb85c;
+    	transform: scale(1.5);
+	}
+
+	#contact-us {
+		min-height: 100vh;
+	}

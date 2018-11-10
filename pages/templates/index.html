@@ -1,9 +1,67 @@
-{% extends "base.html" %}
+{% extends "base.html" %} 
+
+{% load static %}
 
 {% block css %}
+<link rel="stylesheet" href="{% static 'css/custom/index.css' %}">
+{% endblock css %} 
 
-{% endblock css %}
+{% block page_header %} 
+
+{% endblock page_header %} 
 
 {% block main_content %}
+	<!-- Small showcase -->
+	{% include "partials/_listing.html" %}	
+	
+	<!-- More information -->
+	<section id="more-info" class="py-5">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-6 mb-4">
+					<div class="card">
+						<div class="card-header pt-4 text-center">
+							<div class="row justify-content-center">
+								<i class="fab fa-fort-awesome fa-3x"></i>
+							</div>
+							<h2 class="pt-5">Find your castle</h2>
+						</div>
+						<div class="card-body">
+							<div class="row py-2">
+								<div class="col-12">
+									<p class="px-2 text-center">
+										{% lorem 1 %}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+				<div class="col-md-6 mb-4">
+					<div class="card">
+						<div class="card-header pt-4 text-center">
+							<div class="row justify-content-center">
+								<i class="fas fa-pencil-alt fa-3x"></i>
+							</div>
+							<h2 class="pt-5">Join us ...</h2>
+						</div>
+						<div class="card-body">
+							<div class="row py-2">
+								<div class="col-12">
+									<p class="px-2 text-center">
+										{% lorem 1 %}
+									</p>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>			
+	</section>
+
+	<!-- Contact us -->
+	<section id="contact-us" class="py-5">
+		
+	</section>
 
 {% endblock main_content %}

@@ -4,6 +4,6 @@ from listings import views as listings
 
 urlpatterns = [
 	path('', listings.houses, name="houses"),
-	path('<int:plant_id>', listings.house, name="house"),
+	path('<int:house_id>', listings.house, name="house"),
 	path('search', listings.search, name="search")
 ]
