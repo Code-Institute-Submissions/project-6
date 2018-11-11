@@ -62,4 +62,6 @@ As I did not have enough data as well as I thought that this project will be too
 #### accounts app
 
 - tested User model
+- tested UserProfile model
+- tested views
 
