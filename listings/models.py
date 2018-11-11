@@ -1,7 +1,7 @@
 from django.db import models
 from datetime import datetime
+from django.contrib.auth.models import User
 
-from accounts.models import User
 
 
 class Listing(models.Model):
@@ -9,11 +9,11 @@ class Listing(models.Model):
 	Model for creating a single listing (house)
 	"""
 
-    title = models.CharField(max_length=200)
+    title = models.CharField(max_length=200, unique=True)
     address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
-    zipcode = models.CharField(max_length=20)
+    zipcode = models.CharField(max_length=20, unique=True)
     description = models.TextField(blank=True)
     price = models.IntegerField()
     bedrooms = models.IntegerField()

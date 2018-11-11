@@ -38,18 +38,15 @@
 		font-family: "Great Vibes", cursive;
 	}
 
+	#more-info .card:hover i,
 	#more-info .card:hover h2 {
 		color: #5cb85c;
+    	transform: scale(1.5);
 	}
 
 	#more-info .card i {
 		color: #ffffff;
-	}
-
-	#more-info .card:hover i {
-		color: #5cb85c;
-    	transform: scale(1.5);
-	}
+	}	
 
 	#contact-us {
 		min-height: 100vh;

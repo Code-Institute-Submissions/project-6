@@ -7,28 +7,38 @@ import django
 
 django.setup()
 
-from accounts.models import User
+from accounts.models import UserProfile
 from listings.models import Listing
-from django.shortcuts import get_object_or_404
+from django.contrib.auth.models import User
 
 fake = Faker()
 
 
-def gen_user():
+def gen_user_and_profile():
     """ 
 	Generate random user base on the schema and add the user to db
 	"""
-    name = fake.name()
+    
+    user_name = fake.first_name()
+    first_name = user_name
+    last_name = fake.last_name()
     email = fake.email()
     phone = fake.msisdn()
-    is_seller = bool(random.getrandbits(1))
+    
+    is_seller = True
     joined = fake.past_date(start_date="-4y", tzinfo=None)
+    user = User.objects.get_or_create(email=email, username=user_name, 
+			first_name=first_name, last_name=last_name)
+    user = User.objects.get(email=email)
+	
+    
 
-    user = User(
-        name=name, email=email, phone=int(phone), is_seller=is_seller, joined=joined
+    new_profile = UserProfile(
+        user=user,  phone=int(phone), is_seller=is_seller, joined=joined
     )
-    user.save()
-    print(name)
+    
+    
+    new_profile.save()
     return user
 
 
@@ -60,7 +70,7 @@ def gen_listing(how_many):
         is_published = bool(random.getrandbits(1))
         paid_fee = True
         list_date = fake.past_date(start_date="-2y", tzinfo=None)
-        seller = gen_user()
+        seller = gen_user_and_profile()
 
         listing = Listing(
             title=title,

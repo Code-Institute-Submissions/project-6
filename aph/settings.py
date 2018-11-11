@@ -74,6 +74,8 @@ TEMPLATES = [
 WSGI_APPLICATION = 'aph.wsgi.application'
 
 
+AUTH_PROFILE_MODULE = 'accounts.UserProfile'
+
 # Database
 # https://docs.djangoproject.com/en/2.1/ref/settings/#databases
 

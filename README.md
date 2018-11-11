@@ -42,6 +42,10 @@ As I did not have enough data as well as I thought that this project will be too
 - Added fundamentals Contact us section to `index.html`
 - Added `_page-header.html`
 
+#### 0.5 
+
+- Extended the `User` model
+
 
 ### Tests
 
