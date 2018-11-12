@@ -7,10 +7,10 @@ class TestViews(TestCase):
 		self.assertEqual(page.status_code, 200)
 		self.assertTemplateUsed(page, "houses.html")
 
-	""" def test_get_single_listing(self):
-		page = self.client.get("123456")
+	def test_get_single_listing(self):
+		page = self.client.get("/listings/6")
 		self.assertEqual(page.status_code, 200)
-		self.assertTemplateUsed(page, "house.html") """
+		self.assertTemplateUsed(page, "house.html")
 
 	def test_get_search(self):
 		page = self.client.get("/listings/search")

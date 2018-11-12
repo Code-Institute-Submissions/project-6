@@ -25,7 +25,7 @@ def gen_user_and_profile():
     email = fake.email()
     phone = fake.msisdn()
     
-    is_seller = True
+    terms = True
     joined = fake.past_date(start_date="-4y", tzinfo=None)
     user = User.objects.get_or_create(email=email, username=user_name, 
 			first_name=first_name, last_name=last_name)

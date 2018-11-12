@@ -45,6 +45,7 @@ As I did not have enough data as well as I thought that this project will be too
 #### 0.5 
 
 - Extended the `User` model
+- Added user registration and creating profile
 
 
 ### Tests
