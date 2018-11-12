@@ -6,22 +6,29 @@ from accounts.models import UserProfile
 from django.contrib.auth.decorators import login_required
 
 
+from django.core.exceptions import ValidationError
+from django import forms
+
+
 def register(request):
     """
     User Registration view
     """
+
+    if request.user.is_authenticated:
+        return redirect(reverse('index'))
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
             # If valid save the user
             form.save()
             user = User.objects.get(email=request.POST.get('email'))
-			# Check if terms are accepted
+            # Check if terms are accepted
             if request.POST.get('terms'):
                 terms = True
             else:
-                terms = False
-			# Create new profile for the user
+                raise forms.ValidationError("You must accept the terms")
+                # Create new profile for the user
             profile = UserProfile(
                 user=user,
                 img=request.POST.get('img'),
@@ -35,6 +42,8 @@ def register(request):
             messages.success(
                 request, "You have successfully registered and logged in")
             return redirect(reverse('index'))
+        else:
+            messages.error(request, form.errors)
     else:
         form = UserProfileForm()
     return render(request, "register.html", {'form': form})
@@ -50,10 +59,9 @@ def login(request):
 
 @login_required
 def logout(request):
-    """ 
-    User Log-ou view
-    """
-    return redirect(request, "index.html")
+    auth.logout(request)
+    messages.success(request, "You have successfully logged out!")
+    return redirect(reverse('index'))
 
 
 @login_required

@@ -4,6 +4,7 @@
 p3.6-testing-env
 aph/static/img
 .vscode
+*.ipynb
 .bashrc
 jupyter_tests.py
 /plants-data

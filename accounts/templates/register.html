@@ -1,15 +1,14 @@
 {% extends "base.html" %} 
 
-{% load bootstrap4 %} 
+{% load bootstrap4 %}
 
 {% block main_content %}
+<!-- Registration form-->
 <section class="container">
 	<div class="row">
 		<div class="col-12">
 			<form method="POST" action="{% url 'register' %}" class="py-5">
 				{% csrf_token %}
-				{% bootstrap_messages %}
-			
 				<fieldset class="form-group">
 					<legend class="text-center">Create a new account</legend>
 					<p class="text-center py-5">Already got an account? 

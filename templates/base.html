@@ -1,5 +1,7 @@
 {% load static %}
 
+{% load bootstrap4 %}
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -31,16 +33,40 @@
 	<!-- Navigation -->
 	{% include "partials/_navbar.html" %}
 
-	<!-- Header -->
-	{% include "partials/_page-header.html" %}
+	
+	{% if messages %}
+	<!-- Bootstrap messages -->
+	<section class="container-fluid">
+		<div class="row">
+			<div class="col-12 pt-4 text-center">
+				{% for message in messages %}
+				  <p>{{ message }}</p>
+				{% endfor %}
+			</div>
+		</div>
+	</section>
+	{% endif %}
+
+	<!-- Page Header -->
+	<header id="page-header" class="container-fluid">
+		<div class="row">
+			<h1 class=" col-12 py-5 mt-5 text-center">
+				Something something
+			</h1>			
+		</div>
+		{% block page_header %} {% endblock page_header %}
+	</header>
 
 	<!-- Main Content -->
+	{% block main %}
 	<main class="bg-light">
 		{% block main_content %} {% endblock main_content %}
 	</main>
+	{% endblock main %}
 
 	<!-- Footer -->
 	{% include "partials/_footer.html" %}
+
 
 	<!-- Scripts -->
 	<!-- Bootstrap core JavaScript-->

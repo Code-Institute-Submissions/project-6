@@ -45,7 +45,9 @@ As I did not have enough data as well as I thought that this project will be too
 #### 0.5 
 
 - Extended the `User` model
+- Added section for Boostrap messages
 - Added user registration and creating profile
+- Added Log out functionality for user
 
 
 ### Tests
@@ -65,4 +67,6 @@ As I did not have enough data as well as I thought that this project will be too
 - tested User model
 - tested UserProfile model
 - tested views
+- - registration
+- - - Fixed `clean_email()` will now properly check if user already exist 
 
