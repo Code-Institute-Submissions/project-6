@@ -6,7 +6,6 @@ aph/static/img
 .vscode
 *.ipynb
 .bashrc
-jupyter_tests.py
 /plants-data
 
 ### Django ###

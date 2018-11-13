@@ -48,6 +48,7 @@ As I did not have enough data as well as I thought that this project will be too
 - Added section for Boostrap messages
 - Added user registration and creating profile
 - Added Log out functionality for user
+- Finished user auth
 
 
 ### Tests

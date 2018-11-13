@@ -116,6 +116,7 @@ AUTH_PASSWORD_VALIDATORS = [
 ]
 
 
+
 # Internationalization
 # https://docs.djangoproject.com/en/2.1/topics/i18n/
 
@@ -139,7 +140,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'aph/static'),
     os.path.join(BASE_DIR, 'pages/static'),
     os.path.join(BASE_DIR, 'listings/static'),
-    os.path.join(BASE_DIR, 'accounts/static'),
+    #os.path.join(BASE_DIR, 'accounts/static'),
 ]
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')

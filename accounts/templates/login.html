@@ -15,20 +15,22 @@
 {% block page_header %}
 <!-- Log in form -->
 <div class="row justify-content-center">
-	<form method="POST" action="{% url 'login' %}" class="py-5">
-		{% csrf_token %}
-		{% bootstrap_form form %}
-		<div class="form-group">
-			{% buttons %}
-			<button type="submit" class="btn btn-success btn-block">Log in</button>
-			{% endbuttons %}
-		</div>
-		<div class="form-group">
-			<p class="text-center py-5 text-light">Do not have an account?
-				<a class="d-block small mt-3" href="{% url 'register' %}">Register now!</a>
-			</p>
-		</div>
-	</form>
+	<div class="col-xs-6 col-lg-3">
+		<form method="POST" action="{% url 'login' %}" class="py-5">
+			{% csrf_token %}
+			{% bootstrap_form form %}
+			<div class="form-group">
+				{% buttons %}
+				<button type="submit" class="btn btn-success btn-block">Log in</button>
+				{% endbuttons %}
+			</div>
+			<div class="form-group">
+				<p class="text-center py-5 text-light">Do not have an account?
+					<a class="d-block small mt-3" href="{% url 'register' %}">Register now!</a>
+				</p>
+			</div>
+		</form>
+	</div>
 </div>
 {% endblock page_header %}	
 

@@ -15,8 +15,6 @@ def register(request):
     User Registration view
     """
 
-    if request.user.is_authenticated:
-        return redirect(reverse('index'))
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
@@ -37,11 +35,22 @@ def register(request):
                 terms=terms,
             )
             profile.save()
-            # Log in the user
-            auth.login(request, user)
-            messages.success(
-                request, "You have successfully registered and logged in")
-            return redirect(reverse('index'))
+
+            user = auth.authenticate(username=request.POST.get('username'),
+                                     password=request.POST.get('password1'))
+
+            if user:
+                auth.login(request, user)
+                messages.success(
+                    request, "You have successfully registered and logged in")
+
+                if request.GET and request.GET['next'] != '':
+                    next = request.GET['next']
+                    return HttpResponseRedirect(next)
+                else:
+                    return redirect(reverse('index'))
+            else:
+                messages.error(request, "Unable to log you in!")
         else:
             messages.error(request, form.errors)
     else:
@@ -53,7 +62,27 @@ def login(request):
     """ 
     User Log-in view
     """
-    form = UserLoginForm()
+	# Check if user is already log in first
+    if request.user.is_authenticated:
+        messages.error(request, "You are already logged in!")
+        return redirect(reverse('index'))
+    if request.method == 'POST':
+        form = UserLoginForm(request.POST)
+        if form.is_valid():
+            user = auth.authenticate(username=request.POST['username'],
+                                     password=request.POST['password'])
+            if user:
+                auth.login(request, user)
+                messages.success(request, "You have successfully logged in!")
+                return redirect(reverse('index'))
+            else:
+                form.add_error(
+                    None, "Your username and password is incorrect!")
+            
+        else:
+            messages.error(request, form.errors)
+    else:
+        form = UserLoginForm()
     return render(request, "login.html", {'form': form})
 
 
