@@ -66,6 +66,7 @@ def login(request):
     # Check if user is already log in first
     if request.user.is_authenticated:
         messages.error(request, "You are already logged in!")
+        return redirect('index')
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -97,12 +98,7 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully logged out!")
-    # Check if next arg is pressent
-    nexturl = request.POST.get('next')
-    if nexturl:
-        return redirect(nexturl)
-    else:
-        return redirect('index')
+    return redirect('index')
 
 
 @login_required

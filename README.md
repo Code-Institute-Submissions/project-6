@@ -49,6 +49,8 @@ As I did not have enough data as well as I thought that this project will be too
 - Added user registration and creating profile
 - Added Log in functionality for user
 - Added Log out functionality for user
+- Added functionality for user to be able to change his password
+- Added fundamenatls for user to be able to reset his password
 
 
 ### Tests
@@ -61,7 +63,7 @@ As I did not have enough data as well as I thought that this project will be too
 
 - tested views
 - tested listing model
-- added `max-height` to `.card-img-overlay ` as it was covering the `<a>`
+- added `max-height` to `.card-img-overlay` as it was covering the `<a>`
 
 #### accounts app
 
@@ -71,5 +73,5 @@ As I did not have enough data as well as I thought that this project will be too
 - - registration
 - - - Fixed `clean_email()` will now properly check if user already exist 
 - - log in
-- - - Fixed issue whene user was not redirected to last page visited
+- - - Fixed issue whe user was not redirected to last page visited
 
