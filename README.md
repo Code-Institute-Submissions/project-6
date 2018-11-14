@@ -47,8 +47,8 @@ As I did not have enough data as well as I thought that this project will be too
 - Extended the `User` model
 - Added section for Boostrap messages
 - Added user registration and creating profile
+- Added Log in functionality for user
 - Added Log out functionality for user
-- Finished user auth
 
 
 ### Tests
@@ -70,4 +70,6 @@ As I did not have enough data as well as I thought that this project will be too
 - tested views
 - - registration
 - - - Fixed `clean_email()` will now properly check if user already exist 
+- - log in
+- - - Fixed issue whene user was not redirected to last page visited
 

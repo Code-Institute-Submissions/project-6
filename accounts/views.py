@@ -44,11 +44,12 @@ def register(request):
                 messages.success(
                     request, "You have successfully registered and logged in")
 
-                if request.GET and request.GET['next'] != '':
-                    next = request.GET['next']
-                    return HttpResponseRedirect(next)
+                # Check if next arg is pressent
+                nexturl = request.POST.get('next')
+                if nexturl:
+                    return redirect(nexturl)
                 else:
-                    return redirect(reverse('index'))
+                    return redirect('profile')
             else:
                 messages.error(request, "Unable to log you in!")
         else:
@@ -59,13 +60,12 @@ def register(request):
 
 
 def login(request):
-    """ 
+    """
     User Log-in view
     """
-	# Check if user is already log in first
+    # Check if user is already log in first
     if request.user.is_authenticated:
         messages.error(request, "You are already logged in!")
-        return redirect(reverse('index'))
     if request.method == 'POST':
         form = UserLoginForm(request.POST)
         if form.is_valid():
@@ -74,13 +74,20 @@ def login(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully logged in!")
-                return redirect(reverse('index'))
+                # Check if next arg is pressent
+                nexturl = request.POST.get('next')
+                if nexturl:
+                    return redirect(nexturl)
+                else:
+                    return redirect('profile')
             else:
                 form.add_error(
                     None, "Your username and password is incorrect!")
-            
+
+                return render(request, "login.html", {'form': form})
         else:
             messages.error(request, form.errors)
+            return render(request, "login.html", {'form': form})
     else:
         form = UserLoginForm()
     return render(request, "login.html", {'form': form})
@@ -90,7 +97,12 @@ def login(request):
 def logout(request):
     auth.logout(request)
     messages.success(request, "You have successfully logged out!")
-    return redirect(reverse('index'))
+    # Check if next arg is pressent
+    nexturl = request.POST.get('next')
+    if nexturl:
+        return redirect(nexturl)
+    else:
+        return redirect('index')
 
 
 @login_required
