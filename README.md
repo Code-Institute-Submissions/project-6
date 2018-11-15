@@ -52,12 +52,18 @@ As I did not have enough data as well as I thought that this project will be too
 - Added functionality for user to be able to change his password
 - Added fundamenatls for user to be able to reset his password
 
+#### 0.6
+
+- Added `enquiries` app for user to be able to contact the company
+
 
 ### Tests
 
 #### pages app
 
 - tested views
+- - index
+- - - Fixed issue with `alert` to only shows on top of the page
   
 #### listings app
 
@@ -75,3 +81,4 @@ As I did not have enough data as well as I thought that this project will be too
 - - log in
 - - - Fixed issue whe user was not redirected to last page visited
 
+#### enquiries app

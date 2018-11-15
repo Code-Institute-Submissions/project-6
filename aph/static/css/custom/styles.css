@@ -2,6 +2,10 @@
 General
 */
 
+.alert {
+	background-color: #f8f9fa
+}
+
 a,
 i,
 .navbar-light .navbar-brand {
@@ -15,6 +19,10 @@ a:hover,
 a:active {
 	opacity: 1;
 	color: #5cb85c;
+}
+
+.section-hr {
+	max-width: 75%;
 }
 
 /* 

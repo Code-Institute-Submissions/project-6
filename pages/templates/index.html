@@ -1,5 +1,6 @@
 {% extends "base.html" %} 
 
+{% load bootstrap4 %}
 {% load static %}
 
 {% block css %}
@@ -60,8 +61,30 @@
 	</section>
 
 	<!-- Contact us -->
-	<section id="contact-us" class="py-5">
-		
+	<section id="contact-us" class="container py-5">
+		<h2 class="text-center py-5">Contact us</h2>	
+		<hr class="section-hr">	
+		<div class="row mt-5">
+			<div class="col-xs-12 col-md-6">
+
+			</div>
+			<div class="col-xs-12 col-md-6">
+				<form method="POST">
+					{% csrf_token %}
+					{% bootstrap_form form %}					
+					<div class="form-group">
+						{% buttons %}
+						<button type="submit" class="btn btn-success btn-block">Send</button>
+						{% endbuttons %}
+					</div>
+					{% if user.is_authenticated %}
+					<!-- Store user id -->
+					<input type="hidden" name="user" value="{{ user.email }}">
+					{% else %}
+					{% endif %}
+				</form>
+			</div>
+		</div>
 	</section>
 
 {% endblock main_content %}

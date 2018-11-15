@@ -1,53 +1,76 @@
+/* 
+Listings
+*/
 
-	#listings {
-        position: relative;
-        top: -100px;
-	}
-	.pokus {
-		background-color: black;
-		min-height: 150px;
-	}
-	#more-info {
-		background: url("/media/index-bg.jpeg") no-repeat center;
-		background-attachment: fixed;
-		-webkit-background-size: cover;
-		-moz-background-size: cover;
-		-o-background-size: cover;
-		background-size: cover;
-	}
+#listings {
+	position: relative;
+	top: -100px;
+}
 
-	#more-info .card {
-		min-height: 420px;
-		background-color: rgba(0,0,0,0.5);
-		color: #ffffff;
-		box-shadow: 0 0 10px rgba(0,0,0,0.3);
-		transition: all 0.7s ease;
-	}
+/* 
+More info
+*/
+#more-info {
+	background: url("/media/index-bg.jpeg") no-repeat center;
+	background-attachment: fixed;
+	-webkit-background-size: cover;
+	-moz-background-size: cover;
+	-o-background-size: cover;
+	background-size: cover;
+}
 
-	#more-info .card:hover {
-		background-color: #ffffff;
-		color: #000000;
-	}
+#more-info .card {
+	min-height: 420px;
+	background-color: rgba(0, 0, 0, 0.5);
+	color: #ffffff;
+	box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+	transition: all 0.7s ease;
+}
 
-	#more-info .card-header {
-		border: 0;
-		background-color: transparent;
-	}
+#more-info .card:hover {
+	background-color: #ffffff;
+	color: #000000;
+}
 
-	#more-info .card h2 {
-		font-family: "Great Vibes", cursive;
-	}
+#more-info .card-header {
+	border: 0;
+	background-color: transparent;
+}
 
-	#more-info .card:hover i,
-	#more-info .card:hover h2 {
+#more-info .card h2 {
+	font-family: "Great Vibes", cursive;
+}
+
+#more-info .card:hover i,
+#more-info .card:hover h2 {
+	color: #5cb85c;
+	transform: scale(1.5);
+}
+
+#more-info .card i {
+	color: #ffffff;
+}
+
+/* 
+Contact Us
+*/
+
+#contact-us {
+	height: auto;
+}
+#contact-us ::-webkit-input-placeholder,
+#contact-us select[name=enquire] {
 		color: #5cb85c;
-    	transform: scale(1.5);
-	}
+	
+}
 
-	#more-info .card i {
-		color: #ffffff;
-	}	
-
-	#contact-us {
-		min-height: 100vh;
-	}
+#contact-us select[name=enquire],
+#contact-us input,
+.form-control {
+	border: 0;
+	background-color: #f8f9fa;	
+	border: 1px solid #5cb85c;
+}
+#contact-us label {
+	display: none;
+}

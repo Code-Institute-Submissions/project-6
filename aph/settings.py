@@ -41,6 +41,7 @@ INSTALLED_APPS = [
 	'pages.apps.PagesConfig',
 	'listings.apps.ListingsConfig',
 	'accounts.apps.AccountsConfig',
+	'enquiries.apps.EnquiriesConfig',
 	'bootstrap4',
 ]
 
