@@ -1,9 +1,128 @@
 {% extends "base.html" %}
 
 {% block css %}
-
+<style>
+	.vibes-cursive {
+		color: #000000;
+	}
+	.card {
+		border: 0;
+	}
+</style>
 {% endblock css %}
 
 {% block main_content %}
+<!-- House information -->
+<section class="container py-5">	
+	<div class="row">
+		<div class="col-xs-12 col-md-6 card">
+			<img class="" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
+		</div>
+		<div class="col-xs-12 col-md-6 card">
+			<div class="card-body">
+				<div class="text-center">
+					<h4>{{ house.title }}</h4>
+					<p>
+						<i class="fas fa-map-marker"></i> {{ house.city }}
+						{{ house.state }}, {{ house.zipcode }}
+					</p>
+				</div>
+				<div class="row py-2 text-secondary">
+					<div class="col-6">
+						<i class="fas fa-th-large"></i> Sqft: {{ house.square_feet }}
+					</div>
+					<div class="col-6">
+						<i class="fas fa-car"></i> Garage: {{ house.garage }}
+					</div>
+				</div>
+				<div class="row py-2 text-secondary">
+					<div class="col-6">
+						<i class="fas fa-bed"></i> Bedrooms: {{ house.bedrooms }}
+					</div>
+					<div class="col-6">
+						<i class="fas fa-bath"></i> Bathrooms: {{ house.bathrooms }}
+					</div>
+				</div>
+				<hr />
+				<div class="row py-2 text-secondary">
+					<div class="col-12">
+						<i class="fas fa-user"></i> {{ house.seller | title }}
+					</div>
+				</div>
+				<div class="row text-secondary pb-2">
+					<div class="col-12">
+						<i class="fas fa-clock"></i> {{ house.list_date | date }}
+					</div>
+				</div>
+				<hr />
+				<div class="row">
+					<a href="{% url 'house' house.id %}" class="btn btn-outline-success btn-block">See Details</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<div class="row">
+		<!-- Slide show -->
+	</div>
+</section>
+<!-- Contact the owner -->
+<section class="container py-5">
+	<div class="row">
+		<div class="col-xs-12 colmd-6"></div>
+		<div class="col-xs-12 colmd-6"></div>
+	</div>
+</section>
+<!-- Random 3 houses -->
+<section id="listings" class="py-5">
+	<div class="container">
+		<div class="row">
+			{% for house in listings %}
+			<div class="col-md-6 col-lg-4 mb-4">
+					<div class="card-body">
+						<div>
+							<h4 class="text-left vibes-cursive">{{ house.title }}</h4>
+							<p class="text-center">
+								<i class="fas fa-map-marker"></i> {{ house.city }}
+								{{ house.state }}, {{ house.zipcode }}
+							</p>
+						</div>
+						<div class="row py-2 text-secondary">
+							<div class="col-6">
+								<i class="fas fa-th-large"></i> Sqft: {{ house.square_feet }}
+							</div>
+							<div class="col-6">
+								<i class="fas fa-car"></i> Garage: {{ house.garage }}
+							</div>
+						</div>
+						<div class="row py-2 text-secondary">
+							<div class="col-6">
+								<i class="fas fa-bed"></i> Bedrooms: {{ house.bedrooms }}
+							</div>
+							<div class="col-6">
+								<i class="fas fa-bath"></i> Bathrooms: {{ house.bathrooms }}
+							</div>
+						</div>
+						<hr />
+						<div class="row py-2 text-secondary">
+							<div class="col-12">
+								<i class="fas fa-user"></i> {{ house.seller | title }}
+							</div>
+						</div>
+						<div class="row text-secondary pb-2">
+							<div class="col-12">
+								<i class="fas fa-clock"></i> {{ house.list_date | date }}
+							</div>
+						</div>
+						<hr />
+						<div class="row">
+							<a href="{% url 'house' house.id %}" class="btn btn-outline-success btn-block">See Details</a>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
 
 {% endblock main_content %}

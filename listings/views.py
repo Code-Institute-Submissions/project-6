@@ -1,17 +1,23 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
 from listings.models import Listing
 
-def house(request):
+
+def house(request, house_id):
     """ 
-	Main route for a single house	
-	"""
-    return render(request, "house.html")
+        Main route for a single house	
+        """
+    house_data = get_object_or_404(Listing, pk=house_id)
+
+    args = {
+        'house': house_data,
+    }
+    return render(request, "house.html", args)
 
 
 def houses(request):
     """ 
-	Main route for all houses
-	"""    
+        Main route for all houses
+        """
     listings = Listing.objects.all().filter(is_published=True)
     data = {"listings": listings}
     return render(request, "houses.html", data)
@@ -19,7 +25,6 @@ def houses(request):
 
 def search(request):
     """ 
-	Main route for search
-	"""
+        Main route for search
+        """
     return render(request, "search.html")
-

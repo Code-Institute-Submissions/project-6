@@ -46,7 +46,8 @@ Page Header
 	background-size: cover;
 }
 
-#page-header h1 {
+#page-header h1,
+.vibes-cursive {
 	font-family: "Great Vibes", cursive;
 	color: #ffffff;
 }

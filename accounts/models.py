@@ -17,3 +17,4 @@ class UserProfile(models.Model):
 	joined = models.DateTimeField(default=datetime.now, blank=True)
 	def __str__(self):
 		return self.user.email
+		

@@ -16,7 +16,7 @@
 
 #### 0.2
 
-- Created fundamental for `listings` app (for pages such as `plants.html`, `plant.html` or `search.html`)
+- Created fundamental for `listings` app (for pages such as `houses.html`, `house.html` or `search.html`)
 - separated `templates` and `static` for each of the app
 - Added testing via Django build in tests
 
@@ -42,7 +42,7 @@ As I did not have enough data as well as I thought that this project will be too
 - Added fundamentals Contact us section to `index.html`
 - Added `_page-header.html`
 
-#### 0.5 
+#### 0.5
 
 - Extended the `User` model
 - Added section for Boostrap messages
@@ -59,6 +59,8 @@ As I did not have enough data as well as I thought that this project will be too
 
 ### Tests
 
+- Fixed issue where alerts prevent user to click on nav links
+ 
 #### pages app
 
 - tested views
