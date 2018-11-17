@@ -1,0 +1,16 @@
+/* 
+House information
+*/
+
+.card {
+	border: 0;
+}
+
+/* 
+Address
+*/
+#google-map {
+	border: 1px solid white;
+	border-top-right-radius: 5px;
+	height: 300px;
+}

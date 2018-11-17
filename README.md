@@ -56,6 +56,11 @@ As I did not have enough data as well as I thought that this project will be too
 
 - Added `enquiries` app for user to be able to contact the company
 
+#### 0.7
+
+- Finished `house.html` for single house listing
+- Added fundamentals for `edit_house` view
+
 
 ### Tests
 

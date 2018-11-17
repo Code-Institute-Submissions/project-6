@@ -10,6 +10,7 @@ def house(request, house_id):
 
     args = {
         'house': house_data,
+		'page_title': house_data.title
     }
     return render(request, "house.html", args)
 
@@ -19,8 +20,18 @@ def houses(request):
         Main route for all houses
         """
     listings = Listing.objects.all().filter(is_published=True)
-    data = {"listings": listings}
-    return render(request, "houses.html", data)
+    args = {
+		"listings": listings,
+		"page_title": "Something something",
+		}
+    return render(request, "houses.html", args)
+
+
+def edit_house(request, house_id):
+    """ 
+        Main route for editing house listing
+        """
+    pass
 
 
 def search(request):

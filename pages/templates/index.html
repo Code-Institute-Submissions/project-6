@@ -7,9 +7,9 @@
 <link rel="stylesheet" href="{% static 'css/custom/index.css' %}">
 {% endblock css %} 
 
-{% block page_header %} 
+{% block header %} 
 
-{% endblock page_header %} 
+{% endblock header %} 
 
 {% block main_content %}
 	<!-- Small showcase -->
@@ -65,10 +65,10 @@
 		<h2 class="text-center py-5">Contact us</h2>	
 		<hr class="section-hr">	
 		<div class="row mt-5">
-			<div class="col-xs-12 col-md-6">
+			<div class=" col-md-6">
 
 			</div>
-			<div class="col-xs-12 col-md-6">
+			<div class=" col-md-6">
 				<form method="POST">
 					{% csrf_token %}
 					{% bootstrap_form form %}					

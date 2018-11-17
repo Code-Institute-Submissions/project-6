@@ -19,6 +19,7 @@ def index(request):
 	args = {
 		"listings": listings,
 		"form": contact_form,
+		"page_title": "Something Something",
 	}
 	# The contact form is submited
 	if request.method == 'POST':

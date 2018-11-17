@@ -15,6 +15,8 @@
 	<!-- Bootstrap -->
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
 	 crossorigin="anonymous">
+	<!-- Light box -->
+	<link rel="stylesheet" href="{% static 'css/vendor/lightbox.min.css' %}">
 	<!-- Fonts -->
 	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
 	<!-- Custom CSS -->
@@ -48,14 +50,16 @@
 	{% endif %}
 
 	<!-- Page Header -->
+	{% block page_header %}
 	<header id="page-header" class="container-fluid">
 		<div class="row">
-			<h1 class=" col-12 py-5 mt-5 text-center">
-				Something something
-			</h1>			
+			<h1 class=" col-12 py-5 mt-5 text-center text-light">
+				{{ page_title }}
+			</h1>
 		</div>
-		{% block page_header %} {% endblock page_header %}
+		{% block header_content %} {% endblock header_content %}
 	</header>
+	{% endblock page_header %}
 
 	<!-- Main Content -->
 	{% block main %}
@@ -75,7 +79,9 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>	
+	 crossorigin="anonymous"></script>
+	<!-- Light box -->
+    <script src="{% static 'js/vendor/lightbox.min.js' %}"></script>	
 	<!-- Custom JS -->
 	<script src="{% static 'js/custom/main.js' %}"></script>	
 	{% block js %} {% endblock js %}
