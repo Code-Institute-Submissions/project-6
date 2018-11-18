@@ -1,5 +1,3 @@
-
-
 from aph import settings
 import django
 import os
@@ -25,7 +23,6 @@ class FakeData:
         self.fake_data()
 
     def gen_user_and_profile(self):
-
         """
         Generate random user base on the schema and add the user to db
         """
@@ -38,7 +35,6 @@ class FakeData:
 
         terms = True
         joined = self.fake.past_date(start_date="-4y", tzinfo=None)
-
 
         self.user = User.objects.get_or_create(
             email=email,
@@ -54,19 +50,37 @@ class FakeData:
         new_profile.save()
         return user
 
-    def gen_listing(self, how_many=1):
-
+    def gen_secondary_imgs(self):
+        """ 
+        Randomize secondary images
         """
+        self.imgs = [0]
+        img = 0
+
+        while len(self.imgs) is not 6:
+            while img in self.imgs:
+                img = random.randint(1, 28)
+            self.imgs.append(img)
+        del(self.imgs[0])
+        return self.imgs
+
+    def fake_data(self):
+        """
+        Generate User / Profile and listing depends on user 
+
         Generate random listing base on the schema and add the user to listing
+
         """
 
-        listings = 0
+        listings = 1
+        how_many = int(input("How many ?"))
         while listings < how_many:
             title = self.fake.street_name()
             city = self.fake.city()
             state = self.fake.state()
             zipcode = self.fake.postalcode()
 
+            #description = self.fake.text(max_nb_chars=200, ext_word_list=None)
             description = ""
             price = random.randint(100000, 500000)
 
@@ -74,12 +88,13 @@ class FakeData:
             bathrooms = random.randint(1, 2)
             garage = random.randint(0, 1)
             square_feet = random.randint(500, 1000)
-            main_img = f"fake_data/main/1 ({listings + 1}).jpeg"
-            img_1 = f"fake_data/others/1 ({listings + 1}).jpeg"
-            img_2 = f"fake_data/others/1 ({listings + 1}).jpeg"
-            img_3 = f"fake_data/others/1 ({listings + 1}).jpeg"
-            img_4 = f"fake_data/others/1 ({listings + 1}).jpeg"
-            img_5 = f"fake_data/others/1 ({listings + 1}).jpeg"
+            imgs = self.gen_secondary_imgs()
+            main_img = f"fake_data/main/1 ({listings}).jpeg"
+            img_1 = f"fake_data/others/1 ({imgs[0]}).jpeg"
+            img_2 = f"fake_data/others/1 ({imgs[1]}).jpeg"
+            img_3 = f"fake_data/others/1 ({imgs[2]}).jpeg"
+            img_4 = f"fake_data/others/1 ({imgs[3]}).jpeg"
+            img_5 = f"fake_data/others/1 ({imgs[4]}).jpeg"
 
             is_published = bool(random.getrandbits(1))
             paid_fee = True
@@ -111,16 +126,4 @@ class FakeData:
             )
             listing.save()
             print(title)
-            listings += 1
-
-    def fake_data(self):
-
-        """
-        Generate User / Profile and listing depends on user input (default=1)
-        """
-		
-        self.gen_listing(int(input("How many ?")))
-
-
-if __name__ == "__main__":
-    FakeData()
+            listings += 1 

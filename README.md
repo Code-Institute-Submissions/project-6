@@ -59,7 +59,14 @@ As I did not have enough data as well as I thought that this project will be too
 #### 0.7
 
 - Finished `house.html` for single house listing
+- Added Light Box for secondary images in single house listing
 - Added fundamentals for `edit_house` view
+
+#### 0.8
+
+- Deployed the project to Heroku for testing
+- Connected the `fake_data_gen` app to the project
+- Added more styles to `index.html` and `house.html`
 
 
 ### Tests

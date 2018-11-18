@@ -2,9 +2,16 @@
 Listings
 */
 
+.card-img-top {
+	height: 230px;
+}
+
+.card-img-overlay {
+	max-height: max-content;
+}
+
 #listings {
-	position: relative;
-	top: -100px;
+	min-width: 100%;
 }
 
 /* 
@@ -59,16 +66,15 @@ Contact Us
 	height: auto;
 }
 #contact-us ::-webkit-input-placeholder,
-#contact-us select[name=enquire] {
-		color: #5cb85c;
-	
+#contact-us select[name="enquire"] {
+	color: #5cb85c;
 }
 
-#contact-us select[name=enquire],
+#contact-us select[name="enquire"],
 #contact-us input,
 .form-control {
 	border: 0;
-	background-color: #f8f9fa;	
+	background-color: #f8f9fa;
 	border: 1px solid #5cb85c;
 }
 #contact-us label {

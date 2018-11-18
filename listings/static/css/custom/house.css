@@ -14,3 +14,12 @@ Address
 	border-top-right-radius: 5px;
 	height: 300px;
 }
+
+
+/* 
+Slideshow
+*/
+
+.house-secondary-img{
+	min-height: 120px;
+}

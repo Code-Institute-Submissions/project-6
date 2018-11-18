@@ -13,7 +13,31 @@
 
 {% block main_content %}
 	<!-- Small showcase -->
-	{% include "partials/_listing.html" %}	
+	<section id="listings" class="py-3">
+		<div class="container">
+			<div class="row">
+				{% if listings %}
+				{% for house in listings %}
+				<div class="col-md-6 col-lg-4 mb-4">
+					<div class="card">
+						<a href="{% url 'house' house.id %}">
+							<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
+						</a>
+						<div class="card-img-overlay">
+							<h2>
+								<span class="badge badge-secondary text-white">£{{ house.price }}</span>
+							</h2>
+						</div>
+						<div class="card-body">
+							<h4 class="text-center">{{ house.title }}</h4>
+						</div>						
+					</div>
+				</div>
+				{% endfor %}
+				{% endif %}
+			</div>
+		</div>
+	</section>
 	
 	<!-- More information -->
 	<section id="more-info" class="py-5">
@@ -57,7 +81,8 @@
 						</div>
 					</div>
 				</div>
-			</div>			
+			</div>	
+		</div>		
 	</section>
 
 	<!-- Contact us -->
