@@ -1,4 +1,3 @@
-from aph import settings
 import django
 import os
 import random
@@ -127,3 +126,6 @@ class FakeData:
             listing.save()
             print(title)
             listings += 1 
+
+if __name__ == "__main__":
+	FakeData()
