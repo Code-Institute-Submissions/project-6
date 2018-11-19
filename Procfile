@@ -1,1 +1,1 @@
-web: gunicorn aph.wsgi:application
+web: gunicorn aph.wsgi
