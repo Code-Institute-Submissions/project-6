@@ -148,3 +148,10 @@ MEDIA_URL = '/media/'
 
 
 EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+
+# To get the local setting for server
+try:
+    from .cloud_settings import *
+except ImportError:
+    pass
