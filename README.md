@@ -67,7 +67,7 @@ As I did not have enough data as well as I thought that this project will be too
 - Deployed the project to Heroku for testing
 - Connected the `fake_data_gen` app to the project
 - Added more styles to `index.html` and `house.html`
-
+- Separated settings for production and development
 
 ### Tests
 
@@ -76,8 +76,8 @@ As I did not have enough data as well as I thought that this project will be too
 #### pages app
 
 - tested views
-- - index
-- - - Fixed issue with `alert` to only shows on top of the page
+  - index
+  - Fixed issue with `alert` to only shows on top of the page
   
 #### listings app
 
@@ -90,9 +90,7 @@ As I did not have enough data as well as I thought that this project will be too
 - tested User model
 - tested UserProfile model
 - tested views
-- - registration
-- - - Fixed `clean_email()` will now properly check if user already exist 
-- - log in
-- - - Fixed issue whe user was not redirected to last page visited
+  - Fixed `clean_email()` will now properly check if user already exist 
+  - Fixed issue whe user was not redirected to last page visited
 
 #### enquiries app
