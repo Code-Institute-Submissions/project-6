@@ -5,7 +5,7 @@
 import os
 
 # Set it to True for local setting and testing
-DEBUG = True
+DEBUG = False
 
 # To get the local setting for testing and CI members if DEBUG=True
 if DEBUG:
