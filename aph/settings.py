@@ -1,18 +1,20 @@
 
 # This is a PRODUCTION setting.
-# Please set DEVELOPMENT=True if you like to test this project and the database
+# Please set DEBUG=True if you like to test this project and the database
 
 import os
 
 # Set it to True for local setting and testing
-DEVELOPMENT = False
+DEBUG = True
 
-# To get the local setting for testing and CI members if DEVELOPMENT=True
-if DEVELOPMENT:
+# To get the local setting for testing and CI members if DEBUG=True
+if DEBUG:
     try:
         from settings.local_settings import *
     except ImportError:
+        print("***********************************")
         print("Could not import local settings !!!")
+        print("***********************************")
 else:
     SECRET_KEY = os.environ.get('SECRET_KEY')
     DATABASES = {
@@ -24,7 +26,7 @@ else:
             'HOST': 'localhost'
         }
     }
-    ALLOWED_HOSTS = []
+    ALLOWED_HOSTS = ['159.65.91.216']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

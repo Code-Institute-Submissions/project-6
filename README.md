@@ -69,6 +69,44 @@ As I did not have enough data as well as I thought that this project will be too
 - Added more styles to `index.html` and `house.html`
 - Separated settings for production and development
 
+
+### Deployment
+
+I decided to deploy the project to Digital Ocean as I wanted to learn something new in process.
+
+- Pre-requirements
+  - pushed the latest changes to GitHub
+  - created new `Ubuntu 18.04 x64` droplet 
+  - generated new ssh key to connect to the server
+- Users
+  - created new user and gave him root privileges
+  - added the new ssh key to the created user
+  - disabled the default root user for security reasons
+- Security
+  - added simple firewall for better security
+- Software and packedges installation
+  - updated the packedges on the server
+  - installed `Python 3`
+  - installed `python3-venv`
+  - installed `Postgres`
+- Postgres Database
+  - created new postgres database
+  - created new user in the database and gave him all privilages
+- Git
+  - created new dir
+  - cloned the repository to the created dir
+- Virtual Enviroment
+  - created new venv and actived it
+  - installed requirements to the venv from `requirements.txt`
+- Cloud (production) setting
+  - created 'cloud_settings.py' on the server and added all the neccessary settings to it
+  - added try block to seettings.py to look for the cloud setting first
+- Server start
+  - migrated to new created database
+  - add superuser
+  - collected static files
+  - allowed port 8000 (default for Django) to the firewall
+
 ### Tests
 
 - Fixed issue where alerts prevent user to click on nav links
@@ -90,7 +128,7 @@ As I did not have enough data as well as I thought that this project will be too
 - tested User model
 - tested UserProfile model
 - tested views
-  - Fixed `clean_email()` will now properly check if user already exist 
-  - Fixed issue whe user was not redirected to last page visited
+  - Fixed `clean_email()` now properly check if user already exist 
+  - Fixed issue when user was not redirected to last page visited
 
 #### enquiries app
