@@ -99,7 +99,7 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
   - created new venv and actived it
   - installed requirements to the venv from `requirements.txt`
 - Cloud (production) setting
-  - created 'cloud_settings.py' on the server and added all the neccessary settings to it
+  - created `.bash_profile` and added all neccessary variables to it
   - added try block to seettings.py to look for the cloud setting first
 - Server start
   - migrated to new created database

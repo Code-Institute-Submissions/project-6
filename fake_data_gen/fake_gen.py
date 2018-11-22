@@ -1,11 +1,6 @@
-import django
 import os
 import random
 from faker import Faker
-
-os.environ.setdefault("DJANGO_SETTINGS_MODULE", "settings")
-django.setup()
-
 from django.contrib.auth.models import User
 from listings.models import Listing
 from accounts.models import UserProfile
@@ -27,6 +22,15 @@ class FakeData:
         """
 
         user_name = self.fake.first_name()
+
+        while True:            
+            try:
+                User.objects.get(username=user_name)
+                print("User name already exist")
+                user_name = self.fake.first_name()
+            except User.DoesNotExist:
+                break
+
         first_name = user_name
         last_name = self.fake.last_name()
         email = self.fake.email()
@@ -44,7 +48,7 @@ class FakeData:
 
         user = User.objects.get(email=email)
 
-        new_profile = UserProfile(user=user,  phone=int(phone), joined=joined)
+        new_profile = UserProfile(user=user,  phone=phone, terms=terms, joined=joined)
 
         new_profile.save()
         return user
@@ -79,7 +83,7 @@ class FakeData:
             state = self.fake.state()
             zipcode = self.fake.postalcode()
 
-            #description = self.fake.text(max_nb_chars=200, ext_word_list=None)
+            # description = self.fake.text(max_nb_chars=200, ext_word_list=None)
             description = ""
             price = random.randint(100000, 500000)
 
@@ -124,8 +128,4 @@ class FakeData:
                 seller=seller,
             )
             listing.save()
-            print(title)
-            listings += 1 
-
-if __name__ == "__main__":
-	FakeData()
+            listings += 1
