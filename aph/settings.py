@@ -24,7 +24,7 @@ else:
             'HOST': 'localhost'
         }
     }
-    ALLOWED_HOSTS = ['209.97.136.210']
+    ALLOWED_HOSTS = ['178.62.77.237']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
