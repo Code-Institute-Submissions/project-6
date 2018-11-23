@@ -22,11 +22,10 @@ class FakeData:
         """
 
         user_name = self.fake.first_name()
-
+		# Check if user name already exist as must be unique
         while True:            
             try:
                 User.objects.get(username=user_name)
-                print("User name already exist")
                 user_name = self.fake.first_name()
             except User.DoesNotExist:
                 break

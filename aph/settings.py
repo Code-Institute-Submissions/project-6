@@ -1,13 +1,11 @@
 
 # This is a PRODUCTION setting.
-# Please set DEBUG=True if you like to test this project and the database
 
 import os
 
 # Set it to True for local setting and testing
 DEBUG = False
 
-# To get the local setting for testing and CI members if DEBUG=True
 if DEBUG:
     try:
         from settings.local_settings import *
@@ -26,7 +24,7 @@ else:
             'HOST': 'localhost'
         }
     }
-    ALLOWED_HOSTS = ['159.65.91.216']
+    ALLOWED_HOSTS = ['209.97.136.210']
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -52,7 +50,6 @@ CRISPY_TEMPLATE_PACK = 'bootstrap4'
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
-    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',

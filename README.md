@@ -24,10 +24,10 @@
 
 As I did not have enough data as well as I thought that this project will be too similar to my 4th project I decided to change the project slightly.
 
-- Changed `plants.html` and  `plant.html` to match the project defination
+- Changed `plants.html` and `plant.html` to match the project defination
 - Added env variables to hide keys
 - Added `if` statment to swap between testing and production database
-- Created single listing model 
+- Created single listing model
 - Added fundamental for `accounts` app
 - Create `User` model
 - Created small up to fake users and listing using `django faker`
@@ -64,11 +64,11 @@ As I did not have enough data as well as I thought that this project will be too
 
 #### 0.8
 
+- Removed Whitenoise as no longer required
 - Deployed the project to Heroku for testing
 - Connected the `fake_data_gen` app to the project
 - Added more styles to `index.html` and `house.html`
 - Separated settings for production and development
-
 
 ### Deployment
 
@@ -76,7 +76,7 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
 
 - Pre-requirements
   - pushed the latest changes to GitHub
-  - created new `Ubuntu 18.04 x64` droplet 
+  - created new `Ubuntu 18.04 x64` droplet
   - generated new ssh key to connect to the server
 - Users
   - created new user and gave him root privileges
@@ -88,8 +88,8 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
   - updated the packedges on the server
   - installed `Python 3`
   - installed `python3-venv`
-  - installed `Postgres`
 - Postgres Database
+  - installed `Postgres`
   - created new postgres database
   - created new user in the database and gave him all privilages
 - Git
@@ -100,23 +100,37 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
   - installed requirements to the venv from `requirements.txt`
 - Cloud (production) setting
   - created `.bash_profile` and added all neccessary variables to it
-  - added try block to seettings.py to look for the cloud setting first
+  - added try block to `seettings.py` to look for the cloud setting first
 - Server start
   - migrated to new created database
   - add superuser
   - collected static files
   - allowed port 8000 (default for Django) to the firewall
+- Gunicorn
+  - deactivated the venv
+  - installed Gunicorn via pip
+  - added `gunicorn.socket` and `gunicorn.service` configuration as per Digital Ocean documentation
+  - enabled Gunicorn socket and chceked for existence of it
+- NGINX
+  - installed `NGINX`
+  - created new folder in the project to hold the setting
+  - added `NGINX` seeting as per documenation and adjust it to the project
+  - added 10Mb max rulle to `NGINX` config to allow users to upload large imgs
+  - tested `NGINX` config
+  - removed port `8000` from firewall and add new port `80` (`NGINX`)
+  
 
 ### Tests
 
 - Fixed issue where alerts prevent user to click on nav links
- 
+
 #### pages app
 
 - tested views
+
   - index
   - Fixed issue with `alert` to only shows on top of the page
-  
+
 #### listings app
 
 - tested views
@@ -128,7 +142,7 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
 - tested User model
 - tested UserProfile model
 - tested views
-  - Fixed `clean_email()` now properly check if user already exist 
+  - Fixed `clean_email()` now properly check if user already exist
   - Fixed issue when user was not redirected to last page visited
 
 #### enquiries app
