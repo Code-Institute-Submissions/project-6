@@ -65,10 +65,11 @@ As I did not have enough data as well as I thought that this project will be too
 #### 0.8
 
 - Removed Whitenoise as no longer required
-- Deployed the project to Heroku for testing
+- Deployed the project to Digital Ocean for testing
 - Connected the `fake_data_gen` app to the project
 - Added more styles to `index.html` and `house.html`
 - Separated settings for production and development
+- Removed `/media` from `.gitignore` as used on Digital Ocean
 
 ### Deployment
 
@@ -118,6 +119,7 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
   - added 10Mb max rulle to `NGINX` config to allow users to upload large imgs
   - tested `NGINX` config
   - removed port `8000` from firewall and add new port `80` (`NGINX`)
+- Custom Domain
   
 
 ### Tests
