@@ -19,6 +19,10 @@ def register(request):
         form = UserProfileForm(request.POST)
         if form.is_valid():
             # If valid save the user
+
+			#### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
+			
+			
             form.save()
             user = User.objects.get(email=request.POST.get('email'))
             # Check if terms are accepted

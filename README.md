@@ -69,7 +69,11 @@ As I did not have enough data as well as I thought that this project will be too
 - Connected the `fake_data_gen` app to the project
 - Added more styles to `index.html` and `house.html`
 - Separated settings for production and development
-- Removed `/media` from `.gitignore` as used on Digital Ocean
+- Removed `/media` from `.gitignore` as used on Digital Ocean and local testing (CI)
+
+#### 0.9
+
+- Added first step to add new listing
 
 ### Deployment
 
@@ -148,3 +152,9 @@ I decided to deploy the project to Digital Ocean as I wanted to learn something 
   - Fixed issue when user was not redirected to last page visited
 
 #### enquiries app
+
+### Need to add
+
+- email verification on register / add Terms as reqired before saving the profile
+- add more fields to listing form (first line of address and so on)
+- much more JS and less Python for better user experiences

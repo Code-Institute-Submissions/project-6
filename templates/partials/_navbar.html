@@ -11,20 +11,27 @@
 					<a class="nav-link" href="/">Home</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'houses' %}">All</a>
-				</li>
+					<a class="nav-link" href="{% url 'houses' %}">View all</a>
+				</li>				
+				<!-- @Login Required -->
+				{% if user.is_authenticated %}				
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'register' %}">Register</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'login' %}">Log in</a>		
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'logout' %}">Log-out</a>
+					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
 				</li>
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'profile' %}">Profile</a>
 				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'logout' %}">Log-out</a>
+				</li>				
+				{% else %}
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'register' %}">Register</a>
+				</li>
+				<li class="nav-item">
+					<a class="nav-link" href="{% url 'login' %}">Log in</a>
+				</li>
+				{% endif %}				
 				{% comment %} Testing {% endcomment %}
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'password_change' %}">P change</a>
