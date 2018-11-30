@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from listings.models import Listing
 from listings.forms import AddListingForm
 
@@ -37,6 +38,10 @@ def add_house(request, user_id):
     # Check if user want to add listing under different id
     if user_id is not int(request.session['_auth_user_id']):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
+    if request.method == 'POST':
+        form = AddListingForm(request.POST, request.FILES)
+        if form.is_valid:
+            form.save()
 
     listing_form = AddListingForm
 

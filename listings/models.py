@@ -10,7 +10,7 @@ class Listing(models.Model):
 	"""
 
     title = models.CharField(max_length=200, unique=True)
-    address = models.CharField(max_length=200)
+    address = models.CharField(max_length=200, unique=True)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=20, unique=True)
@@ -26,7 +26,7 @@ class Listing(models.Model):
     img_3 = models.ImageField(upload_to="others/%Y/%m/%d/", blank=True)
     img_4 = models.ImageField(upload_to="others/%Y/%m/%d/", blank=True)
     img_5 = models.ImageField(upload_to="others/%Y/%m/%d/", blank=True)
-    is_published = models.BooleanField(default=True)
+    is_published = models.BooleanField(default=False)
     paid_fee = models.BooleanField(default=False)
     list_date = models.DateTimeField(default=datetime.now, blank=True)
     seller = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -40,8 +40,17 @@
 <section class="container py-5">
 	<div class="row">
 		<div class="col-12">
-			<form method="POST" action="{% url 'register' %}" class="py-5">
+			<form method="POST" enctype="multipart/form-data" class="py-5">
 				{% csrf_token %}
+				<fieldset class="form-group">
+					<legend class="col-12">Title of the property <span style="color: red !important; display: inline; float: none;">*</span></legend>
+					<hr>
+					<div class="row pt-3">
+						<div class="col-12">
+							{% bootstrap_field placeholder='' show_label=False field=form.title %}
+						</div>
+					</div>
+				</fieldset>
 				<fieldset class="form-group">
 					<legend class="col-12">Address of the property</legend>
 					<hr>
@@ -388,6 +397,8 @@
 					{% bootstrap_field placeholder='' show_label=False field=form.description %}
 				</fieldset>
 				{% buttons %}<button type="submit" class="btn btn-success float-right">Next <i class="fas fa-angle-double-right"></i></button>{% endbuttons %}
+				<!-- Store user ID -->
+				<input type="hidden" name="seller" value="{{ user.id }}">
 			</form>
 		</div>
 	</div>
