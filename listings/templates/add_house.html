@@ -57,7 +57,6 @@
 					<div class="row pt-5">
 						<div class="col-md-12">
 							<label for="address">Address</label><span style="color: red !important; display: inline; float: none;">*</span>
-							<p class="text-secondary">This will be used as title for your listing</p>
 							{% bootstrap_field placeholder='' show_label=False field=form.address %}
 						</div>						
 					</div>
@@ -396,11 +395,22 @@
 					<hr>
 					{% bootstrap_field placeholder='' show_label=False field=form.description %}
 				</fieldset>
-				{% buttons %}<button type="submit" class="btn btn-success float-right">Next <i class="fas fa-angle-double-right"></i></button>{% endbuttons %}
+				{% buttons %}
+				<button type="submit" class="btn btn-success float-right">Next <i class="fas fa-angle-double-right"></i></button>				
+				{% endbuttons %}
 				<!-- Store user ID -->
 				<input type="hidden" name="seller" value="{{ user.id }}">
 			</form>
 		</div>
 	</div>
+	<button id="lol" class="btn btn-success float-right">lol <i class="fas fa-angle-double-right"></i></button>
 </section>
 {% endblock main_content %}
+
+{% block js %}
+  <script>
+	  $("#lol").click(function () {
+			$("p").slideUp(2000);
+		});
+  </script>
+{% endblock js %}

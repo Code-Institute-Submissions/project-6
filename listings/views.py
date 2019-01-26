@@ -1,4 +1,5 @@
 from django.shortcuts import render, get_object_or_404, redirect
+from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from listings.models import Listing
@@ -42,6 +43,8 @@ def add_house(request, user_id):
         form = AddListingForm(request.POST, request.FILES)
         if form.is_valid:
             form.save()
+        else:
+            messages.error(request, form.errors)
 
     listing_form = AddListingForm
 

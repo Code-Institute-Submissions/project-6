@@ -9,8 +9,8 @@ class Listing(models.Model):
 	Model for creating a single listing (house)
 	"""
 
-    title = models.CharField(max_length=200, unique=True)
-    address = models.CharField(max_length=200, unique=True)
+    title = models.CharField(max_length=200)
+    address = models.CharField(max_length=200)
     city = models.CharField(max_length=100)
     state = models.CharField(max_length=100)
     zipcode = models.CharField(max_length=20, unique=True)
