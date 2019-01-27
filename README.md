@@ -47,9 +47,9 @@ I decided to create my own project.
 ## **CI Guidelines**
 
 - **Use the following guidelines when developing your project:**
-  - Build a web app that fulfills some actual (or imagined) real-world need. This can be of your choosing and may be domain specific.
-  - Write a README file for your project that explains what the project does and the need that it fulfills. It should also describe the functionality of the project, as well as the technologies used. Detail how the project was deployed and tested and if some of the work was based on other code, explain what was kept and how it was changed to fit your need. A project submitted without a README file will FAIL.
-  - The project must be a brand new Django project, composed of multiple apps (an app for each reusable component in your project).
+  - Build a web app that fulfils some actual (or imagined) real-world need. This can be of your choosing and may be domain specific.
+  - Write a README file for your project that explains what the project does and the need that it fulfils. It should also describe the functionality of the project, as well as the technologies used. Detail how the project was deployed and tested and if some of the work was based on other code, explain what was kept and how it was changed to fit your need. A project submitted without a README file will FAIL.
+  - The project must be a brand-new Django project, composed of multiple apps (an app for each reusable component in your project).
   - The project should include an authentication mechanism, allowing a user to register and log in, and there should be a good reason as to why the users would need to do so. e.g., a user would have to register to persist their shopping cart between sessions (otherwise it would be lost).
   - At least one of your Django apps should contain some e-commerce functionality using Stripe. This may be a shopping cart checkout, subscription-based payments or single payments, etc.
   - Include at least one form with validation that will allow users to create and edit models in the backend (in addition to the authentication mechanism).
@@ -62,15 +62,12 @@ I decided to create my own project.
   - Use Git & GitHub for version control. Each new piece of functionality should be in a separate commit.
   - Deploy the final version of your code to a hosting platform such as Heroku.
 
-
 <hr />
 
 ## **UX**
 
 
-
 ### **Requirements**
-
 
 #### Users
 
@@ -103,10 +100,10 @@ Create 6 - 7 pages for the project.
       - Create functionality for user to access **Add new property**
       - Create functionality for user to access **Profile page**
   - **Footer**
-    - Show general information abot the company (e.g social links, address and contact details)
+    - Show general information about the company (e.g social links, address and contact details)
 - **Landing page (index.html)**
   - Welcome new or existing user
-  - Show user few examples of properties (up to 5) with short informations (newest properties)
+  - Show user few examples of properties (up to 5) with short information’s (newest properties)
   - Add section for recent feedbacks
   - Add contact form for user to be able to send messages (e.g "General message", "Property enquiry"(registered users only) and "Feedback")  
 - **All properties**
@@ -129,7 +126,7 @@ Create 6 - 7 pages for the project.
 - **Add property**
   - Allow logged in user to add new property to database
   - Create functionality for user to pay small fee via **Stripe**  
-  *The idea is to let user to pay small (£5-£10) one time fee for posting*
+  *The idea is to let user to pay small (£5-£10) onetime fee for posting*
 - **Edit property**
   - Allow logged in user to edit his own property
 - **Profile page**
@@ -171,11 +168,9 @@ HTML / CSS | 5 |
   
 #### Existing apps
 
-
 [**To top**](#Table-of-Contents)
 
 ### Features left to implement
-
 
 [**To top**](#Table-of-Contents)
 
@@ -186,7 +181,6 @@ HTML / CSS | 5 |
 ### Front End
 
 ### Back End
-
 
 [**To top**](#Table-of-Contents)
 
@@ -208,7 +202,7 @@ HTML / CSS | 5 |
 *Before version 1 I did not use separated branches.*
 
 - **0.0**
-  - Created basic file structure, installed minimum requirements, started the poroject "APH"
+  - Created basic file structure, installed minimum requirements, started the project "APH"
   - Added setting for `static` files and folders
 
 - **0.1**
@@ -222,9 +216,9 @@ HTML / CSS | 5 |
 
 - **0.3**  
   *As I did not have enough data as well as I thought that this project will be too similar to my 4th project I decided to change the project slightly.*
-  - Changed `plants.html` and `plant.html` to match the project defination
+  - Changed `plants.html` and `plant.html` to match the project definition
   - Added env variables to hide keys
-  - Added `if` statment to swap between testing and production database
+  - Added `if` statement to swap between testing and production database
   - Created single listing model
   - Added fundamental for `accounts` app
   - Create `User` model
@@ -241,12 +235,12 @@ HTML / CSS | 5 |
 
 - **0.5**
   - Extended the `User` model
-  - Added section for Boostrap messages
+  - Added section for Bootstrap messages
   - Added user registration and creating profile
   - Added Log in functionality for user
   - Added Log out functionality for user
   - Added functionality for user to be able to change his password
-  - Added fundamenatls for user to be able to reset his password
+  - Added fundamentals for user to be able to reset his password
 
 - **0.6**
   - Added `enquiries` app for user to be able to contact the company
@@ -263,7 +257,7 @@ HTML / CSS | 5 |
   - Added more styles to `index.html` and `house.html`
   - Separated settings for production and development
   - Removed `/media` from `.gitignore` as used on **Digital Ocean** and for local testing (**CI**)  
-  *Please note that I will normaly store the images elswhere or upload to the images directly to **Digital Ocean**.*  
+  *Please note that I will normally store the images elsewhere or upload to the images directly to **Digital Ocean**.*  
   *I only storing them in GitHUb for easy local testing.*
 
 - **0.9**
@@ -276,7 +270,10 @@ HTML / CSS | 5 |
 *At this point I got back to the project.*
 
 - **Changelog**
-  - Created proper `README` template and adjuted it to fit the project
+  - Created proper `README` template and adjusted it to fit the project
+  - Tidied up static files
+  - Added more **CSS** styles to `nav`
+  - Added [favicon](/media/img/favicon.ico)
 
 [**To top**](#Table-of-Contents)
 
@@ -361,38 +358,38 @@ HTML / CSS | 5 |
   - disabled the default root user for security reasons
 - **Security**
   - added simple firewall for better security
-- **Software and packedges installation**
-  - updated the packedges on the server
+- **Software and packages installation**
+  - updated the packages on the server
   - installed **Python 3**
   - installed python3-venv
 - **Postgres Database**
   - installed Postgres
-  - created new postgres database
+  - created new Postgres database
   - created new user in the database and gave him all privilages
 - **Folders set up**
   - created new dir
   - cloned the repository to the created dir
-- **Virtual Enviroment**
-  - created new venv and actived it
+- **Virtual Environment**
+  - created new venv and active it
   - installed requirements to the venv from **requirements.txt**
 - **Cloud (production) setting**
-  - created .bash_profile and added all neccessary variables to it
+  - created .bash_profile and added all necessary variables to it
   - added try block to seettings.py to look for the cloud setting first
 - **Server set up**
   - migrated to new created database
   - add superuser
   - collected static files
-  - llowed port 8000 (default for Django) to the firewall
+  - allowed port 8000 (default for Django) to the firewall
 - **Gunicorn**
   - deactivated the venv
   - installed **Gunicorn** via pip
   - added gunicorn.socket and gunicorn.service configuration as per **Digital Ocean** documentation
-  - enabled **Gunicorn** socket and chceked for existence of it
+  - enabled **Gunicorn** socket and checked for existence of it
 - **NGINX**
   - installed NGINX
   - created new folder in the project to hold the setting
-  - added NGINX seeting as per documenation and adjust it to the project
-  - added 10Mb max rulle to **NGINX** config to allow users to upload large imgs
+  - added NGINX setting as per documentation and adjust it to the project
+  - added 10Mb max rule to **NGINX** config to allow users to upload large imgs
   - tested NGINX config
   - removed port 8000 from firewall and add new port 80 (*NGINX*)
 - restarted **Gunicorn** and **NGINX**
@@ -434,7 +431,6 @@ HTML / CSS | 5 |
 
 ## **What could be done better?**
 
-
 [**To top**](#Table-of-Contents)
 
 <hr />
@@ -448,9 +444,9 @@ HTML / CSS | 5 |
   *All of you gave me constructive feedback which made the project better* 😊
 
 
-
 ### Need to add
 
-- email verification on register / add Terms as reqired before saving the profile
+- email verification on register / add Terms as required before saving the profile
 - add more fields to listing form (first line of address and so on)
 - much more JS and less Python for better user experiences
+
