@@ -271,9 +271,14 @@ HTML / CSS | 5 |
 
 - **Changelog**
   - Created proper `README` template and adjusted it to fit the project
-  - Tidied up static files
-  - Added more **CSS** styles to `nav`
+  - Tidied up static files  
   - Added [favicon](/media/img/favicon.ico)
+  - [index.html](/pages/templates/index.html)
+    - Added more **CSS** styles to `nav`
+    - Added **CSS** transitions to `#listings` section
+- **Fixes**
+  - [index.html](/pages/templates/index.html)
+    - fixed `overflow` issues (on small screens) in `#more-info` section
 
 [**To top**](#Table-of-Contents)
 

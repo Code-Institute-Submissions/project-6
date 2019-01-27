@@ -1,8 +1,18 @@
+/*
+General
+*/
+
+section>h2,
+.container>h2,
+.container-fluid>h2 {
+	font-size: 3rem;
+}
+
 /* 
 Listings
 */
 
-.card-img-top {
+#listings .card-img-top {
 	height: 230px;
 }
 
@@ -14,9 +24,47 @@ Listings
 	min-width: 100%;
 }
 
+#listings .card {	
+	position: relative;
+	overflow: hidden;
+}
+
+#listings .card img {
+	transition: all 0.5s ease;
+}
+
+#listings .card:hover img {
+	transform: scale(1.2)
+}
+
+#listings .card:hover .listings-overlay {
+	transform: scale(1);
+}
+
+.listings-overlay {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background-color: rgba(0,0,0,0.4);
+	color: #dadada;
+	transform: scale(0);
+	transition: all 0.5s ease;
+}
+
+.listings-overlay  .fa-external-link-alt {
+	position: absolute;
+	top: 50%;
+	right: 5%;
+	color: #dadada;
+	
+}
+
 /* 
 More info
 */
+
 #more-info {
 	background: url("/media//img/index-bg.jpeg") no-repeat center;
 	background-attachment: fixed;
@@ -26,7 +74,8 @@ More info
 	background-size: cover;
 }
 
-#more-info .card {
+#more-info .card {	
+	overflow: hidden;
 	min-height: 420px;
 	background-color: rgba(0, 0, 0, 0.5);
 	color: #ffffff;

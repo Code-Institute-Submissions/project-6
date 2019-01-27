@@ -13,27 +13,42 @@
 
 {% block main_content %}
 	<!-- Small showcase -->
-	<section id="listings" class="py-3">
-		<div class="container">
+	<section id="listings" class="py-5">
+		<h2 class="vibes-cursive text-center pt-5 pb-2">Our newest additions</h2>
+		<hr class="section-hr my-2">
+		<div class="container mt-5">
 			<div class="row">
 				{% if listings %}
 				{% for house in listings %}
 				<div class="col-md-6 col-lg-4 mb-4">
 					<div class="card">
-						<a href="{% url 'house' house.id %}">
-							<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
-						</a>
+						<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
 						<div class="card-img-overlay">
 							<h2>
 								<span class="badge badge-secondary text-white">£{{ house.price }}</span>
 							</h2>
 						</div>
 						<div class="card-body">
-							<h4 class="text-center">{{ house.title }}</h4>
-						</div>						
+							<div class="text-center">
+								<h4 class="pt-3">{{ house.title }}</h4>
+								<p>									<i class="fas fa-map-marker"></i> {{ house.city }}
+									{{ house.state }}, {{ house.zipcode }}
+								</p>
+							</div>
+							<hr />
+						</div>
+						<div>
+							<a class="listings-overlay" href="{% url 'house' house.id %}">
+								<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
+								<i class="fas fa-external-link-alt fa-3x"></i>
+							</a>
+						</div>
 					</div>
 				</div>
-				{% endfor %}
+				{% endfor %} {% else %}
+				<div class="col-md-12">
+					<p>No Listings Available</p>
+				</div>
 				{% endif %}
 			</div>
 		</div>
@@ -87,8 +102,8 @@
 
 	<!-- Contact us -->
 	<section id="contact-us" class="container py-5">
-		<h2 class="text-center py-5">Contact us</h2>	
-		<hr class="section-hr">	
+		<h2 class="vibes-cursive text-center pt-5 pb-2">Contact us</h2>	
+		<hr class="section-hr my-2">
 		<div class="row mt-5">
 			<div class=" col-md-6">
 
