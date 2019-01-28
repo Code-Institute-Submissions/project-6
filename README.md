@@ -21,6 +21,7 @@
 		- [Before version 1](#before-version-1)
 		- [Version 1 and later](#version-1-and-later)
 			- [1.0](#10)
+			- [1.1](#11)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -279,6 +280,14 @@ HTML / CSS | 5 |
 - **Fixes**
   - [index.html](/pages/templates/index.html)
     - fixed `overflow` issues (on small screens) in `#more-info` section
+
+#### 1.1
+
+- **Changelog**
+  - 
+- **Fixes**
+  - **Listings app**
+    - `is_valid()` now properly validate the form including `clean_zipcode()` in `add_house()`
 
 [**To top**](#Table-of-Contents)
 

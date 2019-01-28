@@ -41,7 +41,7 @@ def add_house(request, user_id):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
     if request.method == 'POST':
         form = AddListingForm(request.POST, request.FILES)
-        if form.is_valid:
+        if form.is_valid():
             form.save()
         else:
             messages.error(request, form.errors)
