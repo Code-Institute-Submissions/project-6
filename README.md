@@ -284,10 +284,16 @@ HTML / CSS | 5 |
 #### 1.1
 
 - **Changelog**
-  - 
+  - **fake_data_gen**
+    - Added `testing_models.py` to not repeat myself while creating `User`, `UserProfile` or `Listing`
+  - Added more test across the project
 - **Fixes**
   - **Listings app**
-    - `is_valid()` now properly validate the form including `clean_zipcode()` in `add_house()`
+    - `add_house()`
+      - `is_valid()` now properly validate the form including `clean_zipcode()`
+      - added separate `return` statment to prevent the form to reset after an error
+    - `forms.py`
+      - zipcode is now striped of all white spaces and lower cased in `clean_zipcode()` for more security
 
 [**To top**](#Table-of-Contents)
 

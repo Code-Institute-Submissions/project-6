@@ -45,6 +45,7 @@ def add_house(request, user_id):
             form.save()
         else:
             messages.error(request, form.errors)
+            return render(request, "add_house.html", {'form': form})
 
     listing_form = AddListingForm
 
