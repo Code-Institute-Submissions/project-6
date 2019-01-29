@@ -1,6 +1,3 @@
-
-# This is a PRODUCTION setting.
-
 import os
 
 # Set it to True for local setting and testing

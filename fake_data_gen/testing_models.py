@@ -6,10 +6,11 @@ from listings.models import Listing
 
 class TestingData(TestCase):
 
-    def __init__(self):
+    def __init__(self, zipcode="123456"):
         self.user = self.create_user()
         self.user_profile = self.create_profile()
-        self.listing = self.create_listing()
+        self.zipcode = zipcode
+        self.listing = self.create_listing()        
 
     def create_user(self):
         new_user = User(username="Test", email="test@test.com")
@@ -27,7 +28,7 @@ class TestingData(TestCase):
                               address="address",
                               city="city",
                               state="state",
-                              zipcode="123456",
+                              zipcode=self.zipcode,
                               main_img="/media/test.jpg",
                               price=100000000,
                               bedrooms=5,

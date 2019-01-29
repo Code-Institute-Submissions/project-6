@@ -1,6 +1,8 @@
 from django.test import TestCase
-from fake_data_gen.testing_models import TestingData  
+from django.db import IntegrityError
+from fake_data_gen.testing_models import TestingData
 from listings.models import Listing
+
 
 class TestListingModel(TestCase):
 
@@ -12,3 +14,21 @@ class TestListingModel(TestCase):
         self.assertEqual(item.address, "address")
         self.assertEqual(item.state, "state")
         self.assertEqual(item.zipcode, "123456")
+
+    def test_for_duplicated_zipcode(self):
+        TestingData(zipcode="MK45 76HK")
+
+        with self.assertRaises(IntegrityError):
+            TestingData(zipcode="MK45 76HK")
+
+    def test_for_duplicated_zipcode_lower(self):
+        TestingData(zipcode="MK45 76HK")
+
+        with self.assertRaises(IntegrityError):
+            TestingData(zipcode="mk45 76hk")
+
+    def test_for_duplicated_zipcode_white_spaces(self):
+        TestingData(zipcode="MK45 76HK")
+
+        with self.assertRaises(IntegrityError):
+            TestingData(zipcode="  mk45   76hk  ")

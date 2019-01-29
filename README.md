@@ -294,6 +294,10 @@ HTML / CSS | 5 |
       - added separate `return` statment to prevent the form to reset after an error
     - `forms.py`
       - zipcode is now striped of all white spaces and lower cased in `clean_zipcode()` for more security
+      - added more validations to form (`max` and `min`) **bedrooms**, **bathrooms** and **garage** field
+  - **Pages app**
+    - `index()`
+      - now properly search only houses which are published instead off all
 
 [**To top**](#Table-of-Contents)
 

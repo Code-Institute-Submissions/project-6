@@ -7,6 +7,11 @@ class AddListingForm(forms.ModelForm):
     Form to create new listing 
     """
 
+    bedrooms = forms.IntegerField(min_value=0,max_value=10)
+    bathrooms = forms.IntegerField(min_value=0, max_value=5)
+    garage = forms.IntegerField(min_value=0, max_value=5)
+    bedrooms = forms.IntegerField(min_value=0,max_value=10)
+
     class Meta:
         model = Listing
         fields = ['title', 'address', 'city', 'state', 'zipcode', 'description', 'price', 'bedrooms',
