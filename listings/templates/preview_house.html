@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+{% block css %}
+
+<link rel="stylesheet" href="{% static 'css/custom/house.css' %}">
+{% endblock css %}
+
+{% block page_header %}
+
+
+{% endblock page_header %}
+
+{% block main_content %}
+
+{% include "partials/_large_listing.html" %}
+
+{% block btns %}
+<!-- Contact / Edit -->
+<section class="container">
+	<div class="row justify-content-around py-3">
+		<div class="col-6">
+			<a href="" class="btn btn-warning float-left"><i class="fas fa-angle-double-left"></i> Back</a>
+		</div>
+		<div class="col-6">
+			<a href="" class="btn btn-success float-right">Next <i class="fas fa-angle-double-right"></i></a>
+		</div>
+	</div>
+</section>
+{% endblock btns %}
+{% endblock main_content %}

@@ -285,13 +285,16 @@ HTML / CSS | 5 |
 
 - **Changelog**
   - **fake_data_gen**
-    - Added `testing_models.py` to not repeat myself while creating `User`, `UserProfile` or `Listing`
-  - Added more test across the project
+    - added `testing_models.py` to not repeat myself while creating `User`, `UserProfile` or `Listing`
+  - added more test across the project
+  - **Listing app**
+    - added fundamentals for `preview_house()`
+    - created partial template as [_large_listing.html](/listings/templates/partials/_large_listing.html) is now used in [preview_house.html](/listings/templates/preview_house.html) as well as [house.html](/listings/templates/house.html)
 - **Fixes**
   - **Listings app**
     - `add_house()`
       - `is_valid()` now properly validate the form including `clean_zipcode()`
-      - added separate `return` statment to prevent the form to reset after an error
+      - added separate `return` statment to prevent the form to reset after an error    
     - `forms.py`
       - zipcode is now striped of all white spaces and lower cased in `clean_zipcode()` for more security
       - added more validations to form (`max` and `min`) **bedrooms**, **bathrooms** and **garage** field

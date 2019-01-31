@@ -5,6 +5,7 @@ from listings import views as listings
 urlpatterns = [
     path('', listings.houses, name="houses"),
     path('house/add_house/<int:user_id>', listings.add_house, name="add_house"),
+    path('house/preview_house/<int:user_id>/<int:house_id>', listings.preview_house, name="preview_house"),
     path('house/<int:house_id>', listings.house, name="house"),
     path('house/edit_house/<int:house_id>',
          listings.edit_house, name="edit_house"),
