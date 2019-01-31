@@ -7,9 +7,9 @@ from listings.forms import AddListingForm
 
 
 def house(request, house_id):
-    """ 
-    Main route for a single house	
-	
+    """
+    Main route for a single house
+
     """
     house_data = get_object_or_404(Listing, pk=house_id)
 
@@ -21,7 +21,7 @@ def house(request, house_id):
 
 
 def houses(request):
-    """ 
+    """
         Main route for all houses
         """
     listings = Listing.objects.all().filter(is_published=True)
@@ -34,7 +34,7 @@ def houses(request):
 
 @login_required
 def add_house(request, user_id):
-    """ 
+    """
     Main route for adding new house listing
     """
 
@@ -73,7 +73,24 @@ def add_house(request, user_id):
 
 @login_required
 def preview_house(request, user_id, house_id):
-    """ 
+    """
+    View for user to confirm his listing or go back and edit it
+    """
+    if user_id is not int(request.session['_auth_user_id']):
+        return redirect('add_house', user_id=request.session['_auth_user_id'])
+
+    house_data = get_object_or_404(Listing, pk=int(house_id))
+
+    args = {
+        'house': house_data,
+        'page_title': house_data.title
+    }
+    return render(request, "preview_house.html", args)
+
+
+@login_required
+def pay_fee(request, user_id, house_id):
+    """
     View for user to confirm his listing or go back and edit it
     """
     if user_id is not int(request.session['_auth_user_id']):
@@ -87,8 +104,7 @@ def preview_house(request, user_id, house_id):
         'house': house_data,
         'page_title': house_data.title
     }
-    return render(request, "preview_house.html", args)
-
+    return render(request, "pay_fee.html", args)
 
 @login_required
 def edit_house(request, house_id):

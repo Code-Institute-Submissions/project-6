@@ -22,6 +22,7 @@
 		- [Version 1 and later](#version-1-and-later)
 			- [1.0](#10)
 			- [1.1](#11)
+			- [1.2](#12)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -302,6 +303,13 @@ HTML / CSS | 5 |
   - **Pages app**
     - `index()`
       - now properly search only houses which are published instead off all
+
+#### 1.2
+
+- **Changelog**
+  - 
+- **Fixes**
+  - 
 
 [**To top**](#Table-of-Contents)
 
