@@ -1,0 +1,32 @@
+<section class="container pt-5">
+	<div class="row pt-5 text-center font-weight-bold">
+		<div class="progress-bar-wrapper col-12 py-3">
+			<div class="row">
+				<div 
+				{% if 'add_house' in request.path %}
+				class="col-4 listing-active"
+				{% else %}
+				class="col-4"
+				{% endif %}>
+					<p>Your Listing</p>
+				</div>
+				<div 
+				{% if 'preview_house' in request.path %}
+				class="col-4 listing-active"
+				{% else %}
+				class="col-4"
+				{% endif %}>
+					<p>Preview</p>
+				</div>
+				<div 
+				{% if 'pay_fee' in request.path %} 
+				class="col-4 listing-active" 
+				{% else %} 
+				class="col-4" 
+				{% endif %}>
+					<p>Pay Fee</p>
+				</div>				
+			</div>
+		</div>
+	</div>
+</section>

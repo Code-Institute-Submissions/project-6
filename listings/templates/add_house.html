@@ -1,42 +1,19 @@
 {% extends "base.html" %}
-
-{% block page_header %} {% endblock page_header %}
-
+{% load static %}
 {% load bootstrap4 %}
 
 {% block css %}
-  <style>
-	  .listing-active {
-		color: #5cb85c;
-	  }
-	  .progress-bar-wrapper {
-		  background-color: #dadada;
-		  border-radius: 35px;
-	  }
-	  .progress-bar-wrapper p {
-		  margin: 0;
-	  }
-  </style>
+<link rel="stylesheet" href="{% static 'css/custom/add_house.css' %}">
 {% endblock css %}
 
+
+{% block page_header %} {% endblock page_header %}
+
+
 {% block main_content %}
-<section class="container pt-5">
-<div class="row pt-5 text-center font-weight-bold">
-	<div class="progress-bar-wrapper col-12 py-3">
-		<div class="row">
-			<div class="col-4 listing-active">
-				<p>Your Listing</p>
-			</div>
-			<div class="col-4">
-				<p>Preview</p>
-			</div>
-			<div class="col-4">
-				<p>Pay Fee</p>
-			</div>
-		</div>
-	</div>
-</div>
-</section>
+
+{% include "partials/_progress_bar.html" %}
+
 <section class="container py-5">
 	<div class="row">
 		<div class="col-12">
@@ -404,12 +381,5 @@
 		</div>
 	</div>
 </section>
-{% endblock main_content %}
 
-{% block js %}
-  <script>
-	  $("#lol").click(function () {
-			$("p").slideUp(2000);
-		});
-  </script>
-{% endblock js %}
+{% endblock main_content %}

@@ -1,0 +1,10 @@
+.listing-active {
+	color: #5cb85c;
+}
+.progress-bar-wrapper {
+	background-color: #dadada;
+	border-radius: 35px;
+}
+.progress-bar-wrapper p {
+	margin: 0;
+}

@@ -1,7 +1,6 @@
 {% extends "base.html" %}
 {% load static %}
 {% block css %}
-
 <link rel="stylesheet" href="{% static 'css/custom/house.css' %}">
 {% endblock css %}
 
@@ -18,7 +17,7 @@
 <!-- Contact / Edit -->
 <section class="container">
 	<div class="row justify-content-start py-3">
-		{% if user.is_authenticated and user.name == house.seller %}
+		{% if user.is_authenticated and user == house.seller %}
 		<div class="col-6">
 			<a href="{% url 'edit_house' house.id %}" class="btn btn-warning">Edit your advert</a>
 		</div>

@@ -290,11 +290,12 @@ HTML / CSS | 5 |
   - **Listing app**
     - added fundamentals for `preview_house()`
     - created partial template as [_large_listing.html](/listings/templates/partials/_large_listing.html) is now used in [preview_house.html](/listings/templates/preview_house.html) as well as [house.html](/listings/templates/house.html)
+    - moved progrresion bar to separate partial template [_progress_bar.html](/listings/templates/partials/_progress_bar.html)
 - **Fixes**
   - **Listings app**
     - `add_house()`
       - `is_valid()` now properly validate the form including `clean_zipcode()`
-      - added separate `return` statment to prevent the form to reset after an error    
+      - added separate `return` statment to prevent the form to reset after an error
     - `forms.py`
       - zipcode is now striped of all white spaces and lower cased in `clean_zipcode()` for more security
       - added more validations to form (`max` and `min`) **bedrooms**, **bathrooms** and **garage** field

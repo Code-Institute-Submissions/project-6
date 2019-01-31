@@ -2,15 +2,15 @@ from django.shortcuts import render, get_object_or_404, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-from django.forms.models import model_to_dict
 from listings.models import Listing
 from listings.forms import AddListingForm
 
 
 def house(request, house_id):
     """ 
-        Main route for a single house	
-        """
+    Main route for a single house	
+	
+    """
     house_data = get_object_or_404(Listing, pk=house_id)
 
     args = {
@@ -74,7 +74,7 @@ def add_house(request, user_id):
 @login_required
 def preview_house(request, user_id, house_id):
     """ 
-        View for user to confirm his listing or go back and edit it
+    View for user to confirm his listing or go back and edit it
     """
     if user_id is not int(request.session['_auth_user_id']):
         return redirect('add_house', user_id=request.session['_auth_user_id'])

@@ -12,7 +12,7 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'houses' %}">View all</a>
 				</li>				
-				<!-- @Login Required -->
+				<!-- Login Required -->
 				{% if user.is_authenticated %}				
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
