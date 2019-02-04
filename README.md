@@ -23,6 +23,7 @@
 			- [1.0](#10)
 			- [1.1](#11)
 			- [1.2](#12)
+			- [1.3](#13)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -310,6 +311,15 @@ HTML / CSS | 5 |
   - added functionality for **Stripe** payments in last step of adding new listing ([pay_fee.html](/listings/templates/pay_fee.html))
 - **Fixes**
   - moved [lightbox.min.js](/listings/static/js/vendor/lightbox.min.js) to **listing app** as it does not have to be loaded on every page
+
+#### 1.3
+
+- **Changelog**
+  - created separate form class for edit house (`EditListingForm()`)
+- **Fixes**
+  - **Listing app**
+    - removed `unique=True` from `zipcode` in [models.py](/listings/models.py) as this was throwing form error while using the same model for edit hose.  
+    *This does not effect `AddListingForm` due to `clean_zipcode()`.*
 
 [**To top**](#Table-of-Contents)
 

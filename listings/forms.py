@@ -35,3 +35,22 @@ class PayFeeForm(forms.Form):
     expiry_month = forms.ChoiceField(label="Month", choices=MONTH_CHOICES, required=False)
     expiry_year = forms.ChoiceField(label="Year", choices=YEAR_CHOICES, required=False)
     stripe_id = forms.CharField(widget=forms.HiddenInput)
+
+
+class EditListingForm(forms.ModelForm):
+    """
+    Form to edit existing listing in databse
+    """
+
+    bedrooms = forms.IntegerField(min_value=0, max_value=10)
+    bathrooms = forms.IntegerField(min_value=0, max_value=5)
+    garage = forms.IntegerField(min_value=0, max_value=5)
+    bedrooms = forms.IntegerField(min_value=0, max_value=10)
+    main_img = forms.ImageField(required=False)
+
+    class Meta:
+        model = Listing
+        fields = ['title', 'address', 'city', 'state', 'zipcode', 'description', 'price', 'bedrooms',
+                  'bathrooms', 'garage', 'square_feet', 'main_img', 'img_1', 'img_2', 'img_3', 'img_4', 'img_5', 'seller']
+
+    

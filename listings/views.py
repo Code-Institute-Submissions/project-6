@@ -5,7 +5,7 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import stripe
 from listings.models import Listing
-from listings.forms import AddListingForm, PayFeeForm
+from listings.forms import AddListingForm, PayFeeForm, EditListingForm
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -154,8 +154,7 @@ def edit_house(request, user_id, house_id):
         if edit_house_form.is_valid():
             pass
     args = {
-        'lol': house_data,
-        'form': AddListingForm(house_data)
+        'form': EditListingForm(house_data)
     }
 
     return render(request, "edit_house.html", args)

@@ -12,8 +12,6 @@
 
 {% block main_content %}
 
-{% include "partials/_progress_bar.html" %}
-
 <section class="container py-5">
 	<div class="row">
 		<div class="col-12">
@@ -339,7 +337,7 @@
 					<div class="row">
 						<div class="col-md-6">
 							<div class="row justify-content-around">
-								<label for="main_img">Image 1<span style="color: red !important; display: inline; float: none;">*</span></label>
+								<label for="main_img">Image 1</label>
 								{% bootstrap_field layout='horizontal' placeholder='' show_label=False field=form.main_img %}
 							</div>
 							<div class="row justify-content-around">
