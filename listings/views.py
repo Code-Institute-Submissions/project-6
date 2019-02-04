@@ -148,13 +148,14 @@ def edit_house(request, user_id, house_id):
         messages.error(request, "You are not allowed to edit the listing!")
         return redirect('index')
     house_data = get_object_or_404(Listing, pk=house_id)
-    house_data = house_data.__dict__
     if request.method == "POST":
-        edit_house_form = AddListingForm(request.POST)
+        edit_house_form = EditListingForm(request.POST, request.FILES, instance=house_data)
         if edit_house_form.is_valid():
-            pass
+            edit_house_form.save()
+    house_data = house_data.__dict__
     args = {
-        'form': EditListingForm(house_data)
+        'form': EditListingForm(house_data),
+		'house': house_data
     }
 
     return render(request, "edit_house.html", args)

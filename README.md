@@ -315,6 +315,7 @@ HTML / CSS | 5 |
 #### 1.3
 
 - **Changelog**
+  - added functionality for editing a existing house
   - created separate form class for edit house (`EditListingForm()`)
 - **Fixes**
   - **Listing app**
