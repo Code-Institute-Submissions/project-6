@@ -1,11 +1,11 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.conf import settings
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
+import stripe
 from listings.models import Listing
 from listings.forms import AddListingForm, PayFeeForm
-from django.conf import settings
-import stripe
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -140,15 +140,29 @@ def pay_fee(request, user_id, house_id):
 
 
 @login_required
-def edit_house(request, house_id):
+def edit_house(request, user_id, house_id):
     """ 
-        Main route for editing house listing
-        """
-    pass
+	Main route for editing house listing
+	"""
+    if user_id is not int(request.session['_auth_user_id']):
+        messages.error(request, "You are not allowed to edit the listing!")
+        return redirect('index')
+    house_data = get_object_or_404(Listing, pk=house_id)
+    house_data = house_data.__dict__
+    if request.method == "POST":
+        edit_house_form = AddListingForm(request.POST)
+        if edit_house_form.is_valid():
+            pass
+    args = {
+        'lol': house_data,
+        'form': AddListingForm(house_data)
+    }
+
+    return render(request, "edit_house.html", args)
 
 
 def search(request):
     """ 
-        Main route for search
-        """
+	Main route for search
+	"""
     return render(request, "search.html")

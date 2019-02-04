@@ -10,7 +10,7 @@ urlpatterns = [
     path('house/pay_fee/<int:user_id>/<int:house_id>',
          listings.pay_fee, name="pay_fee"),
     path('house/<int:house_id>', listings.house, name="house"),
-    path('house/edit_house/<int:house_id>',
+    path('house/edit_house/<int:user_id>/<int:house_id>',
          listings.edit_house, name="edit_house"),
     path('search', listings.search, name="search")
 ]

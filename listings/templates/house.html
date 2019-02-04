@@ -19,7 +19,7 @@
 	<div class="row justify-content-start py-3">
 		{% if user.is_authenticated and user == house.seller %}
 		<div class="col-6">
-			<a href="{% url 'edit_house' house.id %}" class="btn btn-warning">Edit your listing</a>
+			<a href="{% url 'edit_house' user.id house.id %}" class="btn btn-warning">Edit your listing</a>
 		</div>
 		{% else %}
 		<div class="col-6">
