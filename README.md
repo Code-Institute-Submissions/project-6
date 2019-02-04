@@ -307,9 +307,9 @@ HTML / CSS | 5 |
 #### 1.2
 
 - **Changelog**
-  - 
+  - added functionality for **Stripe** payments in last step of adding new listing ([pay_fee.html](/listings/templates/pay_fee.html))
 - **Fixes**
-  - 
+  - moved [lightbox.min.js](/listings/static/js/vendor/lightbox.min.js) to **listing app** as it does not have to be loaded on every page
 
 [**To top**](#Table-of-Contents)
 

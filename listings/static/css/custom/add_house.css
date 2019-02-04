@@ -8,3 +8,10 @@
 .progress-bar-wrapper p {
 	margin: 0;
 }
+
+/* 
+Pay Fee
+*/
+#stripe-error-message {
+	display: none;
+}

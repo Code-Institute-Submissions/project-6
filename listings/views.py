@@ -1,9 +1,13 @@
-from django.shortcuts import render, get_object_or_404, redirect
+from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 from listings.models import Listing
-from listings.forms import AddListingForm
+from listings.forms import AddListingForm, PayFeeForm
+from django.conf import settings
+import stripe
+
+stripe.api_key = settings.STRIPE_SECRET
 
 
 def house(request, house_id):
@@ -39,9 +43,9 @@ def add_house(request, user_id):
     """
 
     if request.session.get('new_house'):
-		#
-		# Will change it later. For now temporary remove the listing
-		#
+                #
+                # Will change it later. For now temporary remove the listing
+                #
         zipcode = request.session['new_house']['zipcode'].lower()
         zipcode = zipcode.replace(" ", "")
         Listing.objects.filter(zipcode=zipcode).delete()
@@ -91,20 +95,49 @@ def preview_house(request, user_id, house_id):
 @login_required
 def pay_fee(request, user_id, house_id):
     """
-    View for user to confirm his listing or go back and edit it
+    View for user to pay fee for new listing
     """
+
     if user_id is not int(request.session['_auth_user_id']):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
-    if request.method == 'POST':
-        pass
-
     house_data = get_object_or_404(Listing, pk=int(house_id))
+    if request.method == "POST":
+        payment_form = PayFeeForm(request.POST)
+        if payment_form.is_valid():
+            try:
+                customer = stripe.Charge.create(
+                    amount=int(1000),
+                    currency="EUR",
+                    description=request.user.email,
+                    card=payment_form.cleaned_data['stripe_id'],
+                )
+            except stripe.error.CardError:
+                messages.error(request, "Your card was declined!")
 
+            if customer.paid:
+                messages.success(request, "You have successfully paid")
+                if request.session.get('new_house'):
+                    del request.session['new_house']
+                Listing.objects.filter(pk=int(house_id)).update(paid_fee=True)
+                args = {
+                    'house_id': house_data.id
+                }
+                return redirect(reverse("house", kwargs={'house_id': house_data.id}))
+            else:
+                messages.error(request, "Unable to take payment")
+
+        else:
+            messages.error(
+                request, "We were unable to take a payment with that card!")
     args = {
         'house': house_data,
-        'page_title': house_data.title
+        'page_title': house_data.title,
+        'form': PayFeeForm,
+        'publishable': settings.STRIPE_PUBLISHABLE
     }
+
     return render(request, "pay_fee.html", args)
+
 
 @login_required
 def edit_house(request, house_id):
