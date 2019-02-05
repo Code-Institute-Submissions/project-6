@@ -321,6 +321,8 @@ HTML / CSS | 5 |
   - **Listing app**
     - removed `unique=True` from `zipcode` in [models.py](/listings/models.py) as this was throwing form error while using the same model for edit hose.  
     *This does not effect `AddListingForm` due to `clean_zipcode()`.*
+	- added simple `if` statment to `edit_house()` to prevent user acidentaly overwrite other user listing while entering zipcode which already exist in database  
+	*Did not use `clean_zipcode()` as this was throwing validation error while rendering the form.*
 
 [**To top**](#Table-of-Contents)
 

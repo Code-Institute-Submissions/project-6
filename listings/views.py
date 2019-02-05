@@ -142,20 +142,26 @@ def pay_fee(request, user_id, house_id):
 @login_required
 def edit_house(request, user_id, house_id):
     """ 
-	Main route for editing house listing
-	"""
+        Main route for editing house listing
+        """
     if user_id is not int(request.session['_auth_user_id']):
         messages.error(request, "You are not allowed to edit the listing!")
         return redirect('index')
     house_data = get_object_or_404(Listing, pk=house_id)
     if request.method == "POST":
-        edit_house_form = EditListingForm(request.POST, request.FILES, instance=house_data)
+        edit_house_form = EditListingForm(
+            request.POST, request.FILES, instance=house_data)
         if edit_house_form.is_valid():
-            edit_house_form.save()
+            if Listing.objects.filter(zipcode=house_data.zipcode).exclude(seller_id=user_id):
+                messages.error(request, "That zipcode is in use already!")
+            else:
+                edit_house_form.save()
+                messages.success(request, "Successfully updated your listing!")
+                return redirect(reverse("house", kwargs={'house_id': house_data.id}))
     house_data = house_data.__dict__
     args = {
         'form': EditListingForm(house_data),
-		'house': house_data
+        'house': house_data
     }
 
     return render(request, "edit_house.html", args)
@@ -163,6 +169,6 @@ def edit_house(request, user_id, house_id):
 
 def search(request):
     """ 
-	Main route for search
-	"""
+        Main route for search
+        """
     return render(request, "search.html")
