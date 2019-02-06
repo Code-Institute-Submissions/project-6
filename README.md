@@ -316,6 +316,7 @@ HTML / CSS | 5 |
 
 - **Changelog**
   - added functionality for editing a existing house
+  - added functionality for user to be able to delete his own house
   - created separate form class for edit house (`EditListingForm()`)
 - **Fixes**
   - **Listing app**

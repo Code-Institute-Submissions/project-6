@@ -1,0 +1,24 @@
+<!-- Delete House Modal-->
+<div class="modal fade" id="delete-house-modal" tabindex="-1" role="dialog" aria-labelledby="delete-house" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-center">Are you sure you want to pernamently delete this listing?</h5>				
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			{% if house.paid_fee %}
+			<div class="modal-body">
+				<p class="text-center text-danger">This can not be undone!</p>
+				<br>
+				<p class="text-center text-danger">Please note that we do not issuing refunds!</p>
+			</div>
+			{% endif %}
+			<div class="modal-footer">
+				<button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+				<a class="btn btn-danger" href="{% url 'delete_house' user.id house.id %}">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>

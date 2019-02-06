@@ -43,9 +43,6 @@ def add_house(request, user_id):
     """
 
     if request.session.get('new_house'):
-                #
-                # Will change it later. For now temporary remove the listing
-                #
         zipcode = request.session['new_house']['zipcode'].lower()
         zipcode = zipcode.replace(" ", "")
         Listing.objects.filter(zipcode=zipcode).delete()
@@ -165,6 +162,22 @@ def edit_house(request, user_id, house_id):
     }
 
     return render(request, "edit_house.html", args)
+
+
+@login_required
+def delete_house(request, user_id, house_id):
+    """ 
+        Main route to delete listing
+        """
+    if user_id is not int(request.session['_auth_user_id']):
+        messages.error(request, "You are not allowed to delete the listing!")
+        return redirect('index')
+    if request.method == "GET":
+        Listing.objects.filter(pk=house_id).delete()
+        messages.success(request, "You listing has been deleted")
+        return redirect(reverse("index"))
+    else:        
+        return redirect(reverse("index"))
 
 
 def search(request):

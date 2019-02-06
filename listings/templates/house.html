@@ -4,32 +4,30 @@
 <link rel="stylesheet" href="{% static 'css/custom/house.css' %}">
 {% endblock css %}
 
-{% block page_header %}
-
-
-{% endblock page_header %}	
+{% block page_header %} {% endblock page_header %}	
 
 {% block main_content %}
 
 {% include "partials/_large_listing.html" %}
 
+<!-- Contact / Edit / Delete -->
 {% block btns %}
-<!-- Contact / Edit -->
-<section class="container">
-	<div class="row justify-content-start py-3">
+<div id="house-btns" class="container pb-5">
+	<div class="row justify-content-around py-3">
 		{% if user.is_authenticated and user == house.seller %}
-		<div class="col-6">
+			<button class="btn btn-danger my-2 my-sm-0" type="button" data-toggle="modal" data-target="#delete-house-modal">Delete
+				your listing</button>
 			<a href="{% url 'edit_house' user.id house.id %}" class="btn btn-warning">Edit your listing</a>
-		</div>
 		{% else %}
-		<div class="col-6">
 			<a href="#" class="btn btn-success">Contact the owner</a>
-		</div>
 		{% endif %}
 	</div>
-</section>
+</div>
 {% endblock btns %}
 {% endblock main_content %}
+{% block modals %}
+{% include "partials/_delete_house_modal.html" %}
+{% endblock modals %}
 {% block js %}
 <!-- Light box -->
 <script src="{% static 'js/vendor/lightbox.min.js' %}"></script>
