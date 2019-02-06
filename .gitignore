@@ -15,6 +15,7 @@ aph/static/img
 *.pyc
 __pycache__/
 local_settings.py
+migrations/
 db.sqlite3
 # /media 
 /static

@@ -24,6 +24,7 @@
 			- [1.1](#11)
 			- [1.2](#12)
 			- [1.3](#13)
+			- [1.4](#14)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -325,6 +326,15 @@ HTML / CSS | 5 |
 	- added simple `if` statment to `edit_house()` to prevent user acidentaly overwrite other user listing while entering zipcode which already exist in database  
 	*Did not use `clean_zipcode()` as this was throwing validation error while rendering the form.*
 
+#### 1.4
+
+- **Changelog**
+  - added more styles to `nav`
+  - **Enquire app**
+    - added functionality to contact the owner of the house in [house.html](/listings/templates/house.html)
+- **Fixes**
+  - 
+
 [**To top**](#Table-of-Contents)
 
 <hr />
@@ -444,6 +454,7 @@ HTML / CSS | 5 |
   - removed port 8000 from firewall and add new port 80 (*NGINX*)
 - restarted **Gunicorn** and **NGINX**
 - **Custom Domain**
+  - [http://www.keykeepers.co/](http://www.keykeepers.co/)
 
 [**To top**](#Table-of-Contents)
 

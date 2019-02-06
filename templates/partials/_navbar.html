@@ -12,17 +12,29 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'houses' %}">View all</a>
 				</li>				
-				<!-- Login Required -->
 				{% if user.is_authenticated %}				
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'profile' %}">Profile</a>
+				<li class="nav-item ml-1">
+					<button class="btn btn-outline-secondary my-2 my-sm-0" type="button" data-toggle="modal" data-target="#"><i class="fas fa-envelope fa-fw"></i>
+						<span class="badge badge-danger">7</span></button>
 				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'logout' %}">Log-out</a>
-				</li>				
+				<div class="ml-1 dropdown">
+					<button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown"
+					 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i></button>
+					<div class="dropdown-menu dropdown-menu-right" aria-labelledby="dropdownMenuButton">
+						{% comment %} Testing {% endcomment %}
+						<a class="dropdown-item" href="{% url 'password_change' %}">P change</a>
+						<a class="dropdown-item" href="/admin/login/">Admin</a>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'profile' %}">Profile</a>
+						</li>
+						<li class="nav-item">
+							<a class="nav-link" href="{% url 'logout' %}">Log-out</a>
+						</li>
+					</div>
+				</div>
 				{% else %}
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'register' %}">Register</a>
@@ -30,15 +42,8 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'login' %}">Log in</a>
 				</li>
-				{% endif %}				
-				{% comment %} Testing {% endcomment %}
-				<li class="nav-item">
-					<a class="nav-link" href="{% url 'password_change' %}">P change</a>
-				</li>
-				<li class="nav-item">
-					<a class="nav-link" href="/admin/login/">Admin</a>
-				</li>
+				{% endif %}	
 			</ul>
-		</div>
+		</div>		
 	</div>	
 </nav>

@@ -6,6 +6,7 @@ from django.contrib.auth.models import User
 import stripe
 from listings.models import Listing
 from listings.forms import AddListingForm, PayFeeForm, EditListingForm
+from enquiries.forms import EnquiryForm
 
 stripe.api_key = settings.STRIPE_SECRET
 
@@ -19,7 +20,8 @@ def house(request, house_id):
 
     args = {
         'house': house_data,
-        'page_title': house_data.title
+        'page_title': house_data.title,
+        'form': EnquiryForm
     }
     return render(request, "house.html", args)
 

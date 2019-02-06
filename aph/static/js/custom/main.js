@@ -6,15 +6,12 @@ $(document).ready(function() {
 	$(document).scroll(function() {
 		if ($(document).scrollTop() >= 400) {
 			$(".navbar").addClass("white-nav");
+			$(".navbar-brand span").fadeIn();
 		} else {
 			$(".navbar").removeClass("white-nav");
+			$(".navbar-brand span").fadeOut();
 		}
 	});
-	$("#nav .container").hover(function() {
-			$(".navbar-brand span").fadeIn();
-		}, function() {
-			$(".navbar-brand span").fadeOut();
-		});
 });
 
 /* 

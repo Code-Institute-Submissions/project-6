@@ -19,14 +19,15 @@
 				your listing</button>
 			<a href="{% url 'edit_house' user.id house.id %}" class="btn btn-warning">Edit your listing</a>
 		{% else %}
-			<a href="#" class="btn btn-success">Contact the owner</a>
+			<button class="btn btn-success my-2 my-sm-0" type="button" data-toggle="modal" data-target="#enquire-modal">Contact the owner</button>
 		{% endif %}
 	</div>
 </div>
 {% endblock btns %}
 {% endblock main_content %}
 {% block modals %}
-{% include "partials/_delete_house_modal.html" %}
+{% include "partials/modals/_delete_house_modal.html" %}
+{% include "partials/modals/_enquire_modal.html" %}
 {% endblock modals %}
 {% block js %}
 <!-- Light box -->

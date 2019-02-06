@@ -1,0 +1,30 @@
+{% load bootstrap4 %}
+
+<!-- Enquires Modal-->
+<div class="modal fade" id="enquire-modal" tabindex="-1" role="dialog" aria-labelledby="delete-house" aria-hidden="true">
+	<div class="modal-dialog" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title text-center"></h5>
+				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">×</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form method="POST">
+					{% csrf_token %}
+					{% bootstrap_form form %}
+					<div class="form-group">
+						{% buttons %}
+						<button type="submit" class="btn btn-success btn-block">Send</button>
+						{% endbuttons %}
+					</div>
+					<input type="hidden" name="sender" value="{{ user.id }}">
+					<input type="hidden" name="house" value="{{ house.id }}">
+				</form>
+			</div>
+			<div class="modal-footer">
+			</div>
+		</div>
+	</div>
+</div>
