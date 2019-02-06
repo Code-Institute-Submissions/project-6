@@ -3,6 +3,7 @@ import os
 # Set it to True for local setting and testing
 DEBUG = False
 
+
 if DEBUG:
     try:
         from settings.local_settings import *
