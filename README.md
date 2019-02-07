@@ -333,7 +333,8 @@ HTML / CSS | 5 |
   - **Enquire app**
     - added functionality to contact the owner of the house in [house.html](/listings/templates/house.html)
 - **Fixes**
-  - 
+  - **Enquiries app**
+    - added separate view for contact messages
 
 [**To top**](#Table-of-Contents)
 

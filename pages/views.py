@@ -22,14 +22,6 @@ def index(request):
         "listings": listings,
         "form": contact_form,
         "page_title": "Key Keepers",
-    }
-    # The contact form is submited
-    if request.method == 'POST':
-        form = ContactForm(request.POST)
-        if form.is_valid():
-            form.save()
-            form = ContactForm()
-            messages.success(request, "Thank you for your message!")
-            return redirect('/#contact-us', args)
+    }  
 
     return render(request, "index.html", args)

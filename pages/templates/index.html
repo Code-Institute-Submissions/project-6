@@ -109,7 +109,7 @@
 
 			</div>
 			<div class=" col-md-6">
-				<form method="POST">
+				<form method="POST" action="{% url 'send_contact_message' %}">
 					{% csrf_token %}
 					{% bootstrap_form form %}					
 					<div class="form-group">
