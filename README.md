@@ -331,9 +331,14 @@ HTML / CSS | 5 |
 - **Changelog**
   - added more styles to `nav`
   - **Enquire app**
+    - added separate view for contact messages
     - added functionality to contact the owner of the house in [house.html](/listings/templates/house.html)
+    - added "pooling" (via **JQ Ajax**) user messages and enquiries from the server for logged in users
+    - added [_user_messages_modal.html](/enquiries\templates/partials/modals/_user_messages_modal.html) to display unread / read messages and enquiries to user
 - **Fixes**
-  - 
+  - **Listings app**
+    - fixed 500 error in [house.html](/listings/templates/house.html) due to injecting [_delete_house_modal.html](/listings/templates/partials/modals/_delete_house_modal.html) and [_enquire_modal.html](/listings/templates/partials/modals/_enquire_modal.html) even when user was not authenticated
+    
 
 [**To top**](#Table-of-Contents)
 

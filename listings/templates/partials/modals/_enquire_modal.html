@@ -5,25 +5,29 @@
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h5 class="modal-title text-center"></h5>
+				<h5 class="modal-title text-center">{{ house.title }} Enquire</h5>
 				<button class="close" type="button" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">×</span>
 				</button>
 			</div>
 			<div class="modal-body">
-				<form method="POST">
-					{% csrf_token %}
-					{% bootstrap_form form %}
-					<div class="form-group">
+				<form method="POST" action="{% url 'send_enquire' user.id house.id %}">
+					{% csrf_token %}					
+					{% bootstrap_field show_label=False field=form.message %}
+					{% bootstrap_field field=form.viewing %}
+					<div class="form-group text-center">
 						{% buttons %}
-						<button type="submit" class="btn btn-success btn-block">Send</button>
+						<button type="submit" class="btn btn-success">Send your enquire</button>
 						{% endbuttons %}
 					</div>
-					<input type="hidden" name="sender" value="{{ user.id }}">
-					<input type="hidden" name="house" value="{{ house.id }}">
+					<input type="hidden" name="to" value="{{ house.seller }}">
+					<input type="hidden" name="to_id" value="{{ house.seller.id }}">
+					<input type="hidden" name="house_id" value="{{ house.id }}">
+					<input type="hidden" name="house_name" value="{{ house.title }}">
+					<input type="hidden" name="sender" value="{{ user.username }}">
+					<input type="hidden" name="sender_id" value="{{ user.id }}">
+					<input type="hidden" name="sender_email" value="{{ user.email }}">	
 				</form>
-			</div>
-			<div class="modal-footer">
 			</div>
 		</div>
 	</div>

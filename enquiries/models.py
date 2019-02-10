@@ -34,13 +34,20 @@ class PropertyEnquire(models.Model):
     Model for house enquire message from the user
     """
 
-    username = models.CharField(max_length=50)
-    email = models.EmailField(max_length=100)
+    to = models.CharField(max_length=100)
+    to_id = models.IntegerField(default=1)
+    house_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING, default=1)
+    house_name = models.CharField(max_length=100)
+    viewing = models.BooleanField(default=False)
     message = models.TextField(max_length=2000)
     posted = models.DateField(default=datetime.now)
     new_message = models.BooleanField(default=True)
-    house = models.ForeignKey(Listing, on_delete=models.DO_NOTHING, default=1)
-    sender = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    sender = models.CharField(max_length=100)
+    sender_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    sender_email = models.EmailField(max_length=100)
 
     def __str__(self):
-        return self.sender
+        return self.house_name
+
+
+

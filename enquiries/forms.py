@@ -1,6 +1,5 @@
 from django import forms
 from .models import ContactMessage, PropertyEnquire
-from listings.models import Listing
 
 
 class ContactForm(forms.ModelForm):
@@ -20,6 +19,9 @@ class EnquiryForm(forms.ModelForm):
     Users Enquiries form 
     """
 
+    message = forms.CharField(min_length=15, widget=forms.Textarea)
+    viewing = forms.BooleanField(required=False, label="I am interested to book a viewing")
+
     class Meta:
         model = PropertyEnquire
-        fields = ['message']
+        fields = ['to', 'to_id', 'house_id', 'house_name', 'viewing', 'message', 'sender', 'sender_id', 'sender_email']

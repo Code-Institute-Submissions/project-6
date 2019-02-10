@@ -1,13 +1,10 @@
-from django.shortcuts import render, redirect, reverse
-from .forms import UserProfileForm, UserLoginForm
+from django.shortcuts import render, redirect
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from accounts.models import UserProfile
 from django.contrib.auth.decorators import login_required
-
-
-from django.core.exceptions import ValidationError
 from django import forms
+from .forms import UserProfileForm, UserLoginForm
 
 
 def register(request):
@@ -79,7 +76,6 @@ def login(request):
             if user:
                 auth.login(request, user)
                 messages.success(request, "You have successfully logged in!")
-                # Check if next arg is pressent
                 nexturl = request.POST.get('next')
                 if nexturl:
                     return redirect(nexturl)
