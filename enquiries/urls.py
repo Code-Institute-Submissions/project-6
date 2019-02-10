@@ -9,4 +9,6 @@ urlpatterns = [
          enquiries.send_contact_message, name="send_contact_message"),
    	path('send_enquire/<int:user_id>/<int:house_id>',
          enquiries.send_enquire, name="send_enquire"),
+   	path('get_messages/',
+         enquiries.get_messages, name="get_messages"),
 ]

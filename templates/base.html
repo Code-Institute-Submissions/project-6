@@ -74,6 +74,10 @@
 	{% include "partials/_footer.html" %}
 
 	<!-- Modals -->
+	{% if user.is_authenticated %}
+	<!-- User messages modal -->
+	{% include "partials/modals/_user_messages_modal.html" %}
+	{% endif %}
 	{% block modals %}
 	  
 	{% endblock modals %}
@@ -84,9 +88,14 @@
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
 	 crossorigin="anonymous"></script>
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>		
+	 crossorigin="anonymous"></script>
+	{% if user.is_authenticated %}
+	<!-- Get messages -->
+	<script src="{% static 'js/custom/enquiries.js' %}"></script>
+	{% endif %}
 	<!-- Custom JS -->
-	<script src="{% static 'js/custom/main.js' %}"></script>	
+	<script src="{% static 'js/custom/main.js' %}"></script>
+	
 	{% block js %} {% endblock js %}
 </body>
 

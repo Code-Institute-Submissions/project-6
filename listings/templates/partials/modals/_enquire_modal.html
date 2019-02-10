@@ -20,11 +20,13 @@
 						<button type="submit" class="btn btn-success">Send your enquire</button>
 						{% endbuttons %}
 					</div>
-					<input type="hidden" name="username" value="{{ house.seller }}">
-					<input type="hidden" name="user_id" value="{{ house.seller.id }}">
-					<input type="hidden" name="sender" value="{{ user.id }}">
-					<input type="hidden" name="email" value="{{ user.email }}">
-					<input type="hidden" name="house" value="{{ house.id }}">
+					<input type="hidden" name="to" value="{{ house.seller }}">
+					<input type="hidden" name="to_id" value="{{ house.seller.id }}">
+					<input type="hidden" name="house_id" value="{{ house.id }}">
+					<input type="hidden" name="house_name" value="{{ house.title }}">
+					<input type="hidden" name="sender" value="{{ user.username }}">
+					<input type="hidden" name="sender_id" value="{{ user.id }}">
+					<input type="hidden" name="sender_email" value="{{ user.email }}">	
 				</form>
 			</div>
 		</div>
