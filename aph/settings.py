@@ -1,7 +1,7 @@
 import os
 
 # Set it to True for local setting and testing
-DEBUG = True
+DEBUG = False
 
 
 if DEBUG:
