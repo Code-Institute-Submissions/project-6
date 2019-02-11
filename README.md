@@ -338,7 +338,9 @@ HTML / CSS | 5 |
 - **Fixes**
   - **Listings app**
     - fixed 500 error in [house.html](/listings/templates/house.html) due to injecting [_delete_house_modal.html](/listings/templates/partials/modals/_delete_house_modal.html) and [_enquire_modal.html](/listings/templates/partials/modals/_enquire_modal.html) even when user was not authenticated
-    
+  - **Enquire app**
+    - [_user_messages_modal.html](enquiries/templates/partials/modals/_user_messages_modal.html)
+      - added loader as there is 3s delay before messages are innered to the modal
 
 [**To top**](#Table-of-Contents)
 
