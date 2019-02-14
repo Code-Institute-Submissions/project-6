@@ -330,6 +330,8 @@ HTML / CSS | 5 |
 
 - **Changelog**
   - added more styles to `nav`
+  - **APH**
+    - added JS modal alerts
   - **Enquire app**
     - added separate view for contact messages
     - added functionality to contact the owner of the house in [house.html](/listings/templates/house.html)
@@ -341,6 +343,10 @@ HTML / CSS | 5 |
   - **Enquire app**
     - [_user_messages_modal.html](enquiries/templates/partials/modals/_user_messages_modal.html)
       - added loader as there is 3s delay before messages are innered to the modal
+    - [models.py](/enquiries/models.py)
+      - **PropertyEnquire**
+        - changed **house_id** to **IntegerField** due to the 500 error when listing has been deleted
+        - changed **sender_id** `on_delete` to **models.CASCADE** as messages should not be kept when the user does not exist anymore
 
 [**To top**](#Table-of-Contents)
 

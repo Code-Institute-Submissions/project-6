@@ -36,14 +36,14 @@ class PropertyEnquire(models.Model):
 
     to = models.CharField(max_length=100)
     to_id = models.IntegerField(default=1)
-    house_id = models.ForeignKey(Listing, on_delete=models.DO_NOTHING, default=1)
+    house_id = models.IntegerField(default=1)
     house_name = models.CharField(max_length=100)
     viewing = models.BooleanField(default=False)
     message = models.TextField(max_length=2000)
     posted = models.DateField(default=datetime.now)
     new_message = models.BooleanField(default=True)
     sender = models.CharField(max_length=100)
-    sender_id = models.ForeignKey(User, on_delete=models.DO_NOTHING, default=1)
+    sender_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
     sender_email = models.EmailField(max_length=100)
 
     def __str__(self):

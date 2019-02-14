@@ -11,4 +11,6 @@ urlpatterns = [
          enquiries.send_enquire, name="send_enquire"),
    	path('get_messages/',
          enquiries.get_messages, name="get_messages"),
+   	path('delete_message/<int:user_id>/<int:message_id>',
+         enquiries.delete_message, name="delete_message"),
 ]

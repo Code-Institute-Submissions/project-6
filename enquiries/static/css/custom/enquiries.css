@@ -3,7 +3,7 @@ Messages modal
 */
 
 #user-messages-modal {
-	/* display: none; */
+	display: none;
 	height: 100vh;
 	margin-top: 4.3rem;
 	z-index: 0;
@@ -12,7 +12,6 @@ Messages modal
 #user-messages-modal .messages-wrapper {	
 	background-color: rgba(255, 255, 255, 0.9);
 }
-
 
 #unread-message-inner,
 #read-message-inner {
@@ -47,8 +46,13 @@ Messages modal
 	overflow: hidden;
 }
 
-.dropdown-message-btn {
+.dropdown-message-btn,
+.dropdown-message-delete {
 	position: absolute;
     right: 1.5rem;
     top: 6.5rem;
+}
+
+.dropdown-message-delete {
+    top: 1.5rem;
 }
