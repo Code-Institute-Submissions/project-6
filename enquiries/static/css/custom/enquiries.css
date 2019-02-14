@@ -46,8 +46,13 @@ Messages modal
 	overflow: hidden;
 }
 
-.dropdown-message-btn {
+.dropdown-message-btn,
+.dropdown-message-delete {
 	position: absolute;
     right: 1.5rem;
     top: 6.5rem;
+}
+
+.dropdown-message-delete {
+    top: 1.5rem;
 }

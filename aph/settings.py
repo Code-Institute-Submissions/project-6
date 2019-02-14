@@ -1,7 +1,8 @@
 import os
 
 # Set it to True for local setting and testing
-DEBUG = False
+
+DEBUG = os.environ.get('DEBUG')
 
 
 if DEBUG:
@@ -22,7 +23,7 @@ else:
             'HOST': 'localhost'
         }
     }
-    ALLOWED_HOSTS = ['178.62.77.237']
+    ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS')
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))

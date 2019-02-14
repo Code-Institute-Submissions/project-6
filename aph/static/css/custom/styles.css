@@ -24,6 +24,16 @@ General
 	font-family: "Great Vibes", cursive;
 }
 
+
+.navbar-brand span,
+#js-alerts {
+	display: none;
+}
+
+#js-alerts {
+	background-color: rgba(255, 255, 255, 0.2);
+}
+
 /* 
 Nav
 */
@@ -33,9 +43,6 @@ Nav
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-.navbar-brand span {
-	display: none;
-}
 
 #nav .nav-link {
 	color: #6c757d;

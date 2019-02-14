@@ -37,14 +37,22 @@
 	<!-- Navigation -->
 	{% include "partials/_navbar.html" %}
 
+
+	<!-- JS messages -->
+	<section id="js-alerts" class="container-fluid fixed-top">
+		<div class="row pb-3">
+			<div class="alert col-12 text-center font-weight-bold"></div>
+		</div>
+	</section>
+
 	
 	{% if messages %}
 	<!-- Bootstrap messages -->
-	<section class="container-fluid fixed-top mt-5">
-		<div class="row mt-3">
-			<div class="alert col-12 pt-4 text-center font-weight-bold">
+	<section class="container-fluid fixed-top">
+		<div class="row pb-3">
+			<div class="alert col-12 text-center font-weight-bold">
 				{% for message in messages %}
-				  <p>{{ message }}</p>
+				<p>{{ message }}</p>
 				{% endfor %}
 			</div>
 		</div>
@@ -90,7 +98,9 @@
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
 	 crossorigin="anonymous"></script>
 	{% if user.is_authenticated %}
-	<!-- Get messages -->
+	<!-- jQ cookie -->
+	<script src="{% static 'js/vendor/jquery.cookie.js' %}"></script>
+	<!-- User messages -->
 	<script src="{% static 'js/custom/enquiries.js' %}"></script>
 	{% endif %}
 	<!-- Custom JS -->

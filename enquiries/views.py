@@ -5,7 +5,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from listings.views import house
 from .forms import EnquiryForm, ContactForm
-from .models import ContactMessage, PropertyEnquire
+from .models import PropertyEnquire
 
 
 def send_contact_message(request):
@@ -41,10 +41,28 @@ def send_enquire(request, user_id, house_id):
 def get_messages(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            user_enquiries = PropertyEnquire.objects.filter(to_id=request.session['_auth_user_id'])
+            user_enquiries = PropertyEnquire.objects.filter(
+                to_id=request.session['_auth_user_id']) 
             data = serializers.serialize('json', user_enquiries)
             return HttpResponse(data)
         else:
             return redirect('index')
+    else:
+        return redirect('index')
+
+
+@login_required
+def delete_message(request, user_id, message_id):
+    if request.method == "DELETE":
+        if user_id is not int(request.session['_auth_user_id']):
+            return HttpResponse("You are not allowed to delete this message!")
+        message = PropertyEnquire.objects.filter(
+            pk=int(message_id), to_id=user_id)
+        if message:
+            data = serializers.serialize('json', message)
+            message.delete()
+            return HttpResponse(data)
+        else:            
+            return HttpResponse("You are not allowed to delete this message!")
     else:
         return redirect('index')
