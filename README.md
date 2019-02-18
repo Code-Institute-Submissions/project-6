@@ -337,6 +337,8 @@ HTML / CSS | 5 |
     - added functionality to contact the owner of the house in [house.html](/listings/templates/house.html)
     - added "pooling" (via **JQ Ajax**) user messages and enquiries from the server for logged in users
     - added [_user_messages_modal.html](/enquiries\templates/partials/modals/_user_messages_modal.html) to display unread / read messages and enquiries to user
+    - added [create_conversations.py](/enquiries/create_conversations.py)  
+    *Create conversations from received and sended messages.*  
 - **Fixes**
   - **Listings app**
     - fixed 500 error in [house.html](/listings/templates/house.html) due to injecting [_delete_house_modal.html](/listings/templates/partials/modals/_delete_house_modal.html) and [_enquire_modal.html](/listings/templates/partials/modals/_enquire_modal.html) even when user was not authenticated

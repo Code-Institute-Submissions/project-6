@@ -24,4 +24,5 @@ class EnquiryForm(forms.ModelForm):
 
     class Meta:
         model = PropertyEnquire
-        fields = ['to', 'to_id', 'house_id', 'house_name', 'viewing', 'message', 'sender', 'sender_id', 'sender_email']
+        fields = ['to', 'to_id', 'to_email', 'house_id', 'house_name',
+                  'viewing', 'message', 'sender', 'sender_id', 'sender_email']

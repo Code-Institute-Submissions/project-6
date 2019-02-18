@@ -4,6 +4,7 @@ General
 
 .alert {
 	background-color: #f8f9fa;
+	padding-top: 4rem;
 }
 
 .navbar-light .navbar-brand {
@@ -39,6 +40,7 @@ Nav
 */
 
 #nav {
+	z-index: 1031;
 	font-weight: 650;
 	background-color: rgba(255, 255, 255, 0.2);
 }

@@ -1,11 +1,12 @@
 from django.core import serializers
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from listings.views import house
 from .forms import EnquiryForm, ContactForm
 from .models import PropertyEnquire
+from .create_conversations import CreateConversations
 
 
 def send_contact_message(request):
@@ -41,10 +42,8 @@ def send_enquire(request, user_id, house_id):
 def get_messages(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            user_enquiries = PropertyEnquire.objects.filter(
-                to_id=request.session['_auth_user_id']) 
-            data = serializers.serialize('json', user_enquiries)
-            return HttpResponse(data)
+            conversations = CreateConversations(request.session['_auth_user_id']).create_conversations()
+            return JsonResponse(conversations, safe=False)
         else:
             return redirect('index')
     else:
@@ -62,7 +61,7 @@ def delete_message(request, user_id, message_id):
             data = serializers.serialize('json', message)
             message.delete()
             return HttpResponse(data)
-        else:            
+        else:
             return HttpResponse("You are not allowed to delete this message!")
     else:
         return redirect('index')

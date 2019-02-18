@@ -14,6 +14,6 @@ class UserProfile(models.Model):
 	img = models.ImageField(upload_to='main/profile/%Y/%m/%d/', blank=True)
 	phone = models.CharField(max_length=15)
 	terms = models.BooleanField(default=False)
-	joined = models.DateTimeField(default=datetime.now, blank=True)
+	joined = models.DateTimeField(default=datetime, blank=True)
 	def __str__(self):
 		return self.user.email	
