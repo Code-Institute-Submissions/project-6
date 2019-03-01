@@ -1,7 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
 
-from datetime import datetime
+from django.utils.timezone import now
 
 
 class UserProfile(models.Model):
@@ -14,6 +14,6 @@ class UserProfile(models.Model):
 	img = models.ImageField(upload_to='main/profile/%Y/%m/%d/', blank=True)
 	phone = models.CharField(max_length=15)
 	terms = models.BooleanField(default=False)
-	joined = models.DateTimeField(default=datetime, blank=True)
+	joined = models.DateTimeField(now())
 	def __str__(self):
-		return self.user.email	
+		return self.user.email

@@ -8,29 +8,19 @@
 	<div class="messages-wrapper row h-100">
 		<div class="col-12">
 			<div class="row justify-content-around">
-				<h5 id="unread-message-h5" class="pt-5 font-weight-bold text-success">New messages
+				<h3 class="pt-5 font-weight-bold text-success">Conversations
 					<hr>
-					<input type="hidden" name="unread_messages_id" value="-1,">
-				</h5>
-				<h5 id="message-alert" class="pt-5 font-weight-bold text-success"></h5>
-				<h5 id="read-message-h5" class="pt-5 font-weight-bold text-secondary">Old messages
-					<hr>
-					<input type="hidden" name="read_messages_id" value="-1,">
-				</h5>
+					<input type="hidden" name="user_id" value="{{ user.id }}">
+					<input type="hidden" name="conversations_id" value="-1,">
+				</h3>
 			</div>
 			<!-- Inner User Messages -->
-			<div id="unread-message-inner" class="row">
+			<div id="message-inner" class="row">
 				<div class="col-12 loader">
 					<div class="row justify-content-center py-5">
 						<i class="fas fa-cloud-download-alt fa-10x text-secondary"></i>
 						<h4 class="col-12 text-center font-weight-bold py-3">Getting your messages...</h4>
-					</div>
-				</div>
-			</div>
-			<div id="read-message-inner" class="row">
-				<div class="col-12 text-center pt-5 loader">
-					<i class="fas fa-cloud-download-alt fa-10x text-secondary"></i>
-					<h4 class="font-weight-bold py-3">Getting your messages...</h4>
+					</div>				
 				</div>
 			</div>
 		</div>

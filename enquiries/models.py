@@ -1,5 +1,5 @@
 from django.db import models
-from datetime import datetime
+from django.utils.timezone import now
 from django.contrib.auth.models import User
 
 from listings.models import Listing
@@ -21,7 +21,7 @@ class ContactMessage(models.Model):
     username = models.CharField(max_length=50)
     email = models.EmailField(max_length=100)
     message = models.TextField(max_length=2000)
-    posted = models.DateTimeField(default=datetime.now())
+    posted = models.DateTimeField(now())
     new_message = models.BooleanField(default=True)
 
     def __str__(self):
@@ -41,14 +41,14 @@ class PropertyEnquire(models.Model):
     house_name = models.CharField(max_length=100)
     viewing = models.BooleanField(default=False)
     message = models.TextField(max_length=2000)
-    posted = models.DateTimeField(default=datetime.now())
-    new_message = models.BooleanField(default=True)
+    posted = models.DateTimeField(now())
     sender = models.CharField(max_length=100)
-    sender_id = models.ForeignKey(User, on_delete=models.CASCADE, default=1)
+    sender_id = models.IntegerField(default=1)
     sender_email = models.EmailField(max_length=100)
+    new_to = models.BooleanField(default=True)
+    delete_to = models.BooleanField(default=False)
+    new_sender = models.BooleanField(default=False)
+    delete_sender = models.BooleanField(default=False)
 
     def __str__(self):
         return self.house_name
-
-
-

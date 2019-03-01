@@ -23,8 +23,6 @@ def send_contact_message(request):
 
 @login_required
 def send_enquire(request, user_id, house_id):
-    if user_id is not int(request.session['_auth_user_id']):
-        return redirect('index')
     if request.method == 'POST':
         form = EnquiryForm(request.POST)
         if form.is_valid():
@@ -52,16 +50,40 @@ def get_messages(request):
 
 @login_required
 def delete_message(request, user_id, message_id):
-    if request.method == "DELETE":
+    if request.method == "POST":
         if user_id is not int(request.session['_auth_user_id']):
             return HttpResponse("You are not allowed to delete this message!")
         message = PropertyEnquire.objects.filter(
             pk=int(message_id), to_id=user_id)
+        messages_ids = request.POST.getlist('ids[]')
         if message:
             data = serializers.serialize('json', message)
-            message.delete()
+            # message.delete()
             return HttpResponse(data)
         else:
             return HttpResponse("You are not allowed to delete this message!")
     else:
         return redirect('index')
+
+
+@login_required
+def toggle_read(request, user_id, message_id):
+    if request.method == "POST":
+        message = PropertyEnquire.objects.filter(
+            pk=int(message_id), to_id=user_id)
+        messages_ids = request.POST.getlist('ids[]')
+        for m_id in message_id:
+        	messages_ids = request.POST.getlist('ids[]')
+        messages_ids = request.POST.getlist('ids[]')
+        messages_ids = request.POST.getlist('ids[]')
+        if message:
+            data = serializers.serialize('json', message)
+            # message.delete()
+            return HttpResponse(data)
+        else:
+            return HttpResponse("There seems to be a problem updating your message!")
+    else:
+        return redirect('index')
+
+
+

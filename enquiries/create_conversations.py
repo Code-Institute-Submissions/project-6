@@ -1,7 +1,7 @@
 from .models import PropertyEnquire
 from django.core import serializers
 
-class CreateConversations(dict):
+class CreateConversations():
 
 	""" Create User conversations """
 
@@ -15,8 +15,8 @@ class CreateConversations(dict):
 		self.keys = []
 		for message in self.received:
 			house_id = message.house_id
-			conversation_member = message.sender_id_id
-			self.sort_messages(message,house_id, conversation_member)
+			conversation_member = message.sender_id
+			self.sort_messages(message, house_id, conversation_member)
 		for message in self.sent:
 			house_id = message.house_id
 			conversation_member = message.to_id
@@ -33,11 +33,11 @@ class CreateConversations(dict):
 			self.sorted_conversations[f"{house_id}.{conversation_member}"].append(message)
 
 		self.sorted_conversations[f"{house_id}.{conversation_member}"].sort(
-			key=lambda x: x.posted, reverse=True)
+			key=lambda x: x.posted)
 
 	def serialize_data(self):
 		self.serialized_data = []
 		for key in self.keys:
-			self.serialized_data.append( self.sorted_conversations[key])
+			self.serialized_data.append(self.sorted_conversations[key])
 		data = [serializers.serialize('json', x) for x in self.serialized_data]
 		return data
