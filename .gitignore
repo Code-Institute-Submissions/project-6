@@ -8,6 +8,7 @@ aph/static/img
 .bashrc
 /plants-data
 /settings
+2019
 
 ### Django ###
 *.log

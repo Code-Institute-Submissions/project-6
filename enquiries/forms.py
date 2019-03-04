@@ -21,7 +21,9 @@ class EnquiryForm(forms.ModelForm):
 
     message = forms.CharField(min_length=15, widget=forms.Textarea)
     viewing = forms.BooleanField(required=False, label="I am interested to book a viewing")
+    new_to = forms.BooleanField(required=False)
 
     class Meta:
         model = PropertyEnquire
-        fields = ['to', 'to_id', 'house_id', 'house_name', 'viewing', 'message', 'sender', 'sender_id', 'sender_email']
+        fields = ['to', 'to_id', 'to_email', 'house_id', 'house_name',
+                  'viewing', 'message', 'sender', 'sender_id', 'sender_email', 'new_to']

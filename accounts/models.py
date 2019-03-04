@@ -16,4 +16,4 @@ class UserProfile(models.Model):
 	terms = models.BooleanField(default=False)
 	joined = models.DateTimeField(default=datetime.now, blank=True)
 	def __str__(self):
-		return self.user.email	
+		return self.user.email

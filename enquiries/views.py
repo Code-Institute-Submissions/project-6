@@ -1,11 +1,13 @@
 from django.core import serializers
-from django.http import HttpResponse
-from django.shortcuts import render, redirect
+from django.http import HttpResponse, JsonResponse
+from django.shortcuts import redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 from listings.views import house
 from .forms import EnquiryForm, ContactForm
 from .models import PropertyEnquire
+from .create_conversations import CreateConversations
 
 
 def send_contact_message(request):
@@ -22,8 +24,6 @@ def send_contact_message(request):
 
 @login_required
 def send_enquire(request, user_id, house_id):
-    if user_id is not int(request.session['_auth_user_id']):
-        return redirect('index')
     if request.method == 'POST':
         form = EnquiryForm(request.POST)
         if form.is_valid():
@@ -41,10 +41,9 @@ def send_enquire(request, user_id, house_id):
 def get_messages(request):
     if request.method == "GET":
         if request.user.is_authenticated:
-            user_enquiries = PropertyEnquire.objects.filter(
-                to_id=request.session['_auth_user_id']) 
-            data = serializers.serialize('json', user_enquiries)
-            return HttpResponse(data)
+            conversations = CreateConversations(
+                request.session['_auth_user_id']).create_conversations()
+            return JsonResponse(conversations, safe=False)
         else:
             return redirect('index')
     else:
@@ -53,16 +52,33 @@ def get_messages(request):
 
 @login_required
 def delete_message(request, user_id, message_id):
-    if request.method == "DELETE":
+    if request.method == "POST":
         if user_id is not int(request.session['_auth_user_id']):
             return HttpResponse("You are not allowed to delete this message!")
         message = PropertyEnquire.objects.filter(
             pk=int(message_id), to_id=user_id)
+        messages_ids = request.POST.getlist('ids[]')
         if message:
             data = serializers.serialize('json', message)
-            message.delete()
+            # message.delete()
             return HttpResponse(data)
-        else:            
+        else:
             return HttpResponse("You are not allowed to delete this message!")
+    else:
+        return redirect('index')
+
+
+@login_required
+def toggle_read(request, user_id, conversation_member, house_id):
+    if request.method == "POST":
+        if user_id is not int(request.session['_auth_user_id']):
+            return redirect('index')
+        messages_id = [x.pk for x in PropertyEnquire.objects.filter(
+            to_id=user_id, sender_id=conversation_member, house_id=house_id, new_to=True)]
+        if messages_id:
+            PropertyEnquire.objects.filter(id__in=messages_id).update(new_to=False)
+            return HttpResponse("success")
+        else:
+            return HttpResponse("There seems to be a problem updating your message!")
     else:
         return redirect('index')

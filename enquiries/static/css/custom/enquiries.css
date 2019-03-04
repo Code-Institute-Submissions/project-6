@@ -13,8 +13,7 @@ Messages modal
 	background-color: rgba(255, 255, 255, 0.9);
 }
 
-#unread-message-inner,
-#read-message-inner {
+#message-inner {
 	max-height: 70vh;
     overflow-y: overlay;
 }
@@ -26,10 +25,6 @@ Messages modal
 .messages-wrapper .row>h5:hover {
 	opacity: 1;
 	cursor: pointer;
-}
-
-#read-message-inner {
-	display: none;
 }
 
 #user-messages-modal .col-md-10 .row {
