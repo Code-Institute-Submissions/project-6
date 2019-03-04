@@ -10,7 +10,7 @@ urlpatterns = [
    	path('send_enquire/<int:user_id>/<int:house_id>',
          enquiries.send_enquire, name="send_enquire"),
    	path('get_messages/', enquiries.get_messages, name="get_messages"),
-   	path('toggle_read/<int:user_id>/<int:message_id>',
+   	path('toggle_read/<int:user_id>/<int:conversation_member>/<int:house_id>',
    	     enquiries.toggle_read, name="toggle_read"),
    	path('delete_message/<int:user_id>/<int:message_id>',
          enquiries.delete_message, name="delete_message"),

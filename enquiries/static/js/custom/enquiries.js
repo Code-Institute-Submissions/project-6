@@ -74,6 +74,8 @@ class Conversations {
 	is_sender = function(conversation) {
 		if (this.user_id == conversation.sender_id) {
 			return true;
+		} else {
+			return false;
 		}
 	};
 
@@ -82,19 +84,14 @@ class Conversations {
 		let old_conversations = [];
 		let conversations = this.parseData();
 		for (let i = 0; i < conversations.length; i++) {
-			let header_data = conversations[i][0].fields;
 			for (let z = 0; z < conversations[i].length; z++) {				
 				let message = conversations[i][z].fields;
-				if (this.is_sender(header_data) && message.new_sender) {
-					new_conversations.push(conversations[i]);
-					break;
-				} 
 				if (this.user_id == message.to_id && message.new_to) {
 					new_conversations.push(conversations[i]);
 					break;
-				} else {
+				}
+				if (z == conversations[i].length - 1) {
 					old_conversations.push(conversations[i]);
-					break
 				}
 			}
 		}
@@ -172,9 +169,8 @@ class Conversations {
 Class for innering conversarions Header / Messages / Reply form
 */
 class Templates {
-	constructor(conversation, new_conversation, is_sender) {
-		this.conversation = conversation;
-		this.is_sender = is_sender;
+	constructor(conversation, new_conversation) {
+		this.conversation = conversation;		
 		this.text_color = function() {
 			if (new_conversation != true) {
 				return "text-secondary";
@@ -191,6 +187,7 @@ class Templates {
 		};
 	}
 	message_template() {
+		let user_id = parseInt($("input[name=user_id]").val());
 		let header_data = this.conversation[0].fields;
 		let message_id = this.conversation[0].pk;
 		function posted() {
@@ -198,6 +195,13 @@ class Templates {
 			data = new Date(data);
 			data = data.toLocaleDateString("en-UK");
 			return data;
+		}
+		function conversation_member () {
+			if (user_id == header_data.to_id) {
+				return header_data.sender_id
+			} else {
+				return header_data.to_id
+			}
 		}
 		$("#message-inner").append(`
 		<div id="message-${message_id}" class="col-12">
@@ -227,7 +231,7 @@ class Templates {
 							</button>
 						</a>
 						<div class="dropdown-message-btn">
-							<button onclick="expand_message(this, '${header_data.to_id}/${message_id}', '#message-${message_id} .d-none')" class="btn  ${this.eye_btn_color()}"type="button">
+							<button onclick="expand_message(this, '${user_id}/${conversation_member()}/${header_data.house_id}', '#message-${message_id} .d-none')" class="btn  ${this.eye_btn_color()}"type="button">
 								<i class="fas fa-eye"></i>
 								<i class="fas fa-caret-down"></i>
 							</button>
@@ -282,21 +286,16 @@ class Templates {
 
 	reply_message_form() {
 		let m = this.conversation[0].fields;
-		if (this.is_sender) {
+		let user_id = parseInt($("input[name=user_id]").val());
+		if (user_id == m.sender_id) {
 			return `
-		<div class="row justify-content-center">
-			<form method="POST" action="/enquiries/send_enquire/${m.to_id}/${
-				m.house_id
-			}" class="col-12">
-				<input type="hidden" name="csrfmiddlewaretoken" value="${$.cookie(
-					"csrftoken"
-				)}">
+			<div class="row justify-content-center">
+			<form method="POST" action="/enquiries/send_enquire/${m.to_id}/${m.house_id}" class="col-12">
+				<input type="hidden" name="csrfmiddlewaretoken" value="${$.cookie("csrftoken")}">
 				<div class="form-group">
 					<label class="sr-only" for="message-${this.conversation[0].pk}">Message
 					</label>
-					<textarea name="message" cols="40" rows="10" minlength="15" class="form-control" placeholder="Message" required id="message-${
-						this.conversation[0].pk
-					}">
+					<textarea name="message" cols="40" rows="10" minlength="15" class="form-control" placeholder="Message" required id="message-${this.conversation[0].pk}">
 					</textarea>
 				</div>
 				<div class="form-group text-center">
@@ -310,38 +309,36 @@ class Templates {
 				<input type="hidden" name="sender" value="${m.sender}">
 				<input type="hidden" name="sender_id" value="${m.sender_id}">
 				<input type="hidden" name="sender_email" value="${m.sender_email}">	
-			</form>
-		</div>`;
-		}
-		return `
-		<div class="row justify-content-center">
-			<form method="POST" action="/enquiries/send_enquire/${m.to_id}/${
-			m.house_id
-		}" class="col-12">
-				<input type="hidden" name="csrfmiddlewaretoken" value="${$.cookie(
-					"csrftoken"
-				)}">
-				<div class="form-group">
-					<textarea name="message" cols="40" rows="10" minlength="15" class="form-control" placeholder="Message" required id="message-${
-						this.conversation[0].pk
-					}">
-					</textarea>
-				</div>
-				<div class="form-group text-center">
-					<button type="submit" class="btn btn-success">Reply</button>
-				</div>
-				<input type="hidden" name="to" value="${m.sender}">
-				<input type="hidden" name="to_id" value="${m.sender_id}">
-				<input type="hidden" name="to_email" value="${m.sender_email}">
-				<input type="hidden" name="house_id" value="${m.house_id}">
-				<input type="hidden" name="house_name" value="${m.house_name}">
-				<input type="hidden" name="sender" value="${m.to}">
-				<input type="hidden" name="sender_id" value="${m.to_id}">
-				<input type="hidden" name="sender_email" value="${m.to_email}">	
+				<input type="checkbox" name="new_to" class="form-check-input d-none" checked>
 			</form>
 		</div>
-	`;
-	}
+			`
+		} else {
+			return `
+			<div class="row justify-content-center">
+				<form method="POST" action="/enquiries/send_enquire/${m.to_id}/${m.house_id}" class="col-12">
+					<input type="hidden" name="csrfmiddlewaretoken" value="${$.cookie("csrftoken")}">
+					<div class="form-group">
+						<textarea name="message" cols="40" rows="10" minlength="15" class="form-control" placeholder="Message" required id="message-${this.conversation[0].pk}">
+						</textarea>
+					</div>
+					<div class="form-group text-center">
+						<button type="submit" class="btn btn-success">Reply</button>
+					</div>
+					<input type="hidden" name="to" value="${m.sender}">
+					<input type="hidden" name="to_id" value="${m.sender_id}">
+					<input type="hidden" name="to_email" value="${m.sender_email}">
+					<input type="hidden" name="house_id" value="${m.house_id}">
+					<input type="hidden" name="house_name" value="${m.house_name}">
+					<input type="hidden" name="sender" value="${m.to}">
+					<input type="hidden" name="sender_id" value="${m.to_id}">
+					<input type="hidden" name="sender_email" value="${m.to_email}">	
+					<input type="checkbox" name="new_to" class="form-check-input d-none" checked>
+				</form>
+			</div>
+			`
+		};
+	} 
 }
 
 /* 
@@ -424,8 +421,7 @@ function toggle_read(url_id, conversation_id) {
 		},
 		success: function (data) {
 			if (data) {
-				let p_data = JSON.parse(data);
-				let message_id = "#message-" + p_data[0].pk.toString();
+				console.log(data);
 			}
 		},
 		error: function (xhr) {

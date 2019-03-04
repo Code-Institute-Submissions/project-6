@@ -1,5 +1,5 @@
 from django.db import models
-from django.utils.timezone import now
+from datetime import datetime
 from django.contrib.auth.models import User
 
 
@@ -28,7 +28,7 @@ class Listing(models.Model):
     img_5 = models.ImageField(upload_to="others/%Y/%m/%d/", blank=True)
     is_published = models.BooleanField(default=False)
     paid_fee = models.BooleanField(default=False)
-    list_date = models.DateTimeField(now())
+    list_date = models.DateTimeField(default=datetime.now, blank=True)
     seller = models.ForeignKey(User, on_delete=models.CASCADE)
     def __str__(self):
         return self.title
