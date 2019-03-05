@@ -70,7 +70,7 @@ def delete_message(request, user_id, conversation_member, house_id):
                 house_id=house_id, delete_sender=True, delete_to=True)]
             if hidden_for_both:
                 PropertyEnquire.objects.filter(
-                    id__in=sent_id + received_id).delete()
+                    id__in=hidden_for_both).delete()
             return HttpResponse("success")
         else:
             return HttpResponse("There seems to be a problem updating your message!")

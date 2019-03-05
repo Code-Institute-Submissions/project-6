@@ -226,12 +226,12 @@ class Templates {
 						</div>
 						<a class="dropdown-message-delete">
 							<button class="btn btn-outline-secondary" type="button" 
-							onclick="create_delete_btn_url('${user_id}/${conversation_member()}/${header_data.house_id}')">
+							onclick="create_delete_btn_url('${user_id}/${conversation_member()}/${header_data.house_id}', '#message-${message_id}')">
 								<i class="fas fa-trash"></i>
 							</button>
 						</a>
 						<div class="dropdown-message-btn">
-							<button onclick="expand_message(this, '${user_id}/${conversation_member()}/${header_data.house_id}', '#message-${message_id} .d-none')" class="btn  ${this.eye_btn_color()}"type="button">
+							<button onclick="expand_message(this, '${user_id}/${conversation_member()}/${header_data.house_id}', '#message-${message_id}')" class="btn  ${this.eye_btn_color()}"type="button">
 								<i class="fas fa-eye"></i>
 								<i class="fas fa-caret-down"></i>
 							</button>
@@ -345,7 +345,7 @@ class Templates {
 Expand messages
 */
 
-function expand_message(btn, url, conversation_id) {
+function expand_message(btn, url) {
 	$("#message-inner .card-body").slideUp();
 	$("#message-inner .fa-caret-up")
 		.parent()
@@ -358,7 +358,7 @@ function expand_message(btn, url, conversation_id) {
 			</button>
 			`
 		);
-	toggle_read(url, conversation_id)
+	toggle_read(url)
 	setTimeout(() => {
 		$(btn)
 			.addClass('btn-secondary')
@@ -409,13 +409,12 @@ function hide_message(btn) {
 Toggle read
 */
 
-function toggle_read(url_id, conversation_id) {
+function toggle_read(url_id) {
 	let url = `/enquiries/toggle_read/${url_id}`
-	let ids = $(conversation_id).text().split(',').slice(0, -1)
 	$.ajax({
 		type: "POST",
 		url: url,
-		data: { "ids": ids },
+		data: "toggle_read",
 		beforeSend: function (xhr) {
 			xhr.setRequestHeader("X-CSRFToken", $.cookie("csrftoken"));
 		},
@@ -434,11 +433,10 @@ function toggle_read(url_id, conversation_id) {
 Delete message modal
 */
 
-function create_delete_btn_url(target) {
+function create_delete_btn_url(target, conversation_id) {
 	let url = `/enquiries/delete_message/${target}`;
-	let id = target.split('/')[1];
 	$("#delete-message-modal .modal-footer").html(`
-		<button onclick="delete_message('${url}', '#message-${id} .d-none')" type="button" class="btn btn-danger">Delete</button>
+		<button onclick="delete_message('${url}', '${conversation_id}')" type="button" class="btn btn-danger">Delete</button>
 		<button type="button" class="btn btn-secondary" data-dismiss="modal">Back</button>
 	`);
 	toggle_modal("#delete-message-modal");
@@ -446,24 +444,16 @@ function create_delete_btn_url(target) {
 
 function delete_message(url, conversation_id) {
 	$("#delete-message-modal .modal-footer .btn").attr("disabled", "disabled");
-	let ids = $(conversation_id).text().split(',').slice(0, -1)
 	$.ajax({
 		type: "POST",
 		url: url,
-		data: {"ids" : ids},
+		data: "delete_message",
 		beforeSend: function(xhr) {
 			xhr.setRequestHeader("X-CSRFToken", $.cookie("csrftoken"));
 		},
 		success: function(data) {
 			if (data) {
-				$('#message-inner').html(`
-					<div class="col-12 loader">
-						<div class="row justify-content-center py-5">
-							<i class="fas fa-sync-alt fa-10x text-secondary"></i>
-							<h4 class="col-12 text-center font-weight-bold py-3">Updating...</h4>
-						</div>				
-					</div>
-				`);
+				$(conversation_id).slideUp(1000);
 				toggle_modal("#delete-message-modal");
 				$("#delete-message-modal .modal-footer").empty();
 			}
