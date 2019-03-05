@@ -3,6 +3,12 @@
 		<a class="navbar-brand" href="/"><i class="fab fa-fort-awesome fa-2x"></i>
 			<span>Key Keepers</span>
 		</a>	
+		<div class="user-messages d-lg-none nav-item ml-1">
+			<button class="btn btn-outline-secondary">
+				<i class="fas fa-envelope fa-fw"></i>
+				<i class="fas fa-caret-down"></i>
+			</button>
+		</div>
 		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive"
 		 aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
@@ -16,13 +22,13 @@
 				<li class="nav-item">
 					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
 				</li>
-				<li id="user-messages" class="nav-item ml-1">
+				<li class="user-messages d-none d-lg-block nav-item ml-1">
 					<button class="btn btn-outline-secondary">
 						<i class="fas fa-envelope fa-fw"></i>
 						<i class="fas fa-caret-down"></i>
 					</button>
 				</li>
-				<div class="ml-1 dropdown">
+				<div class="dropdown ml-1 text-right">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown"
 					 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i></button>
 					<div class="dropdown-menu" aria-labelledby="user-menu">

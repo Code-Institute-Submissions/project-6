@@ -3,7 +3,7 @@ Nav
 */
 
 $(function() {
-	$("#user-messages").click(function() {
+	$(".user-messages").click(function() {
 		$("#message-inner .card-body").slideUp();
 		$("#message-inner .fa-caret-up")
 			.parent()
@@ -102,12 +102,12 @@ class Conversations {
 	};
 	nav_btn = function(counter) {
 		if (counter == 0) {
-			$("#user-messages button").html(`
+			$(".user-messages button").html(`
 			<i class="fas fa-envelope fa-fw"></i>
 			<i class="fas fa-caret-down"></i>
 		`);
 		} else {
-			$("#user-messages button").html(`
+			$(".user-messages button").html(`
 			<i class="fas fa-envelope fa-fw"></i>
 			<span class="badge badge-danger">${
 				this.sort_conversations().new_conversations.length

@@ -339,6 +339,9 @@ HTML / CSS | 5 |
     - added [_user_messages_modal.html](/enquiries\templates/partials/modals/_user_messages_modal.html) to display unread / read messages and enquiries to user
     - added [create_conversations.py](/enquiries/create_conversations.py)  
     *Create conversations from received and sended messages.*  
+  - **Nav**
+    - added separate `.user-messages` btn to [_navbar.html](/templates/partials/_navbar.html).  
+    *One for mobile and for large screens.*  
 - **Fixes**
   - **Listings app**
     - fixed 500 error in [house.html](/listings/templates/house.html) due to injecting [_delete_house_modal.html](/listings/templates/partials/modals/_delete_house_modal.html) and [_enquire_modal.html](/listings/templates/partials/modals/_enquire_modal.html) even when user was not authenticated

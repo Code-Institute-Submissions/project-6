@@ -49,6 +49,7 @@ def get_messages(request):
     else:
         return redirect('index')
 
+
 @login_required
 def delete_message(request, user_id, conversation_member, house_id):
     if request.method == "POST":
@@ -63,11 +64,13 @@ def delete_message(request, user_id, conversation_member, house_id):
                 PropertyEnquire.objects.filter(to_id=user_id,
                                                id__in=received_id).update(delete_to=True)
             if sent_id:
-                PropertyEnquire.objects.filter(sender_id=user_id, id__in=sent_id).update(delete_sender=True)
+                PropertyEnquire.objects.filter(
+                    sender_id=user_id, id__in=sent_id).update(delete_sender=True)
             hidden_for_both = [x.pk for x in PropertyEnquire.objects.filter(
                 house_id=house_id, delete_sender=True, delete_to=True)]
             if hidden_for_both:
-            	PropertyEnquire.objects.filter(id__in=sent_id + received_id).delete()
+                PropertyEnquire.objects.filter(
+                    id__in=sent_id + received_id).delete()
             return HttpResponse("success")
         else:
             return HttpResponse("There seems to be a problem updating your message!")
