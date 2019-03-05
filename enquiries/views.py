@@ -49,21 +49,28 @@ def get_messages(request):
     else:
         return redirect('index')
 
-
 @login_required
-def delete_message(request, user_id, message_id):
+def delete_message(request, user_id, conversation_member, house_id):
     if request.method == "POST":
         if user_id is not int(request.session['_auth_user_id']):
             return HttpResponse("You are not allowed to delete this message!")
-        message = PropertyEnquire.objects.filter(
-            pk=int(message_id), to_id=user_id)
-        messages_ids = request.POST.getlist('ids[]')
-        if message:
-            data = serializers.serialize('json', message)
-            # message.delete()
-            return HttpResponse(data)
+        received_id = [x.pk for x in PropertyEnquire.objects.filter(
+            to_id=user_id, sender_id=conversation_member, house_id=house_id)]
+        sent_id = [x.pk for x in PropertyEnquire.objects.filter(
+            to_id=conversation_member, sender_id=user_id, house_id=house_id)]
+        if received_id or sent_id:
+            if received_id:
+                PropertyEnquire.objects.filter(to_id=user_id,
+                                               id__in=received_id).update(delete_to=True)
+            if sent_id:
+                PropertyEnquire.objects.filter(sender_id=user_id, id__in=sent_id).update(delete_sender=True)
+            hidden_for_both = [x.pk for x in PropertyEnquire.objects.filter(
+                house_id=house_id, delete_sender=True, delete_to=True)]
+            if hidden_for_both:
+            	PropertyEnquire.objects.filter(id__in=sent_id + received_id).delete()
+            return HttpResponse("success")
         else:
-            return HttpResponse("You are not allowed to delete this message!")
+            return HttpResponse("There seems to be a problem updating your message!")
     else:
         return redirect('index')
 
@@ -76,7 +83,8 @@ def toggle_read(request, user_id, conversation_member, house_id):
         messages_id = [x.pk for x in PropertyEnquire.objects.filter(
             to_id=user_id, sender_id=conversation_member, house_id=house_id, new_to=True)]
         if messages_id:
-            PropertyEnquire.objects.filter(id__in=messages_id).update(new_to=False)
+            PropertyEnquire.objects.filter(
+                id__in=messages_id).update(new_to=False)
             return HttpResponse("success")
         else:
             return HttpResponse("There seems to be a problem updating your message!")

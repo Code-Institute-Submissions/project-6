@@ -9,7 +9,7 @@ class EnquireMessageAdminFields(admin.ModelAdmin):
 
 class PropertyEnquireAdminFields(admin.ModelAdmin):
     list_display = ('sender', 'sender_email', 'to', 'house_name',
-                    'viewing', 'posted', 'message')
+                    'viewing', 'delete_to', 'delete_sender', 'posted', 'message')
     list_display_links = ('sender', 'to', 'message',)
 
 

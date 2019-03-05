@@ -226,7 +226,7 @@ class Templates {
 						</div>
 						<a class="dropdown-message-delete">
 							<button class="btn btn-outline-secondary" type="button" 
-							onclick="create_delete_btn_url('${header_data.to_id}/${message_id}')">
+							onclick="create_delete_btn_url('${user_id}/${conversation_member()}/${header_data.house_id}')">
 								<i class="fas fa-trash"></i>
 							</button>
 						</a>
@@ -456,12 +456,16 @@ function delete_message(url, conversation_id) {
 		},
 		success: function(data) {
 			if (data) {
-				let p_data = JSON.parse(data);
-				let message_id = "#message-" + p_data[0].pk.toString();
-				$(message_id).slideUp();
+				$('#message-inner').html(`
+					<div class="col-12 loader">
+						<div class="row justify-content-center py-5">
+							<i class="fas fa-sync-alt fa-10x text-secondary"></i>
+							<h4 class="col-12 text-center font-weight-bold py-3">Updating...</h4>
+						</div>				
+					</div>
+				`);
 				toggle_modal("#delete-message-modal");
 				$("#delete-message-modal .modal-footer").empty();
-				js_alerts("success", "Message deleted!");
 			}
 		},
 		error: function(xhr) {

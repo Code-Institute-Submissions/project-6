@@ -6,8 +6,8 @@ class CreateConversations():
 	""" Create User conversations """
 
 	def __init__(self, user_id):
-		self.received = list(PropertyEnquire.objects.filter(to_id=user_id))		
-		self.sent = list(PropertyEnquire.objects.filter(sender_id=user_id))
+		self.received = list(PropertyEnquire.objects.filter(to_id=user_id, delete_to=False))
+		self.sent = list(PropertyEnquire.objects.filter(sender_id=user_id, delete_sender=False))
 		self.create_conversations()
 
 	def create_conversations(self):
