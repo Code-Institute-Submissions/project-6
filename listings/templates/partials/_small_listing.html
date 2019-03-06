@@ -78,5 +78,41 @@
 			<div class="col-md-12"><p>No Listings Available</p></div>
 			{% endif %}
 		</div>
+		<!-- Pagination -->
+		<div class="row">
+			<div class="col-12">
+				{% if listings.has_other_pages %}
+				<ul class="pagination row justify-content-center">
+					{% if listings.has_previous %}
+					<li class="page-item px-1">
+						<a href="?page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled px-1">
+						<a class="page-link">&laquo;</a>
+					</li>
+					{% endif %}
+					{% for x in listings.paginator.page_range %}
+					{% if listings.number == x %}
+					<li class="page-item active px-1">
+						<a class="page-link">{{ x }}</a>
+					</li>
+					{% else %}
+					<li class="page-item px-1">
+						<a href="?page={{ x }}" class="page-link">{{ x }}</a>
+					</li>
+					{% endif %} {% endfor %} {% if listings.has_next %}
+					<li class="page-item px-1">
+						<a href="?page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
+					</li>
+					{% else %}
+					<li class="page-item disabled px-1">
+						<a class="page-link">&raquo;</a>
+					</li>
+					{% endif %}
+				</ul>
+				{% endif %}
+			</div>
+		</div>
 	</div>
 </section>

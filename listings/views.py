@@ -1,6 +1,7 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
 from django.conf import settings
+from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 import stripe
@@ -12,30 +13,36 @@ stripe.api_key = settings.STRIPE_SECRET
 
 
 def house(request, house_id):
-    """
-    Main route for a single house
+	"""
+	Main route for a single house
 
-    """
-    house_data = get_object_or_404(Listing, pk=house_id)
+	"""
+	house_data = get_object_or_404(Listing, pk=house_id)	
 
-    args = {
-        'house': house_data,
-        'page_title': house_data.title,
-        'form': EnquiryForm
-    }
-    return render(request, "house.html", args)
+	args = {
+		'house': house_data,
+		'page_title': house_data.title,
+		'form': EnquiryForm
+	}
+	return render(request, "house.html", args)
 
 
 def houses(request):
-    """
-        Main route for all houses
-        """
-    listings = Listing.objects.all().filter(is_published=True)
-    args = {
-        "listings": listings,
-        "page_title": "Key Keepers",
-    }
-    return render(request, "houses.html", args)
+	"""
+		Main route for all houses
+		"""
+	listings = Listing.objects.all().filter(is_published=True)
+
+
+	paginator = Paginator(listings, 6)
+	page = request.GET.get('page')
+	paged_listings = paginator.get_page(page)
+
+	args = {
+		"listings": paged_listings,
+		"page_title": "Key Keepers",
+	}
+	return render(request, "houses.html", args)
 
 
 @login_required

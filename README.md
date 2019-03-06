@@ -25,6 +25,7 @@
 			- [1.2](#12)
 			- [1.3](#13)
 			- [1.4](#14)
+			- [1.5](#15)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -352,6 +353,13 @@ HTML / CSS | 5 |
       - **PropertyEnquire**
         - changed **house_id** to **IntegerField** due to the 500 error when listing has been deleted
         - changed **sender_id** `on_delete` to **models.CASCADE** as messages should not be kept when the user does not exist anymore
+
+#### 1.5
+
+- **Changelog**
+  - **Listing app**
+    - added simple pagination to [_small_listing.html](/listings/templates/partials/_small_listing.html) via build in Django `Paginator`
+
 
 [**To top**](#Table-of-Contents)
 
