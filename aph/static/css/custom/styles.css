@@ -35,6 +35,17 @@ General
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
+a,
+a:hover {
+	opacity: 0.7;
+	color: #5cb85c;
+	text-decoration: none;
+}
+
+a:hover {
+	opacity: 1;
+}
+
 /* 
 Nav
 */

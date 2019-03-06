@@ -12,6 +12,17 @@
 	#listings {
 		min-width: 100%;
 	}
+	.page-link {
+		color: #28a745;
+	}
+	.page-item.active .page-link {
+		z-index: 0;
+		background-color: #28a745;
+		border-color: #28a745;
+	}
+	a:not([href]):not([tabindex]):focus, a:not([href]):not([tabindex]):hover {
+    color: #ffffff;
+	}
 </style>
 {% endblock css %}
 <!-- Listings -->
