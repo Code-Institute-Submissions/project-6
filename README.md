@@ -26,6 +26,7 @@
 			- [1.3](#13)
 			- [1.4](#14)
 			- [1.5](#15)
+			- [1.6](#16)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -359,6 +360,13 @@ HTML / CSS | 5 |
 - **Changelog**
   - **Listing app**
     - added simple pagination to [_small_listing.html](/listings/templates/partials/_small_listing.html) via build in Django `Paginator`
+
+#### 1.6
+
+- **Changelog**
+  - **Listing app**
+    - added [houses.css](/listings/static/css/custom/houses.css) to separate the code
+    - added [_search_form.html](/listings/templates/partials/_search_form.html) to [houses.html](/listings/templates/houses.html)
 
 
 [**To top**](#Table-of-Contents)

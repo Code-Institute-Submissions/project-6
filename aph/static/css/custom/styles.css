@@ -111,6 +111,12 @@ Page Header
 	font-size: 4.5rem;
 }
 
+@media (min-width: 768px) {
+	#page-header h1 {
+		font-size: 7.5rem;
+	}
+}
+
 /* 
 Main
 */
