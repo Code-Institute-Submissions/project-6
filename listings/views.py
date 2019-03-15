@@ -17,7 +17,7 @@ def house(request, house_id):
 	Main route for a single house
 
 	"""
-	house_data = get_object_or_404(Listing, pk=house_id)	
+	house_data = get_object_or_404(Listing, pk=house_id)
 
 	args = {
 		'house': house_data,
@@ -31,8 +31,7 @@ def houses(request):
 	"""
 		Main route for all houses
 		"""
-	listings = Listing.objects.all().filter(is_published=True)
-
+	listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
 
 	paginator = Paginator(listings, 6)
 	page = request.GET.get('page')
@@ -147,7 +146,7 @@ def pay_fee(request, user_id, house_id):
 
 @login_required
 def edit_house(request, user_id, house_id):
-    """ 
+    """
         Main route for editing house listing
         """
     if user_id is not int(request.session['_auth_user_id']):
@@ -175,7 +174,7 @@ def edit_house(request, user_id, house_id):
 
 @login_required
 def delete_house(request, user_id, house_id):
-    """ 
+    """
         Main route to delete listing
         """
     if user_id is not int(request.session['_auth_user_id']):
@@ -185,12 +184,48 @@ def delete_house(request, user_id, house_id):
         Listing.objects.filter(pk=house_id).delete()
         messages.success(request, "You listing has been deleted")
         return redirect(reverse("index"))
-    else:        
+    else:
         return redirect(reverse("index"))
 
 
 def search(request):
-    """ 
+    """
         Main route for search
         """
-    return render(request, "search.html")
+
+    listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
+
+    if 'keywords' in request.GET:
+        keywords = request.GET['keywords']
+        if keywords:
+            listings = listings.filter(description__icontains=keywords)
+
+    if 'city' in request.GET:
+        city = request.GET['city']
+        if city:
+            listings = listings.filter(city__iexact=city)
+
+    if 'state' in request.GET:
+        state = request.GET['state']
+        if state:
+            listings = listings.filter(state__iexact=state)
+
+    if 'bedrooms' in request.GET:
+        bedrooms = request.GET['bedrooms']
+        if bedrooms:
+            listings = listings.filter(bedrooms__lte=int(bedrooms))
+
+    if 'price' in request.GET:
+        price = request.GET['price']
+        if price:
+            if int(price) == 1000000:
+                listings = listings.filter(price__gte=int(price))
+            else:
+                listings = listings.filter(price__lte=int(price))
+
+
+    args = {
+        'listings': listings,
+        'values': request.GET
+    }
+    return render(request, "search.html", args)

@@ -1,9 +1,17 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block css %}
-
+<link rel="stylesheet" href="{% static 'css/custom/houses.css' %}">
 {% endblock css %}
-
+{% block page_header %}
+{% endblock page_header %}
 {% block main_content %}
-
+<section class="container mt-5">
+	<div class="row mt-5">
+		<div class="col-12 mt-5">
+			{% include "partials/_search_form.html" %}
+		</div>
+	</div>
+</section>
+{% include "partials/_small_listing.html" %}
 {% endblock main_content %}

@@ -366,8 +366,13 @@ HTML / CSS | 5 |
 - **Changelog**
   - **Listing app**
     - added [houses.css](/listings/static/css/custom/houses.css) to separate the code
+    - added `search()` functionality to [views.py](/listings/views.py)
     - added [_search_form.html](/listings/templates/partials/_search_form.html) to [houses.html](/listings/templates/houses.html)
-
+- **Fixes**
+  - **[_navbar.html](/templates/partials/_navbar.html)**
+    - fixed issue when message btn was showing even when user was not authenticated in mobile view
+    - removed countries from [_search_form.html](/listings/templates/partials/_search_form.html) and decided to use just states as this makes the app much smipler to work with
+    - removed currency selection from now and working with dollars only as again I did not want to go trough converting currencies depends on where the user is based.
 
 [**To top**](#Table-of-Contents)
 
@@ -544,4 +549,3 @@ HTML / CSS | 5 |
 - email verification on register / add Terms as required before saving the profile
 - add more fields to listing form (first line of address and so on)
 - much more JS and less Python for better user experiences
-
