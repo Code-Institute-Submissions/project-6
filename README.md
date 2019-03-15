@@ -367,6 +367,7 @@ HTML / CSS | 5 |
   - **Listing app**
     - added [houses.css](/listings/static/css/custom/houses.css) to separate the code
     - added `search()` functionality to [views.py](/listings/views.py)
+      - added pagination
     - added [_search_form.html](/listings/templates/partials/_search_form.html) to [houses.html](/listings/templates/houses.html)
 - **Fixes**
   - **[_navbar.html](/templates/partials/_navbar.html)**

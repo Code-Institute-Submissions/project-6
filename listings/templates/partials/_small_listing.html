@@ -70,7 +70,7 @@
 				<ul class="pagination row justify-content-center">
 					{% if listings.has_previous %}
 					<li class="page-item px-1">
-						<a href="?page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
+						<a href="?{{ base }}page={{ listings.previous_page_number }}" class="page-link">&laquo;</a>
 					</li>
 					{% else %}
 					<li class="page-item disabled px-1">
@@ -84,11 +84,11 @@
 					</li>
 					{% else %}
 					<li class="page-item px-1">
-						<a href="?page={{ x }}" class="page-link">{{ x }}</a>
+						<a href="?{{ base }}page={{ x }}" class="page-link">{{ x }}</a>
 					</li>
 					{% endif %} {% endfor %} {% if listings.has_next %}
 					<li class="page-item px-1">
-						<a href="?page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
+						<a href="?{{ base }}page={{ listings.next_page_number }}" class="page-link">&raquo;</a>
 					</li>
 					{% else %}
 					<li class="page-item disabled px-1">

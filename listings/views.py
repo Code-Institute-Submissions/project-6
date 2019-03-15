@@ -194,26 +194,31 @@ def search(request):
         """
 
     listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
+    p_base = ''
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
         if keywords:
             listings = listings.filter(description__icontains=keywords)
+            p_base = p_base + f'keywords={keywords}&'
 
     if 'city' in request.GET:
         city = request.GET['city']
         if city:
             listings = listings.filter(city__iexact=city)
+            p_base = p_base + f'city={city}&'
 
     if 'state' in request.GET:
         state = request.GET['state']
         if state:
             listings = listings.filter(state__iexact=state)
+            p_base = p_base + f'state={state}&'
 
     if 'bedrooms' in request.GET:
         bedrooms = request.GET['bedrooms']
         if bedrooms:
             listings = listings.filter(bedrooms__lte=int(bedrooms))
+            p_base = p_base + f'bedrooms={bedrooms}&'
 
     if 'price' in request.GET:
         price = request.GET['price']
@@ -222,10 +227,16 @@ def search(request):
                 listings = listings.filter(price__gte=int(price))
             else:
                 listings = listings.filter(price__lte=int(price))
+            p_base = p_base + f'price={price}&'
 
+    if len(listings) > 6:
+        paginator = Paginator(listings, 6)
+        page = request.GET.get('page')
+        listings = paginator.get_page(page)
 
     args = {
         'listings': listings,
-        'values': request.GET
+        'values': request.GET,
+		'base' : p_base
     }
     return render(request, "search.html", args)
