@@ -99,13 +99,16 @@ Page Header
 
 #page-header,
 #user-messages-modal {
-	height: 100vh;
 	background: url("/media/img/index-bg.jpeg") no-repeat center;
 	background-attachment: scroll;
 	-webkit-background-size: cover;
 	-moz-background-size: cover;
 	-o-background-size: cover;
 	background-size: cover;
+}
+
+#user-messages-modal {	
+	height: 100vh;
 }
 
 #page-header h1 {

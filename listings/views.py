@@ -193,8 +193,9 @@ def search(request):
         Main route for search
         """
 
-    listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
-    p_base = ''
+    listings = Listing.objects.all().filter(
+    	is_published=True).order_by('-list_date')
+    p_base = str()
 
     if 'keywords' in request.GET:
         keywords = request.GET['keywords']
@@ -229,14 +230,18 @@ def search(request):
                 listings = listings.filter(price__lte=int(price))
             p_base = p_base + f'price={price}&'
 
-    if len(listings) > 6:
-        paginator = Paginator(listings, 6)
-        page = request.GET.get('page')
-        listings = paginator.get_page(page)
+    if len(listings) > 0:
+        if len(listings) > 6:
+            paginator = Paginator(listings, 6)
+            page = request.GET.get('page')
+            listings = paginator.get_page(page)
+    else:
+        messages.error(request, "No listings found!")
+        return redirect('houses')
 
     args = {
         'listings': listings,
         'values': request.GET,
-		'base' : p_base
+        'base': p_base
     }
     return render(request, "search.html", args)

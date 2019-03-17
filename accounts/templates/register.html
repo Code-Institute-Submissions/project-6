@@ -2,11 +2,15 @@
 
 {% load bootstrap4 %}
 
+{% block page_header %}
+  
+{% endblock page_header %}
+
 {% block main_content %}
 <!-- Registration form-->
-<section class="container">
-	<div class="row">
-		<div class="col-12">
+<section class="container pt-5">
+	<div class="row pt-5">
+		<div class="col-12 pt-5">
 			<form method="POST" action="{% url 'register' %}" class="py-5">
 				{% csrf_token %}
 				<fieldset class="form-group">

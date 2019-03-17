@@ -8,6 +8,10 @@ section>h2,
 	font-size: 3rem;
 }
 
+#page-header {	
+	height: 100vh;
+}
+
 /* 
 Listings
 */
