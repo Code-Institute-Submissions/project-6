@@ -42,7 +42,8 @@ a:hover {
 	text-decoration: none;
 }
 
-a:hover {
+a:hover,
+#listings a {
 	opacity: 1;
 }
 
@@ -98,7 +99,6 @@ Page Header
 
 #page-header,
 #user-messages-modal {
-	height: 100vh;
 	background: url("/media/img/index-bg.jpeg") no-repeat center;
 	background-attachment: scroll;
 	-webkit-background-size: cover;
@@ -107,8 +107,18 @@ Page Header
 	background-size: cover;
 }
 
+#user-messages-modal {	
+	height: 100vh;
+}
+
 #page-header h1 {
 	font-size: 4.5rem;
+}
+
+@media (min-width: 768px) {
+	#page-header h1 {
+		font-size: 7.5rem;
+	}
 }
 
 /* 

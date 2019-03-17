@@ -1,0 +1,41 @@
+/* 
+Header
+*/
+
+#search-form {
+	background: rgba(0, 0, 0, 0.3);
+	border-radius: 20px;
+}
+
+/* 
+Cards
+*/
+
+.card-img-top {
+	height: 230px;
+}
+
+.card-img-overlay {
+	max-height: max-content;
+}
+
+#listings {
+	min-width: 100%;
+}
+.page-link {
+	color: #28a745;
+}
+.page-item.active .page-link {
+	z-index: 0;
+	background-color: #28a745;
+	border-color: #28a745;
+}
+
+/* 
+Pagination
+*/
+
+a:not([href]):not([tabindex]):focus,
+a:not([href]):not([tabindex]):hover {
+	color: #ffffff;
+}

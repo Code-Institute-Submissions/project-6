@@ -22,8 +22,7 @@ class UserProfileForm(UserCreationForm):
     email = forms.EmailField(max_length=100)
     # img = forms.ImageField(required=False, label="Profile Image")
     phone = forms.IntegerField(required=False, label="Phone number")
-    description = forms.CharField(
-        widget=forms.Textarea, required=False, label="Few things about you")
+    description = forms.CharField(widget=forms.Textarea, required=False, label="Few things about you")
     terms = forms.BooleanField(label="Accept terms and conditions")
 
     class Meta:

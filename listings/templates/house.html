@@ -26,8 +26,8 @@
 			<h5 class="text-center col-12">You must me logged in to contact {{ house.seller|title }}</h5>
 			<br>
 			<p class="text-center col-12 font-weight-bold">Please
-				<a href="{% url 'login' %}" class="text-success">logg in</a> or
-				<a href="{% url 'register' %}" class="text-success"> register new account</a>!
+				<a href="{% url 'login' %}?next={{request.path}}" class="text-success">login</a> or
+				<a href="{% url 'register' %}?next={{request.path}}" class="text-success"> register new account</a>!
 			</p>
 		{% endif %}			
 		{% endif %}

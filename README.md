@@ -26,6 +26,7 @@
 			- [1.3](#13)
 			- [1.4](#14)
 			- [1.5](#15)
+			- [1.6](#16)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -360,6 +361,24 @@ HTML / CSS | 5 |
   - **Listing app**
     - added simple pagination to [_small_listing.html](/listings/templates/partials/_small_listing.html) via build in Django `Paginator`
 
+#### 1.6
+
+- **Changelog**
+  - **Listing app**
+    - added [houses.css](/listings/static/css/custom/houses.css) to separate the code
+    - added `search()` functionality to [views.py](/listings/views.py)
+      - added pagination
+      - added search information based on user input
+    - added `search_by_links()` to [views.py](/listings/views.py) to let user search by square_feet, garage, bedrooms or bathrooms
+    - added `search_by_user()` to [views.py](/listings/views.py) to let user search by user listings
+    - added [_search_form.html](/listings/templates/partials/_search_form.html) to [houses.html](/listings/templates/houses.html)
+- **Fixes**
+  - **[_navbar.html](/templates/partials/_navbar.html)**
+    - fixed issue when message btn was showing even when user was not authenticated in mobile view
+  - **[_search_form.html](/listings/templates/partials/_search_form.html)**
+    - removed countries from and decided to use just states as this makes the app much smipler to work with
+    - removed currency selection from now and working with dollars only as again I did not want to go trough converting currencies depends on where the user is based.
+  - user is now properly redirected back to last visited page after login / register (`next_url`)
 
 [**To top**](#Table-of-Contents)
 
@@ -536,4 +555,3 @@ HTML / CSS | 5 |
 - email verification on register / add Terms as required before saving the profile
 - add more fields to listing form (first line of address and so on)
 - much more JS and less Python for better user experiences
-

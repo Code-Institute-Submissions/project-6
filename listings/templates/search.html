@@ -1,9 +1,41 @@
 {% extends "base.html" %}
-
+{% load static %}
 {% block css %}
-
+<link rel="stylesheet" href="{% static 'css/custom/houses.css' %}">
 {% endblock css %}
-
+{% block page_header %}
+{% endblock page_header %}
 {% block main_content %}
-
+<section class="container pt-5">
+	<div class="row pt-5">
+		<div class="col-12 pt-5">
+			{% include "partials/_search_form.html" %}
+		</div>
+	</div>
+</section>
+<section class="container py-3">
+	<div class="row justify-content-center py-2">
+		<h3 class="text-center">Found 
+			<span class="
+					{% if listings|length > 0 %}
+					text-success	
+					{% else %}
+					text-danger
+					{% endif %}
+					">{{ listings|length }}
+			</span>
+			listings...</h3>
+	</div>
+	
+	<div class="row justify-content-center py-2">
+		<h4 class="text-center">
+			{% for k,v in values.items %}
+			{% if v|length > 0 %}
+				{{ k|title }}: <span class="text-success">{{ v }}</span>,
+			{% endif %}
+			{% endfor %}
+		</h4>
+	</div>
+</section>
+{% include "partials/_small_listing.html" %}
 {% endblock main_content %}
