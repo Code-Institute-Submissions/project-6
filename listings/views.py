@@ -245,3 +245,40 @@ def search(request):
         'base': p_base
     }
     return render(request, "search.html", args)
+
+def search_by_links(request, key):
+	""" 
+	Route to let user to search by clicking on links in description
+	"""
+
+	listings = Listing.objects.all().filter(
+		is_published=True).order_by(f'-{key}')
+	
+	paginator = Paginator(listings, 6)
+	page = request.GET.get('page')
+	paged_listings = paginator.get_page(page)
+
+	args = {
+		"listings": paged_listings,
+		"page_title": "Key Keepers",
+	}
+	return render(request, "houses.html", args)
+
+
+def search_by_user(request, user_id):
+	""" 
+	Route to let user to search by clicking on links in description
+	"""
+
+	listings = Listing.objects.all().filter(
+		is_published=True, seller=user_id).order_by('-list_date')
+
+	paginator = Paginator(listings, 6)
+	page = request.GET.get('page')
+	paged_listings = paginator.get_page(page)
+
+	args = {
+		"listings": paged_listings,
+		"page_title": "Key Keepers",
+	}
+	return render(request, "houses.html", args)

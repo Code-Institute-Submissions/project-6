@@ -369,6 +369,8 @@ HTML / CSS | 5 |
     - added `search()` functionality to [views.py](/listings/views.py)
       - added pagination
       - added search information based on user input
+    - added `search_by_links()` to [views.py](/listings/views.py) to let user search by square_feet, garage, bedrooms or bathrooms
+    - added `search_by_user()` to [views.py](/listings/views.py) to let user search by user listings
     - added [_search_form.html](/listings/templates/partials/_search_form.html) to [houses.html](/listings/templates/houses.html)
 - **Fixes**
   - **[_navbar.html](/templates/partials/_navbar.html)**

@@ -25,29 +25,41 @@
 						</div>
 						<div class="row py-2 text-secondary">
 							<div class="col-6">
-								<i class="fas fa-th-large"></i> Sqft: {{ house.square_feet }}
+								<a href="{% url 'search_by_links' 'square_feet' %}">
+									<i class="fas fa-th-large"></i> Sqft: {{ house.square_feet }}
+								</a>								
 							</div>
 							<div class="col-6">
-								<i class="fas fa-car"></i> Garage: {{ house.garage }}
+								<a href="{% url 'search_by_links' 'garage' %}">
+									<i class="fas fa-car"></i> Garage: {{ house.garage }}
+								</a>
 							</div>
 						</div>
 						<div class="row py-2 text-secondary">
 							<div class="col-6">
-								<i class="fas fa-bed"></i> Bedrooms: {{ house.bedrooms }}
+								<a href="{% url 'search_by_links' 'bedrooms' %}">
+									<i class="fas fa-bed"></i> Bedrooms: {{ house.bedrooms }}
+								</a>
 							</div>
 							<div class="col-6">
-								<i class="fas fa-bath"></i> Bathrooms: {{ house.bathrooms }}
+								<a href="{% url 'search_by_links' 'bathrooms' %}">
+									<i class="fas fa-bath"></i> Bathrooms: {{ house.bathrooms }}
+								</a>
 							</div>
 						</div>
 						<hr />
 						<div class="row py-2 text-secondary">
 							<div class="col-12">
-								<i class="fas fa-user"></i> {{ house.seller | title }}
+								<a href="{% url 'search_by_user' house.seller.id %}">
+									<i class="fas fa-user"></i> {{ house.seller | title }}
+								</a>
 							</div>
 						</div>
 						<div class="row text-secondary pb-2">
 							<div class="col-12">
-								<i class="fas fa-clock"></i> {{ house.list_date | date }}
+								<a href="{% url 'houses' %}">
+									<i class="fas fa-clock"></i> {{ house.list_date | date }}
+								</a>
 							</div>
 						</div>
 						<hr />
