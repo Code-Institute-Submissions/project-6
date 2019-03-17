@@ -375,8 +375,10 @@ HTML / CSS | 5 |
 - **Fixes**
   - **[_navbar.html](/templates/partials/_navbar.html)**
     - fixed issue when message btn was showing even when user was not authenticated in mobile view
-    - removed countries from [_search_form.html](/listings/templates/partials/_search_form.html) and decided to use just states as this makes the app much smipler to work with
+  - **[_search_form.html](/listings/templates/partials/_search_form.html)**
+    - removed countries from and decided to use just states as this makes the app much smipler to work with
     - removed currency selection from now and working with dollars only as again I did not want to go trough converting currencies depends on where the user is based.
+  - user is now properly redirected back to last visited page after login / register (`next_url`)
 
 [**To top**](#Table-of-Contents)
 
