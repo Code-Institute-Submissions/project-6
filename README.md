@@ -27,6 +27,7 @@
 			- [1.4](#14)
 			- [1.5](#15)
 			- [1.6](#16)
+			- [1.7](#17)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -379,6 +380,12 @@ HTML / CSS | 5 |
     - removed countries from and decided to use just states as this makes the app much smipler to work with
     - removed currency selection from now and working with dollars only as again I did not want to go trough converting currencies depends on where the user is based.
   - user is now properly redirected back to last visited page after login / register (`next_url`)
+
+#### 1.7
+
+- **Changelog**
+  - added **Sendgrid** for sending real emails to user
+
 
 [**To top**](#Table-of-Contents)
 

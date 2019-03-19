@@ -282,3 +282,23 @@ def search_by_user(request, user_id):
 		"page_title": "Key Keepers",
 	}
 	return render(request, "houses.html", args)
+
+
+""" 
+
+Testing only
+
+"""
+
+def mail(request):
+	from django.core.mail import EmailMultiAlternatives
+	mail = EmailMultiAlternatives(
+            subject="Your Subject",
+            body="This is a simple text email body.",
+            from_email="The Key Keepers <hello@yamilasusta.com>",
+            to=["miroslav.svec.work@gmail.com"],
+            headers={"Reply-To": "support@sendgrid.com"}
+        )
+	mail.send()
+	messages.success(request, 'Email sent')
+	return redirect('index')
