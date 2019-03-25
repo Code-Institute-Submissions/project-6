@@ -401,8 +401,8 @@ HTML / CSS | 5 |
   - **Fixes**
     - **[views.py](/accounts/views.py)**
       - fixed issue with incorrect redirect when user is anthenticaded when vieving `register()`
-      - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
-      - added more styles accross the page to fix many styles issues
+    - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
+    - added more styles accross the page to fix many styles issues
 
 
 [**To top**](#Table-of-Contents)

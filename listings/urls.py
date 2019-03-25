@@ -18,7 +18,5 @@ urlpatterns = [
     path('search_by_links/<str:key>',
          listings.search_by_links, name="search_by_links"),
     path('search_by_user/<int:user_id>',
-         listings.search_by_user, name="search_by_user"),
-	# For testing only
-   	path('mail', listings.mail, name="mail"),
+         listings.search_by_user, name="search_by_user")
 ]
