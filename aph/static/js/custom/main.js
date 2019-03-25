@@ -13,6 +13,10 @@ $(document).ready(function() {
 			$(".navbar-brand span").fadeIn();
 		}
 	});
+	$(".navbar-toggler").click(function() {
+		$(".navbar").addClass("white-nav");
+		$(".navbar-brand span").fadeIn();
+	});
 });
 
 /* 

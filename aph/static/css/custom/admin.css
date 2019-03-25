@@ -1,0 +1,74 @@
+#header {
+	height: 50px;
+	background: rgb(119, 119, 119);
+	color: #fff;
+}
+
+.object-tools a:link,
+.object-tools a:visited {
+	opacity: 1;
+	border: 0;
+	background-color: #5cb85c;
+	text-decoration: none;
+}
+
+#branding h1,
+#branding h1 a:link,
+#branding h1 a:visited,
+a:link,
+a:visited {
+	color: #5cb85c;
+}
+
+div.breadcrumbs a:focus, div.breadcrumbs a:hover {
+	color: #000000;
+}
+
+#user-tools a:focus, #user-tools a:hover {
+	color: #fff;
+}
+
+div.breadcrumbs {
+	background: rgb(218, 218, 218);
+	color: #fff;
+}
+
+div.breadcrumbs a {
+	color: #333;
+}
+
+.module h2,
+.module caption,
+.inline-group h2 {
+	background: #5cb85c;
+}
+
+.button.default,
+input[type="submit"].default,
+.submit-row input.default,
+.button,
+input[type="submit"],
+input[type="button"],
+.submit-row input,
+a.button,
+.button:active {
+	background: rgb(119, 119, 119);
+}
+input[type="submit"]:active,
+input[type="button"]:active,
+.button:focus,
+input[type="submit"]:focus,
+input[type="button"]:focus,
+.button:hover,
+input[type="submit"]:hover,
+input[type="button"]:hover,
+.button.default:active,
+input[type="submit"].default:active,
+.button.default:focus,
+input[type="submit"].default:focus,
+.button.default:hover,
+input[type="submit"].default:hover {
+	background: #5cb85c;
+	color: #fff;
+}
+

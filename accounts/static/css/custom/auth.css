@@ -1,0 +1,31 @@
+
+
+.alert {
+	padding-top: 1rem;
+}
+
+#page-header {
+	min-height: 100vh;
+}
+
+.form-group p a {
+	border-radius: 20px;
+	background-color: rgba(255, 255, 255, 0.9);
+	opacity: 1;
+}
+
+label {
+	color: #ffffff;
+	font-weight: 600;
+	font-size: 1.15rem;
+}
+
+input {
+	min-width: 100%;
+	border: 0;
+	text-align: center;
+}
+
+.text-bg {
+	background: rgba(0, 0, 0, 0.5)
+}

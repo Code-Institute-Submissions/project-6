@@ -62,12 +62,17 @@
 	{% block page_header %}
 	<!-- Page Header -->
 	<header id="page-header" class="container-fluid pb-5">
-		<div class="row py-4">
-			<h1 class="vibes-cursive col-12 py-5 mt-5 text-center text-light">
-				{{ page_title }}
-			</h1>
-		</div>
-		{% block header_content %} {% endblock header_content %}
+			<div class="row py-4">
+				<h1 class="vibes-cursive col-12 pt-5 pb-4 mt-5 text-center text-light">
+					{% if  page_title %}
+					{{ page_title }}
+					{% else %}
+					  Key Keepers
+					{% endif %}
+					
+				</h1>
+			</div>
+			{% block header_content %} {% endblock header_content %}
 	</header>
 	{% endblock page_header %}
 

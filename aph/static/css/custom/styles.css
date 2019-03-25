@@ -5,6 +5,7 @@ General
 .alert {
 	background-color: #f8f9fa;
 	padding-top: 4rem;
+	text-align: center;
 }
 
 .navbar-light .navbar-brand {
@@ -57,11 +58,6 @@ Nav
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
-
-#nav .nav-link {
-	color: #6c757d;
-}
-
 .white-nav {
 	-webkit-animation: white-nav 2s forwards;
 	-moz-animation: white-nav 2s forwards;
@@ -106,6 +102,8 @@ Page Header
 	-o-background-size: cover;
 	background-size: cover;
 }
+
+
 
 #user-messages-modal {	
 	height: 100vh;

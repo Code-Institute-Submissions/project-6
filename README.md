@@ -385,6 +385,24 @@ HTML / CSS | 5 |
 
 - **Changelog**
   - added **Sendgrid** for sending real emails to user
+  - **Django User Auth**
+    - cretaed many custom templates to overwirte the basic **Django** auth templates including
+      - [base_site.html](/templates/admin/base_site.html)
+      - [login.html](/templates/admin/login.html)
+      - [logged_out.html](/templates/registration/logged_out.html)
+      - [password_change_done.html](/templates/registration/password_change_done.html)
+      - [password_change_form.html](/templates/registration/password_change_form.html)
+      - [password_reset_complete.html](/templates/registration/password_reset_complete.html)
+      - [password_reset_confirm.html](/templates/registration/password_reset_confirm.html)
+      - [password_reset_done.html](/templates/registration/password_reset_done.html)
+      - [password_reset_form.html](/templates/registration/password_reset_form.html)
+    - added [admin.css](/aph/static/css/custom/admin.css) to overwrite **Django** styles in admin area
+    - added [auth.css](/accounts/static/css/custom/auth.css) form more custom styles in auth templates
+  - **Fixes**
+    - **[views.py](/accounts/views.py)**
+      - fixed issue with incorrect redirect when user is anthenticaded when vieving `register()`
+      - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
+      - added more styles accross the page to fix many styles issues
 
 
 [**To top**](#Table-of-Contents)

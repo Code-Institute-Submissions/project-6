@@ -1,30 +1,18 @@
 {% extends "base.html" %}
 {% load bootstrap4 %}
 
+{% load static %}
+
 {% block css %}
-  <style>
-	  #page-header {
-		  height: 100vh;
-	  }
-	  label {
-		  color: transparent;
-	  }
-  </style>
+<link rel="stylesheet" href="{% static 'css/custom/auth.css' %}">
 {% endblock css %}
 
 {% block header_content %}
 
 <!-- Log in form -->
 <div class="row justify-content-center">
-	<div class="col-xs-6 col-lg-3">
-		{% if request.GET.next %}
-		<div class="row">
-			<div class="col-12 text-center text-light">
-				<p>Please login to access full content of this page.</p>
-			</div>
-		</div>
-		{% endif %}
-		<form method="POST" class="pb-5">
+	<div class="col-md-4">
+		<form method="POST" class="p-3">
 			{% csrf_token %}
 			{% bootstrap_form form %}
 			<div class="form-group">
@@ -33,13 +21,8 @@
 				{% endbuttons %}
 			</div>
 			<div class="form-group">
-				<p class="text-center py-1 text-light">
-					<a href="{% url 'password_reset' %}">Lost password?</a>
-				</p>
-			</div>
-			<div class="form-group">
-				<p class="text-center pt-2 pb-5 text-light">Do not have an account?
-					<a class="d-block small mt-3" href="{% url 'register' %}">Register now!</a>
+				<p class="text-center py-1 font-weight-bold">
+					<a class="p-2" href="{% url 'password_reset' %}">Lost your password?</a>
 				</p>
 			</div>
 			<!-- Store the last visited url -->

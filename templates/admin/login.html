@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% load bootstrap4 %}
+
+{% load static %}
+
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/custom/auth.css' %}">
+{% endblock css %}
+
+{% block header_content %}
+<div class="row justify-content-center">
+	<div class="col-md-4">
+		<div class="row">
+			<div class="col-12 text-center text-light">
+				{% if user.is_authenticated %}
+				<p class="errornote lead">
+					You are authenticated as <span class="text-danger">{{ username }}</span>, but are not authorized to
+					access this page. <br>
+					Would you like to login to a different account?
+				</p>
+				{% else %}
+				<p class="font-weight-bold lead">Please login to access the admin area!</p>
+				{% endif %}				
+			</div>
+		</div>
+		<div class="row">
+			<form method="POST" class="col-12">
+				{% csrf_token %}
+				{% bootstrap_form form layout='inline' %}
+				{% buttons %}
+				<button type="submit" class="btn btn-success btn-block">
+					Login
+				</button>
+				{% endbuttons %}
+			</form>
+		</div>
+	</div>
+</div>
+{% endblock header_content %}
+
+{% block main %} {% endblock main %}

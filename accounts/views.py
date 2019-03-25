@@ -11,7 +11,9 @@ def register(request):
     """
     User Registration view
     """
-
+	        
+    if request.user.is_authenticated:
+    	return redirect('index')
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
