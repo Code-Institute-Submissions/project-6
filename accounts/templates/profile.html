@@ -1,7 +1,124 @@
 {% extends "base.html" %}
 
 {% load bootstrap4 %}
-
+{% load static %}
+{% block css %}
+<link rel="stylesheet" href="{% static 'css/custom/profile.css' %}">
+{% endblock css %}
+{% block page_header %} {% endblock page_header %}
 {% block main_content %}
-
+<section class="container py-5">
+	<div class="row pt-5">
+		<div class="card col-12 pt-5">
+			<h1 class="card-title text-center vibes-cursive">Welcome {{ user.username|title }}</h1>
+			<div class="card-body">
+				<div class="row">
+					{% if user.img %}
+					<div class="col-md-6">
+						<img class="card-img-top" src="{{ user.img.url }}" alt="Profile  picture">
+					</div>
+					{% else %}
+					<div class="col-md-6">
+						<img class="card-img-top" src="/media/img/profile-avatar.jpg" alt="Profile  picture">
+					</div>
+					{% endif %}
+					<div class="col-md-6">
+						<ul class="list-group list-group-flush">
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Profile name:</span> {{ user.username|title }}
+								{% if user.first_name or user.last_name %}
+								  <hr>
+								  {% if user.first_name and user.last_name %}
+									<span class="font-weight-bold">First name:</span> {{ user.first_name|title }} | <span class="font-weight-bold">Last name:</span> {{ user.last_name|title }}
+									{% else %}
+									{% if user.first_name %}
+									<span class="font-weight-bold">First name:</span> {{ user.first_name|title }}
+									{% endif %}
+									{% if user.last_name %}
+									<span class="font-weight-bold">Last name:</span> {{ user.last_name|title }}
+									{% endif %}
+								  {% endif %}
+								{% endif %}
+							</li>
+							{% if user.email %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Your email:</span> {{ user.email }}
+							</li>
+							{% else %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Your email:</span> You did not provide your email
+								address.
+							</li>
+							{% endif %}
+							{% if user_profile.phone %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Your phone:</span> {{ user_profile.phone }}
+							</li>
+							{% else %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Your phone:</span> You did not provide your phone number.
+							</li>
+							{% endif %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Joined:</span> {{ user.date_joined }}
+							</li>
+							{% if user_profile.description %}
+							<li class="list-group-item text-center">
+								<span class="font-weight-bold">Description:</span>
+							</li>
+							{{ user_profile.description }}
+							{% endif %}
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+	<hr>
+	<div class="row">
+		<div class="card col-12">
+			{% if listings %}
+			<h4 class="card-title text-center py-5">Your listings:</h4>
+			<div class="card-body">
+				<div id="listings" class="row justify-content-center">
+					{% for house in listings %}
+					<div class="col-md-6 col-lg-4 mb-4">
+						<div class="card">
+							<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
+							<div class="card-img-overlay">
+								<h2>
+									<span class="badge badge-secondary text-white">£{{ house.price }}</span>
+								</h2>
+							</div>
+							<div class="card-body">
+								<div class="text-center">
+									<h4 class="pt-3">{{ house.title }}</h4>
+									<p> <i class="fas fa-map-marker"></i> {{ house.city }}
+										{{ house.state }}, {{ house.zipcode }}
+									</p>
+								</div>
+								<hr />
+								<div>
+									<a class="listings-overlay" href="{% url 'house' house.id %}">
+										<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
+										<i class="fas fa-external-link-alt fa-3x"></i>
+									</a>
+								</div>
+							</div>
+						</div>
+					</div>					
+					{% endfor %}
+				</div>
+			</div>
+			{% else %}
+			<h5 class="card-title text-center pb-3 pt-5">You did not add any listings yet.</h5>
+			<p class="text-center lead font-weight-normal">
+				<a href="{% url 'add_house' user.id %}" class="text-success card-link">
+					Add one now!
+				</a>
+			</p>
+			{% endif %}
+		</div>
+	</div>
+</section>
 {% endblock main_content %}

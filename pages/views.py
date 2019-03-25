@@ -21,7 +21,7 @@ def index(request):
     args = {
         "listings": listings,
         "form": contact_form,
-        "page_title": "Key Keepers",
+        
     }  
 
     return render(request, "index.html", args)

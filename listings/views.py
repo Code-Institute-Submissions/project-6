@@ -38,8 +38,7 @@ def houses(request):
 	paged_listings = paginator.get_page(page)
 
 	args = {
-		"listings": paged_listings,
-		"page_title": "Key Keepers",
+		"listings": paged_listings		
 	}
 	return render(request, "houses.html", args)
 
@@ -259,8 +258,7 @@ def search_by_links(request, key):
 	paged_listings = paginator.get_page(page)
 
 	args = {
-		"listings": paged_listings,
-		"page_title": "Key Keepers",
+		"listings": paged_listings		
 	}
 	return render(request, "houses.html", args)
 
@@ -278,8 +276,7 @@ def search_by_user(request, user_id):
 	paged_listings = paginator.get_page(page)
 
 	args = {
-		"listings": paged_listings,
-		"page_title": "Key Keepers",
+		"listings": paged_listings		
 	}
 	return render(request, "houses.html", args)
 

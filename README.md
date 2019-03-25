@@ -28,6 +28,7 @@
 			- [1.5](#15)
 			- [1.6](#16)
 			- [1.7](#17)
+			- [1.8](#18)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -404,6 +405,15 @@ HTML / CSS | 5 |
     - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
     - added more styles accross the page to fix many styles issues
 
+#### 1.8
+
+- **Changelog**
+  - **[profile.html](/accounts/templates/profile.html)**
+    - added user information section to dysplay his details
+    - added listing section to dysplay the user's listings (if any) or let user to create one
+  - **Fixes**
+    - **[views.py](/accounts/views.py)**
+      - decided not to use `next_url` whenever user creates new account. Instead user will be redirected to [profile.html](/accounts/templates/profile.html)
 
 [**To top**](#Table-of-Contents)
 

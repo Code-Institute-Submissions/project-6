@@ -1,27 +1,27 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
 from accounts.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django import forms
 from .forms import UserProfileForm, UserLoginForm
+from listings.models import Listing
 
 
 def register(request):
     """
     User Registration view
     """
-	        
+
     if request.user.is_authenticated:
-    	return redirect('index')
+        return redirect('index')
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
             # If valid save the user
 
-			#### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
-			
-			
+                        #### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
+
             form.save()
             user = User.objects.get(email=request.POST.get('email'))
             # Check if terms are accepted
@@ -45,14 +45,8 @@ def register(request):
             if user:
                 auth.login(request, user)
                 messages.success(
-                    request, "You have successfully registered and logged in")
-
-                # Check if next arg is pressent
-                nexturl = request.POST.get('next')
-                if nexturl:
-                    return redirect(nexturl)
-                else:
-                    return redirect('profile')
+                    request, "You have successfully registered and logged in")                
+                return redirect('profile')
             else:
                 messages.error(request, "Unable to log you in!")
         else:
@@ -108,4 +102,14 @@ def profile(request):
     """ 
     User Profile view
     """
-    return render(request, "profile.html")
+
+    user = get_object_or_404(User, pk=request.user.id)
+    user_profile = get_object_or_404(UserProfile, user=user.id)
+    listings = Listing.objects.all().filter(seller=user.id).order_by('-list_date')
+
+    args = {
+        "listings": listings,
+		"user" : user,
+		"user_profile" : user_profile
+    }
+    return render(request, "profile.html", args)
