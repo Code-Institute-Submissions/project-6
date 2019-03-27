@@ -2,6 +2,7 @@ from django.contrib.auth.models import User
 from django import forms
 from django.contrib.auth.forms import UserCreationForm
 from django.core.exceptions import ValidationError
+from .models import UserProfile
 
 
 class UserLoginForm(forms.Form):
@@ -37,3 +38,17 @@ class UserProfileForm(UserCreationForm):
         if User.objects.filter(email=email).exclude(username=username):
             raise forms.ValidationError("Email address must be unique")
         return email	
+
+
+class EditUserForm(forms.ModelForm):
+
+	class Meta:
+		model = User
+		fields = ['username', 'email', 'first_name', 'last_name']
+
+
+class EditProfileForm(forms.ModelForm):
+
+	class Meta:
+		model = UserProfile
+		fields = ['description', 'phone']

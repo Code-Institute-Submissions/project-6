@@ -11,6 +11,12 @@
 	<div class="row pt-5">
 		<div class="card col-12 pt-5">
 			<h1 class="card-title text-center vibes-cursive">Welcome {{ user.username|title }}</h1>
+			<p class="text-center lead py-2">
+				<a href="{% url 'edit_profile' %}">
+					<i class="fas fa-user-edit"></i>
+					<span class="text-success">Edit your profile</span>
+				</a>
+			</p>
 			<div class="card-body">
 				<div class="row">
 					{% if user.img %}

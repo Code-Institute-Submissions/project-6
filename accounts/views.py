@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 from accounts.models import UserProfile
 from django.contrib.auth.decorators import login_required
 from django import forms
-from .forms import UserProfileForm, UserLoginForm
+from .forms import UserProfileForm, UserLoginForm, EditProfileForm, EditUserForm
 from listings.models import Listing
 
 
@@ -20,7 +20,7 @@ def register(request):
         if form.is_valid():
             # If valid save the user
 
-                        #### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
+            #### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
 
             form.save()
             user = User.objects.get(email=request.POST.get('email'))
@@ -45,7 +45,7 @@ def register(request):
             if user:
                 auth.login(request, user)
                 messages.success(
-                    request, "You have successfully registered and logged in")                
+                    request, "You have successfully registered and logged in")
                 return redirect('profile')
             else:
                 messages.error(request, "Unable to log you in!")
@@ -99,7 +99,7 @@ def logout(request):
 
 @login_required
 def profile(request):
-    """ 
+    """
     User Profile view
     """
 
@@ -109,7 +109,32 @@ def profile(request):
 
     args = {
         "listings": listings,
-		"user" : user,
-		"user_profile" : user_profile
+        "user": user,
+        "user_profile": user_profile
     }
     return render(request, "profile.html", args)
+
+
+@login_required
+def edit_profile(request):
+	"""
+	View to let user to edit his profile data
+	"""
+	if request.method == 'POST':
+		user_form = EditUserForm(request.POST, instance=request.user)
+		profile_form = EditProfileForm(request.POST, instance=request.user.userprofile)
+		if user_form.is_valid() and profile_form.is_valid():
+			user_form.save()
+			profile_form.save()
+			messages.success(request, 'Your profile was successfully updated!')
+			return redirect('profile')
+		else:
+			messages.error(request, 'Please correct the error below.')
+	else:
+		user_form = EditUserForm(instance=request.user)
+		profile_form = EditProfileForm(instance=request.user.userprofile)
+	args = {
+		"user_form": user_form,
+		"profile_form": profile_form,
+	}
+	return render(request, "edit_profile.html", args)

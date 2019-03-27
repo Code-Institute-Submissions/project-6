@@ -1,0 +1,200 @@
+/* Footer links animation */
+
+.footer-links a, 
+.footer-links a:hover,
+.footer-links a:active,
+.footer-links a:focus {
+	color: #fff;
+	margin-right: 1.5rem;
+}
+
+.footer-links a i {	
+	width: 50px;
+	height: 50px;
+	padding: 5px 0;
+	font-size: 30px;
+	line-height: 40px;
+	border-radius: 50%;	
+}
+
+.twitter {
+	border-radius: 50%;
+	-webkit-animation: twitter 2s alternate infinite;
+	-moz-animation: twitter 2s alternate infinite;
+	-o-animation: twitter 2s alternate infinite;
+	animation: twitter 2s alternate infinite;
+}
+.footer a .fa-twitter:hover {
+	background-color: #1da1f2;
+}
+@-webkit-keyframes twitter {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #1da1f2;
+	}
+
+}
+@-moz-keyframes twitter {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #1da1f2;
+	}
+
+}
+@-o-keyframes twitter {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #1da1f2;
+	}
+
+}
+@keyframes twitter {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #1da1f2;
+	}
+
+}
+.facebook {
+	-webkit-animation: facebook 2s 0.6s alternate infinite;
+	-moz-animation: facebook 2s 0.6s alternate infinite;
+	-o-animation: facebook 2s 0.6s alternate infinite;
+	animation: facebook 2s 0.6s alternate infinite;
+}
+.footer a .fa-facebook-f:hover {
+	background-color: #4267b2;
+}
+@-webkit-keyframes facebook {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #4267b2;
+	}
+
+}
+@-moz-keyframes facebook {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #4267b2;
+	}
+
+}
+@-o-keyframes facebook {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #4267b2;
+	}
+
+}
+@keyframes facebook {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #4267b2;
+	}
+
+}
+.linkedin {
+	-webkit-animation: linkedin 2s 1.1s  alternate infinite;
+	-moz-animation: linkedin 2s 1.1s alternate infinite;
+	-o-animation: linkedin 2s 1.1s alternate infinite;
+	animation: linkedin 2s 1.1s alternate infinite;
+}
+.footer a .fa-linkedin-in:hover {
+	background-color: #0077b5;
+}
+@-webkit-keyframes linkedin {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #0077b5;
+	}
+
+}
+@-moz-keyframes linkedin {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #0077b5;
+	}
+
+}
+@-o-keyframes linkedin {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #0077b5;
+	}
+
+}
+@keyframes linkedin {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #0077b5;
+	}
+
+}
+.instagram {
+	-webkit-animation: instagram 2s 1.6s alternate infinite;
+	-moz-animation: instagram 2s 1.6s alternate infinite;
+	-o-animation: instagram 2s 1.6s alternate infinite;
+	animation: instagram 2s 1.6s alternate infinite;
+}
+.footer a .fa-instagram:hover {
+	background-color: #d5298d;
+}
+@-webkit-keyframes instagram {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #d5298d;
+	}
+
+}
+@-moz-keyframes instagram {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #d5298d;
+	}
+
+}
+@-o-keyframes instagram {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #d5298d;
+	}
+
+}
+@keyframes instagram {
+	from {
+		background: transparent;
+	}
+	to {
+		background: #d5298d;
+	}
+
+}

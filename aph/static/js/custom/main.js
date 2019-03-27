@@ -17,6 +17,14 @@ $(document).ready(function() {
 		$(".navbar").addClass("white-nav");
 		$(".navbar-brand span").fadeIn();
 	});
+	if ($(window).width() >= 1200) {
+		$(".footer-links .fab").hover(function () {
+			$(".fa-twitter").toggleClass("twitter");
+			$(".fa-facebook-f").toggleClass("facebook");
+			$(".fa-linkedin-in").toggleClass("linkedin");
+			$(".fa-instagram").toggleClass("instagram");
+		});
+	};
 });
 
 /* 

@@ -411,6 +411,10 @@ HTML / CSS | 5 |
   - **[profile.html](/accounts/templates/profile.html)**
     - added user information section to dysplay his details
     - added listing section to dysplay the user's listings (if any) or let user to create one
+  - **[edit_profile.html](/accounts/templates/edit_profile.html)**
+    - added functionality for user to edit his `User` model and / or `User Profile`
+  - **[_footer.html](/templates/partials/_footer.html)**
+    - added social links to this section
   - **Fixes**
     - **[views.py](/accounts/views.py)**
       - decided not to use `next_url` whenever user creates new account. Instead user will be redirected to [profile.html](/accounts/templates/profile.html)
