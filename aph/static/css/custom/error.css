@@ -1,0 +1,8 @@
+#page-header {
+	background: url("/media/img/error.jpg") no-repeat center;
+	min-height: 100vh;
+}
+
+h2 {
+	font-size: 8rem;
+}

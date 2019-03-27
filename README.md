@@ -29,6 +29,7 @@
 			- [1.6](#16)
 			- [1.7](#17)
 			- [1.8](#18)
+			- [1.9](#19)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -399,11 +400,11 @@ HTML / CSS | 5 |
       - [password_reset_form.html](/templates/registration/password_reset_form.html)
     - added [admin.css](/aph/static/css/custom/admin.css) to overwrite **Django** styles in admin area
     - added [auth.css](/accounts/static/css/custom/auth.css) form more custom styles in auth templates
-  - **Fixes**
-    - **[views.py](/accounts/views.py)**
-      - fixed issue with incorrect redirect when user is anthenticaded when vieving `register()`
-    - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
-    - added more styles accross the page to fix many styles issues
+- **Fixes**
+  - **[views.py](/accounts/views.py)**
+    - fixed issue with incorrect redirect when user is anthenticaded when vieving `register()`
+  - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
+  - added more styles accross the page to fix many styles issues
 
 #### 1.8
 
@@ -415,9 +416,17 @@ HTML / CSS | 5 |
     - added functionality for user to edit his `User` model and / or `User Profile`
   - **[_footer.html](/templates/partials/_footer.html)**
     - added social links to this section
-  - **Fixes**
-    - **[views.py](/accounts/views.py)**
-      - decided not to use `next_url` whenever user creates new account. Instead user will be redirected to [profile.html](/accounts/templates/profile.html)
+- **Fixes**
+  - **[views.py](/accounts/views.py)**
+    - decided not to use `next_url` whenever user creates new account. Instead user will be redirected to [profile.html](/accounts/templates/profile.html)
+
+#### 1.9
+
+- **Changelog**
+  - **[404.html](/templates/404.html)**
+    - added custom 404 error page
+  - **[500.html](/templates/500.html)**
+    - added custom 500 error page
 
 [**To top**](#Table-of-Contents)
 
