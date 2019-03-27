@@ -427,6 +427,10 @@ HTML / CSS | 5 |
     - added custom 404 error page
   - **[500.html](/templates/500.html)**
     - added custom 500 error page
+- **Fixes**
+  - **[base.html](/templates/base.html)**
+    - Added nav block to remove nav from error pages
+ 
 
 [**To top**](#Table-of-Contents)
 
