@@ -1,8 +1,7 @@
-/*
-Nav
-*/
+
 
 $(document).ready(function() {
+	// Nav
 	if ($(document).scrollTop() >= 400) {
 		$(".navbar").addClass("white-nav");
 		$(".navbar-brand span").fadeIn();
@@ -17,6 +16,12 @@ $(document).ready(function() {
 		$(".navbar").addClass("white-nav");
 		$(".navbar-brand span").fadeIn();
 	});
+	$(".navbar").hover(function () {
+		$(this).addClass("white-nav");
+		$(".navbar-brand span").fadeIn();			
+		}
+	);
+	// Footer
 	if ($(window).width() >= 1200) {
 		$(".footer-links .fab").hover(function () {
 			$(".fa-twitter").toggleClass("twitter");

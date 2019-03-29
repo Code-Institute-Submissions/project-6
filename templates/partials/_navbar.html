@@ -18,11 +18,12 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto text-center">
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'houses' %}">View all</a>
-				</li>				
+					<a class="nav-link {% if 'listings' in request.path and 'house' not in request.path %} active {% endif %}" href="{% url 'houses' %}">View all</a>
+				</li>	
+						
 				{% if user.is_authenticated %}				
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
+					<a class="nav-link {% if 'add_house' in request.path %} active {% endif %}" href="{% url 'add_house' user.id %}">Add Listing</a>
 				</li>
 				<li class="user-messages d-none d-lg-block nav-item ml-1">
 					<button class="btn btn-outline-secondary">

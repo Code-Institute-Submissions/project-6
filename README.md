@@ -427,6 +427,16 @@ HTML / CSS | 5 |
     - added custom 404 error page
   - **[500.html](/templates/500.html)**
     - added custom 500 error page
+  - **Listing app**
+    - [pay_fee.html](/listings/templates/pay_fee.html) submit btn is now disabled after submiting the form to preven user to accidemtaly pay twice
+- **Fixes**
+  - **[_navbar.html](/templates/partials/_navbar.html)**
+    - added `.active` class for user to see on which page he is on
+  - **Listing app**
+    - [house.html](/listings/templates/house.html) decided to change the short description to links for user to be able search by clicked tag
+    - `add_house()` added initail values for better UX
+    - `pay_fee()` user is now redirected to `index` if he already paid to prevent the user pay twice
+    - `AddListingForm` added more form validations such as `clean_price()` and `clean_bedrroms()`
 
 [**To top**](#Table-of-Contents)
 

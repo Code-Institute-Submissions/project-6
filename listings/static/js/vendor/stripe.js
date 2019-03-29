@@ -1,5 +1,6 @@
 $(function () {
 	$("#payment-form").submit(function () {
+		$("#validate-card-btn").prop("disabled", true).html("Working...");
 		var form = this;
 		var card = {
 			number: $("#id_credit_card_number").val(),
@@ -29,7 +30,7 @@ $(function () {
 				setTimeout(() => {
 					$("#stripe-error-message").slideUp(2000);
 				}, 4000);
-				$("#validate_card_btn").attr("disabled", false);
+				$("#validate-card-btn").prop("disabled", false).html("Pay Fee");
 			}
 		});
 		return false;

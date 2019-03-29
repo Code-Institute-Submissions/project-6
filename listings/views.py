@@ -65,13 +65,19 @@ def add_house(request, user_id):
             request.session['new_house'] = form.data
             return redirect("preview_house", user_id=user_id, house_id=new_house.id)
         else:
-            messages.error(request, form.errors)
+            messages.error(request, "Please correct the error/s to proceed!")
             return render(request, "add_house.html", {'form': form})
     # Automaticaly autofill feilds if house exist in session
     if request.session.get('new_house'):
         listing_form = AddListingForm(request.session['new_house'])
     else:
-        listing_form = AddListingForm
+        listing_form = AddListingForm(initial={
+            "price": 0,
+            "square_feet": 500,
+           	"bedrooms": 0,
+           	"bathrooms": 0,
+           	"garage": 0,
+		})
 
     args = {
         "form": listing_form
@@ -105,13 +111,16 @@ def pay_fee(request, user_id, house_id):
     if user_id is not int(request.session['_auth_user_id']):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
     house_data = get_object_or_404(Listing, pk=int(house_id))
+    if house_data.paid_fee:
+    	messages.error(request, "You already paid for this listing!")
+    	return redirect('index')
     if request.method == "POST":
         payment_form = PayFeeForm(request.POST)
         if payment_form.is_valid():
             try:
                 customer = stripe.Charge.create(
                     amount=int(1000),
-                    currency="EUR",
+                    currency="USD",
                     description=request.user.email,
                     card=payment_form.cleaned_data['stripe_id'],
                 )
@@ -258,7 +267,8 @@ def search_by_links(request, key):
 	paged_listings = paginator.get_page(page)
 
 	args = {
-		"listings": paged_listings		
+		"listings": paged_listings,
+		"key" : key		
 	}
 	return render(request, "houses.html", args)
 
