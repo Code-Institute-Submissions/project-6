@@ -1,5 +1,6 @@
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -13,34 +14,35 @@ stripe.api_key = settings.STRIPE_SECRET
 
 
 def house(request, house_id):
-	"""
-	Main route for a single house
+    """
+    Main route for a single house
 
-	"""
-	house_data = get_object_or_404(Listing, pk=house_id)
+    """
+    house_data = get_object_or_404(Listing, pk=house_id)
 
-	args = {
-		'house': house_data,
-		'page_title': house_data.title,
-		'form': EnquiryForm
-	}
-	return render(request, "house.html", args)
+    args = {
+        'house': house_data,
+        'page_title': house_data.title,
+        'form': EnquiryForm
+    }
+    return render(request, "house.html", args)
 
 
 def houses(request):
-	"""
-		Main route for all houses
-		"""
-	listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
+    """
+            Main route for all houses
+            """
+    listings = Listing.objects.all().filter(
+        is_published=True).order_by('-list_date')
 
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
-	args = {
-		"listings": paged_listings		
-	}
-	return render(request, "houses.html", args)
+    args = {
+        "listings": paged_listings
+    }
+    return render(request, "houses.html", args)
 
 
 @login_required
@@ -74,10 +76,10 @@ def add_house(request, user_id):
         listing_form = AddListingForm(initial={
             "price": 0,
             "square_feet": 500,
-           	"bedrooms": 0,
-           	"bathrooms": 0,
-           	"garage": 0,
-		})
+            "bedrooms": 0,
+            "bathrooms": 0,
+            "garage": 0,
+        })
 
     args = {
         "form": listing_form
@@ -94,6 +96,9 @@ def preview_house(request, user_id, house_id):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
 
     house_data = get_object_or_404(Listing, pk=int(house_id))
+    if house_data.paid_fee:
+        messages.error(request, "You already paid for this listing!")
+        return redirect('index')
 
     args = {
         'house': house_data,
@@ -112,8 +117,8 @@ def pay_fee(request, user_id, house_id):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
     house_data = get_object_or_404(Listing, pk=int(house_id))
     if house_data.paid_fee:
-    	messages.error(request, "You already paid for this listing!")
-    	return redirect('index')
+        messages.error(request, "You already paid for this listing!")
+        return redirect('index')
     if request.method == "POST":
         payment_form = PayFeeForm(request.POST)
         if payment_form.is_valid():
@@ -128,7 +133,10 @@ def pay_fee(request, user_id, house_id):
                 messages.error(request, "Your card was declined!")
 
             if customer.paid:
-                messages.success(request, "You have successfully paid")
+                messages.success(request, "You have successfully paid!")
+                messages.success(
+                    request, "Please note that your listing must be approved by an admin!")
+                messages.success(request, "Invoice has been emailed to you")
                 if request.session.get('new_house'):
                     del request.session['new_house']
                 Listing.objects.filter(pk=int(house_id)).update(paid_fee=True)
@@ -202,7 +210,7 @@ def search(request):
         """
 
     listings = Listing.objects.all().filter(
-    	is_published=True).order_by('-list_date')
+        is_published=True).order_by('-list_date')
     p_base = str()
 
     if 'keywords' in request.GET:
@@ -254,58 +262,39 @@ def search(request):
     }
     return render(request, "search.html", args)
 
+
 def search_by_links(request, key):
-	""" 
-	Route to let user to search by clicking on links in description
-	"""
+    """ 
+    Route to let user to search by clicking on links in description
+    """
 
-	listings = Listing.objects.all().filter(
-		is_published=True).order_by(f'-{key}')
-	
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    listings = Listing.objects.all().filter(
+        is_published=True).order_by(f'-{key}')
 
-	args = {
-		"listings": paged_listings,
-		"key" : key		
-	}
-	return render(request, "houses.html", args)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
+    args = {
+        "listings": paged_listings,
+        "key": key
+    }
+    return render(request, "houses.html", args)
 
 
 def search_by_user(request, user_id):
-	""" 
-	Route to let user to search by clicking on links in description
-	"""
+    """ 
+    Route to let user to search by clicking on links in description
+    """
 
-	listings = Listing.objects.all().filter(
-		is_published=True, seller=user_id).order_by('-list_date')
+    listings = Listing.objects.all().filter(
+        is_published=True, seller=user_id).order_by('-list_date')
 
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
-	args = {
-		"listings": paged_listings		
-	}
-	return render(request, "houses.html", args)
-
-
-""" 
-
-Testing only
-
-"""
-
-def mail(request):
-	from django.core.mail import EmailMultiAlternatives
-	mail = EmailMultiAlternatives(
-            subject="Your Subject",
-            body="This is a simple text email body.",
-            from_email="The Key Keepers <hello@yamilasusta.com>",
-            to=["miroslav.svec.work@gmail.com"],
-            headers={"Reply-To": "support@sendgrid.com"}
-        )
-	mail.send()
-	messages.success(request, 'Email sent')
-	return redirect('index')
+    args = {
+        "listings": paged_listings
+    }
+    return render(request, "houses.html", args)

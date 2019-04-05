@@ -1,3 +1,4 @@
+from django.core.mail import EmailMultiAlternatives
 from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages, auth
 from django.contrib.auth.models import User
@@ -6,6 +7,9 @@ from django.contrib.auth.decorators import login_required
 from django import forms
 from .forms import UserProfileForm, UserLoginForm, EditProfileForm, EditUserForm
 from listings.models import Listing
+
+
+registration_email_template_id = 'd-8b80903e95924b7ba02d945ff0d8adf9'
 
 
 def register(request):
@@ -18,27 +22,17 @@ def register(request):
     if request.method == 'POST':
         form = UserProfileForm(request.POST)
         if form.is_valid():
-            # If valid save the user
-
-            #### NEED TO SWAP IT AS TERMS WILL BE REQUIRED ####
-
             form.save()
             user = User.objects.get(email=request.POST.get('email'))
-            # Check if terms are accepted
-            if request.POST.get('terms'):
-                terms = True
-            else:
-                raise forms.ValidationError("You must accept the terms")
-                # Create new profile for the user
+            # Create new profile for the user
             profile = UserProfile(
                 user=user,
                 img=request.POST.get('img'),
                 phone=request.POST.get('phone'),
                 description=request.POST.get('description'),
-                terms=terms,
+                terms=True,
             )
             profile.save()
-
             user = auth.authenticate(username=request.POST.get('username'),
                                      password=request.POST.get('password1'))
 
@@ -46,11 +40,22 @@ def register(request):
                 auth.login(request, user)
                 messages.success(
                     request, "You have successfully registered and logged in")
+                mail = EmailMultiAlternatives(
+                    subject="Registration",
+                    body="Thank you",
+                    from_email="The Key Keepers <admin@keykeppers.com>",
+                    to=[f"{user.email}"],
+                    headers={"Reply-To": "support@keykeppers.com"}
+                )
+                mail.template_id = registration_email_template_id
+                mail.send()
+                messages.success(
+                    request, "Confirmation email has been sent to you.")
                 return redirect('profile')
             else:
                 messages.error(request, "Unable to log you in!")
         else:
-            messages.error(request, form.errors)
+            messages.error(request, "Please fix errors to continue!")
     else:
         form = UserProfileForm()
     return render(request, "register.html", {'form': form})
@@ -117,24 +122,25 @@ def profile(request):
 
 @login_required
 def edit_profile(request):
-	"""
-	View to let user to edit his profile data
-	"""
-	if request.method == 'POST':
-		user_form = EditUserForm(request.POST, instance=request.user)
-		profile_form = EditProfileForm(request.POST, instance=request.user.userprofile)
-		if user_form.is_valid() and profile_form.is_valid():
-			user_form.save()
-			profile_form.save()
-			messages.success(request, 'Your profile was successfully updated!')
-			return redirect('profile')
-		else:
-			messages.error(request, 'Please correct the error below.')
-	else:
-		user_form = EditUserForm(instance=request.user)
-		profile_form = EditProfileForm(instance=request.user.userprofile)
-	args = {
-		"user_form": user_form,
-		"profile_form": profile_form,
-	}
-	return render(request, "edit_profile.html", args)
+    """
+    View to let user to edit his profile data
+    """
+    if request.method == 'POST':
+        user_form = EditUserForm(request.POST, instance=request.user)
+        profile_form = EditProfileForm(
+            request.POST, instance=request.user.userprofile)
+        if user_form.is_valid() and profile_form.is_valid():
+            user_form.save()
+            profile_form.save()
+            messages.success(request, 'Your profile was successfully updated!')
+            return redirect('profile')
+        else:
+            messages.error(request, 'Please correct the error below.')
+    else:
+        user_form = EditUserForm(instance=request.user)
+        profile_form = EditProfileForm(instance=request.user.userprofile)
+    args = {
+        "user_form": user_form,
+        "profile_form": profile_form,
+    }
+    return render(request, "edit_profile.html", args)

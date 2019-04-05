@@ -437,6 +437,9 @@ HTML / CSS | 5 |
     - `add_house()` added initail values for better UX
     - `pay_fee()` user is now redirected to `index` if he already paid to prevent the user pay twice
     - `AddListingForm` added more form validations such as `clean_price()` and `clean_bedrroms()`
+	- added `if` statment to [_large_listing.html](/listings\templates/partials/_large_listing.html) to check if additional images exist before injecting the section
+  - **Accounts app**
+	- confirmation email is now send to user after registration. Example of this email can be viewed [here](/assets/email_templates/registration-email-template-example.html) 
 
 [**To top**](#Table-of-Contents)
 

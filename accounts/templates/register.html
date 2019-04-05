@@ -1,10 +1,16 @@
 {% extends "base.html" %} 
 
 {% load bootstrap4 %}
+{% load static %}
+{% block css %}
+<style>
+	.alert {
+		padding-top: 1rem;
+	}
+</style>
+{% endblock css %}
 
-{% block page_header %}
-  
-{% endblock page_header %}
+{% block page_header %} {% endblock page_header %}
 
 {% block main_content %}
 <!-- Registration form-->
