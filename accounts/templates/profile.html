@@ -104,11 +104,27 @@
 									</p>
 								</div>
 								<hr />
-								<div>
-									<a class="listings-overlay" href="{% url 'house' house.id %}">
-										<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />
-										<i class="fas fa-external-link-alt fa-3x"></i>
-									</a>
+								<div class="listings-overlay">
+									<div>
+										<img class="card-img-top" src="{{ house.main_img.url }}" alt="{{ house.title }}" />										
+									</div>
+									<div class="body container">
+										<div class="row justify-content-center">
+										{% if house.is_published %}
+										  <p class="text-success lead font-weight-bold">
+											  Appoved!
+										  </p>
+										{% else %}
+										 <p class="text-danger lead font-weight-bold">
+											  Waiting for approval!
+										  </p>
+										{% endif %}
+										</div>
+										<div class="row justify-content-around">					
+											<a  class="btn btn-outline-success" href="{% url 'house' house.id %}"> <span class="text-light"><i class="fas fa-eye"></i></span> View listing</a>
+											<a  class="btn btn-outline-secondary" href="{% url 'view_invoice' house.id %}" target="_blank"><span class="text-light"><i class="fas fa-file-pdf"></i></span> Generate invoice</a>
+										</div>											
+									</div>
 								</div>
 							</div>
 						</div>
