@@ -427,10 +427,39 @@ HTML / CSS | 5 |
     - added custom 404 error page
   - **[500.html](/templates/500.html)**
     - added custom 500 error page
+  - **Listing app**
+  - [invoice.html](/listings/templates/invoice.html)
+    - serve as template for rendering invoices for users
+  - [invoice.py](/listings/invoice.py)
+    - `render_to_request()`
+      - `render` invoice from HTML template and `return` it as `HttpResponse` (pdf file)
+    - `render_to_file()`
+      - save generated invoice to pdf file. Used for `send_pdf()`
+    - `send_pdf()`
+      - attach generated pdf to email and send the email to user with [email template](/assets/email_templates/invoice-email-template-example.html)
+    - [pay_fee.html](/listings/templates/pay_fee.html) submit btn is now disabled after submiting the form to preven user to accidemtaly pay twice
 - **Fixes**
-  - **[base.html](/templates/base.html)**
-    - Added nav block to remove nav from error pages
- 
+  - **[_navbar.html](/templates/partials/_navbar.html)**
+    - added `.active` class for user to see on which page he is on
+    - added `if` statment to check for user rights for access to Django admin
+    - removed unecessary links
+  - **Listing app**
+    - [house.html](/listings/templates/house.html) decided to change the short description to links for user to be able search by clicked tag
+    - `add_house()` added initail values for better UX
+    - `pay_fee()` 
+      - user is now redirected to `index` if he already paid to prevent the user pay twice
+      - email with attached invoice as pdf is now send to user after successful payment is made
+    - `preview_house()` user is now redirected to `index` if he already paid to prevent the user pay twice
+    - `AddListingForm` added more form validations such as `clean_price()` and `clean_bedrroms()`
+    - added `if` statment to [_large_listing.html](/listings\templates/partials/_large_listing.html) to check if additional images exist before injecting the section
+  - **Accounts app**
+    - [profile.html](/accounts/templates/profile.html)
+      - `.listings-overlay`
+        - now display to user if the listing has been approved by admins yet
+        - allow user to visit the listing page
+        - allow user to view invoice as pdf in separate window
+    - confirmation email is now send to user after registration. Example of this email can be viewed [here](/assets/email_templates/registration-email-template-example.html)
+
 
 [**To top**](#Table-of-Contents)
 

@@ -18,11 +18,12 @@
 		<div class="collapse navbar-collapse" id="navbarResponsive">
 			<ul class="navbar-nav ml-auto text-center">
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'houses' %}">View all</a>
-				</li>				
+					<a class="nav-link {% if 'listings' in request.path and 'house' not in request.path %} active {% endif %}" href="{% url 'houses' %}">View all</a>
+				</li>	
+						
 				{% if user.is_authenticated %}				
 				<li class="nav-item">
-					<a class="nav-link" href="{% url 'add_house' user.id %}">Add Listing</a>
+					<a class="nav-link {% if 'add_house' in request.path %} active {% endif %}" href="{% url 'add_house' user.id %}">Add Listing</a>
 				</li>
 				<li class="user-messages d-none d-lg-block nav-item ml-1">
 					<button class="btn btn-outline-secondary">
@@ -34,9 +35,6 @@
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown"
 					 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i></button>
 					<div class="dropdown-menu" aria-labelledby="user-menu">
-						{% comment %} Testing {% endcomment %}
-						<a class="dropdown-item" href="{% url 'password_change' %}">P change</a>
-						<a class="dropdown-item" href="/admin/login/">Admin</a>
 						<a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
 						<a class="dropdown-item" href="{% url 'logout' %}">Log-out</a>
 					</div>
@@ -54,6 +52,13 @@
 				{% endif %}
 				{% endif %}	
 			</ul>
-		</div>		
+		</div>	
+		{% if perms.app_label.admin %}
+		<div class="navbar-nav pl-1">
+			<li class="nav-item">
+				<a class="btn btn-outline-danger" href="/admin/login/">Admin <i class="fas fa-user-secret"></i></a>
+			</li>
+		</div>	
+		{% endif %}
 	</div>	
 </nav>

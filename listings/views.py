@@ -1,5 +1,7 @@
+from datetime import datetime
 from django.shortcuts import render, get_object_or_404, redirect, reverse
 from django.contrib import messages
+from django.core.mail import EmailMultiAlternatives
 from django.conf import settings
 from django.core.paginator import Paginator
 from django.contrib.auth.decorators import login_required
@@ -8,39 +10,42 @@ import stripe
 from listings.models import Listing
 from listings.forms import AddListingForm, PayFeeForm, EditListingForm
 from enquiries.forms import EnquiryForm
+from.invoice import Invoice
 
 stripe.api_key = settings.STRIPE_SECRET
+invoice_template_id = 'd-f0ca2ad8eabb4e02bea94e5fcca0d81f'
 
 
 def house(request, house_id):
-	"""
-	Main route for a single house
+    """
+    Main route for a single house
 
-	"""
-	house_data = get_object_or_404(Listing, pk=house_id)
+    """
+    house_data = get_object_or_404(Listing, pk=house_id)
 
-	args = {
-		'house': house_data,
-		'page_title': house_data.title,
-		'form': EnquiryForm
-	}
-	return render(request, "house.html", args)
+    args = {
+        'house': house_data,
+        'page_title': house_data.title,
+        'form': EnquiryForm
+    }
+    return render(request, "house.html", args)
 
 
 def houses(request):
-	"""
-		Main route for all houses
-		"""
-	listings = Listing.objects.all().filter(is_published=True).order_by('-list_date')
+    """
+            Main route for all houses
+            """
+    listings = Listing.objects.all().filter(
+        is_published=True).order_by('-list_date')
 
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
-	args = {
-		"listings": paged_listings		
-	}
-	return render(request, "houses.html", args)
+    args = {
+        "listings": paged_listings
+    }
+    return render(request, "houses.html", args)
 
 
 @login_required
@@ -65,13 +70,19 @@ def add_house(request, user_id):
             request.session['new_house'] = form.data
             return redirect("preview_house", user_id=user_id, house_id=new_house.id)
         else:
-            messages.error(request, form.errors)
+            messages.error(request, "Please correct the error/s to proceed!")
             return render(request, "add_house.html", {'form': form})
     # Automaticaly autofill feilds if house exist in session
     if request.session.get('new_house'):
         listing_form = AddListingForm(request.session['new_house'])
     else:
-        listing_form = AddListingForm
+        listing_form = AddListingForm(initial={
+            "price": 0,
+            "square_feet": 500,
+            "bedrooms": 0,
+            "bathrooms": 0,
+            "garage": 0,
+        })
 
     args = {
         "form": listing_form
@@ -88,6 +99,9 @@ def preview_house(request, user_id, house_id):
         return redirect('add_house', user_id=request.session['_auth_user_id'])
 
     house_data = get_object_or_404(Listing, pk=int(house_id))
+    if house_data.paid_fee:
+        messages.error(request, "You already paid for this listing!")
+        return redirect('index')
 
     args = {
         'house': house_data,
@@ -98,49 +112,72 @@ def preview_house(request, user_id, house_id):
 
 @login_required
 def pay_fee(request, user_id, house_id):
-    """
-    View for user to pay fee for new listing
-    """
+	"""
+	View for user to pay fee for new listing
+	"""
 
-    if user_id is not int(request.session['_auth_user_id']):
-        return redirect('add_house', user_id=request.session['_auth_user_id'])
-    house_data = get_object_or_404(Listing, pk=int(house_id))
-    if request.method == "POST":
-        payment_form = PayFeeForm(request.POST)
-        if payment_form.is_valid():
-            try:
-                customer = stripe.Charge.create(
-                    amount=int(1000),
-                    currency="EUR",
-                    description=request.user.email,
-                    card=payment_form.cleaned_data['stripe_id'],
-                )
-            except stripe.error.CardError:
-                messages.error(request, "Your card was declined!")
+	if user_id is not int(request.session['_auth_user_id']):
+		return redirect('add_house', user_id=request.session['_auth_user_id'])
+	house_data = get_object_or_404(Listing, pk=int(house_id))
+	if house_data.paid_fee:
+		messages.error(request, "You already paid for this listing!")
+		return redirect('index')
+	if request.method == "POST":
+		payment_form = PayFeeForm(request.POST)
+		if payment_form.is_valid():
+			try:
+				customer = stripe.Charge.create(
+					amount=int(1000),
+					currency="USD",
+					description=request.user.email,
+					card=payment_form.cleaned_data['stripe_id'],
+				)
+			except stripe.error.CardError:
+				messages.error(request, "Your card was declined!")
 
-            if customer.paid:
-                messages.success(request, "You have successfully paid")
-                if request.session.get('new_house'):
-                    del request.session['new_house']
-                Listing.objects.filter(pk=int(house_id)).update(paid_fee=True)
-                args = {
-                    'house_id': house_data.id
-                }
-                return redirect(reverse("house", kwargs={'house_id': house_data.id}))
-            else:
-                messages.error(request, "Unable to take payment")
+			if customer.paid:
+				messages.success(request, "You have successfully paid!")
+				messages.success(
+					request, "Please note that your listing must be approved by an admin!")       
+				if request.session.get('new_house'):
+					del request.session['new_house']
+				Listing.objects.filter(pk=int(house_id)).update(paid_fee=True)
+				args = {
+					'house_id': house_data.id
+				}
+				try:
+					user = User.objects.get(pk=int(request.session['_auth_user_id']))
+					params = {
+						"body": "Thank you",
+						"to": [user.email],
+						"subject": f"Invoice for {house_data.title}",
+						"user": user,
+						"house": house_data,
+						"template_id": invoice_template_id,
+						"invoice_created": datetime.now,                                                
+						"file_name": f"{house_data.id}",
+					}
+					
+					Invoice.send_pdf(params)
+					messages.success(request, "Invoice has been emailed to you")
+					return redirect(reverse("house", kwargs={'house_id': house_data.id}))
+				except:
+					messages.error(request, "We could not email you invoice...")
+					return redirect(reverse("house", kwargs={'house_id': house_data.id}))
+			else:
+				messages.error(request, "Unable to take payment")
 
-        else:
-            messages.error(
-                request, "We were unable to take a payment with that card!")
-    args = {
-        'house': house_data,
-        'page_title': house_data.title,
-        'form': PayFeeForm,
-        'publishable': settings.STRIPE_PUBLISHABLE
-    }
+		else:
+			messages.error(
+				request, "We were unable to take a payment with that card!")
+	args = {
+		'house': house_data,
+		'page_title': house_data.title,
+		'form': PayFeeForm,
+		'publishable': settings.STRIPE_PUBLISHABLE
+	}
 
-    return render(request, "pay_fee.html", args)
+	return render(request, "pay_fee.html", args)
 
 
 @login_required
@@ -193,7 +230,7 @@ def search(request):
         """
 
     listings = Listing.objects.all().filter(
-    	is_published=True).order_by('-list_date')
+        is_published=True).order_by('-list_date')
     p_base = str()
 
     if 'keywords' in request.GET:
@@ -245,57 +282,60 @@ def search(request):
     }
     return render(request, "search.html", args)
 
+
 def search_by_links(request, key):
-	""" 
-	Route to let user to search by clicking on links in description
-	"""
+    """ 
+    Route to let user to search by clicking on links in description
+    """
 
-	listings = Listing.objects.all().filter(
-		is_published=True).order_by(f'-{key}')
-	
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    listings = Listing.objects.all().filter(
+        is_published=True).order_by(f'-{key}')
 
-	args = {
-		"listings": paged_listings		
-	}
-	return render(request, "houses.html", args)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
+
+    args = {
+        "listings": paged_listings,
+        "key": key
+    }
+    return render(request, "houses.html", args)
 
 
 def search_by_user(request, user_id):
-	""" 
-	Route to let user to search by clicking on links in description
-	"""
+    """ 
+    Route to let user to search by clicking on links in description
+    """
 
-	listings = Listing.objects.all().filter(
-		is_published=True, seller=user_id).order_by('-list_date')
+    listings = Listing.objects.all().filter(
+        is_published=True, seller=user_id).order_by('-list_date')
 
-	paginator = Paginator(listings, 6)
-	page = request.GET.get('page')
-	paged_listings = paginator.get_page(page)
+    paginator = Paginator(listings, 6)
+    page = request.GET.get('page')
+    paged_listings = paginator.get_page(page)
 
-	args = {
-		"listings": paged_listings		
-	}
-	return render(request, "houses.html", args)
+    args = {
+        "listings": paged_listings
+    }
+    return render(request, "houses.html", args)
 
 
-""" 
 
-Testing only
+# Others
 
-"""
+def view_invoice(request, house_id):
 
-def mail(request):
-	from django.core.mail import EmailMultiAlternatives
-	mail = EmailMultiAlternatives(
-            subject="Your Subject",
-            body="This is a simple text email body.",
-            from_email="The Key Keepers <hello@yamilasusta.com>",
-            to=["miroslav.svec.work@gmail.com"],
-            headers={"Reply-To": "support@sendgrid.com"}
-        )
-	mail.send()
-	messages.success(request, 'Email sent')
-	return redirect('index')
+	""" Generate invoice for User """
+
+	user = User.objects.get(pk=int(request.session['_auth_user_id']))
+	house_data = get_object_or_404(Listing, pk=int(house_id))
+	params = {
+		"body": "Thank you",
+		"to": [user.email],
+		"subject": f"Invoice for {house_data.title}",
+		"user": user,
+		"house": house_data,
+		"template_id": invoice_template_id,
+		"invoice_created": datetime.now,
+		}
+	return Invoice.render_to_request('invoice.html', params)

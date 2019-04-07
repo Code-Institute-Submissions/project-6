@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>{{ subject }}</title>
+
+		<style>
+			h1 {
+				padding-bottom: 5px;
+				text-align: center;
+			}
+			.invoice-box {
+				max-width: 800px;
+				margin: auto;
+				padding: 30px;
+				font-size: 16px;
+				line-height: 24px;
+				font-family: "Helvetica Neue", "Helvetica", Helvetica, Arial, sans-serif;
+				color: #555;
+			}
+		</style>
+	</head>
+
+	<body>
+		<div class="invoice-box">
+			<h1 style="font-size: 30px;">{{ subject }}</h1>
+			<table cellpadding="0" cellspacing="0">
+				
+				<tr class="top">
+					<td colspan="2">
+						<table>	
+							<tr>
+								<td>
+									The Key keepers<br />
+									7th Ave, Milton Keynes<br />
+									MK18 8RO<br />
+									California<br />
+									aph@keykeepers.com
+								</td>
+
+								<td>
+									<span style="font-weight: 700;"> Invoice #: {{ user.id }}/{{ house.id }}</span><br />
+									Generated: {{ invoice_created | date }}
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr style="border-bottom: 5px solid black;">
+					<td colspan="2">
+						<table>
+							<tr>
+								<td>
+									{{ user.username|title }}<br />
+									{{ user.first_name|title }} {{ user.last_name|title }}<br />		
+									{{ house.address }}<br />
+									{{ house.zipcode }}<br />
+									{{ user.email }}<br />
+								</td>
+
+								<td style="font-weight: 700; font-size: 50px;">
+									&#36;10
+								</td>
+							</tr>
+						</table>
+					</td>
+				</tr>
+
+				<tr class="details">
+					<td>
+						<span style="font-weight: 700; font-size: 20px;">Item</span><br /><br />
+						{{ house.title|title }}<br />
+						{{ house.address }}<br />
+						{{ house.zipcode }}<br />
+					</td>
+
+					<td style="font-weight: 700; font-size: 30px;">
+						&#36;10
+					</td>
+				</tr>			
+			</table>
+		</div>
+	</body>
+</html>

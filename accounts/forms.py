@@ -19,12 +19,10 @@ class UserProfileForm(UserCreationForm):
     """
     Form used to register a new user profile
     """
-    # Added email feild to make it required
-    email = forms.EmailField(max_length=100)
-    # img = forms.ImageField(required=False, label="Profile Image")
+    email = forms.EmailField(max_length=100, required=True)
     phone = forms.IntegerField(required=False, label="Phone number")
     description = forms.CharField(widget=forms.Textarea, required=False, label="Few things about you")
-    terms = forms.BooleanField(label="Accept terms and conditions")
+    terms = forms.BooleanField(label="Accept terms and conditions", required=True)
 
     class Meta:
         model = User

@@ -18,6 +18,9 @@ General
 	color: #5cb85c;
 }
 
+.active {
+	color: #5cb85c !important;
+}
 .section-hr {
 	max-width: 25%;
 }

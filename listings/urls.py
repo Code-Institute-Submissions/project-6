@@ -18,5 +18,7 @@ urlpatterns = [
     path('search_by_links/<str:key>',
          listings.search_by_links, name="search_by_links"),
     path('search_by_user/<int:user_id>',
-         listings.search_by_user, name="search_by_user")
+         listings.search_by_user, name="search_by_user"),
+    path('view_invoice/<int:house_id>',
+         listings.view_invoice, name="view_invoice")
 ]
