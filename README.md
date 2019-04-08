@@ -12,7 +12,6 @@
 	- [**Features**](#features)
 		- [Existing features](#existing-features)
 			- [Database existing features](#database-existing-features)
-			- [Existing apps](#existing-apps)
 		- [Features left to implement](#features-left-to-implement)
 	- [**Technologies used**](#technologies-used)
 		- [Front End](#front-end)
@@ -165,18 +164,55 @@ HTML / CSS | 5 |
 ### Existing features
 
 - **aph** (*The project*)
-  - **accounts** allow user to:
+  - **accounts** allow user to:  
+  *All Django default auth templates has been redisigned.*   
     - register new account together with extended profile
     - log in with existing account
-    - view profile / view added listings / access edit profile
+    - profile
+      - view detailed information about his profile
+      - access edit profile view
+      - view his own listings / access add new listing view
+        - generate invoice
+        - view the listing
+    - change password
+    - reset forgoten password (real email address required)
     - edit his profile
+    - admin users (**ci** user has been added as su)
+      - access Django admin area  
+      *I decided to change the styles a bit to match at least the colour scheme* 
   - **enquiries** allow user to:
+    - view unread messages in `nav`
     - send direct message to admins only
     - to contact owner of the property
     - exchange messages between users
+    - to delete messages and conversations
   - **fake_data_gen**
     - *purely created for testing purposes...*
       - generate fake `User`, `UserProfile` and `Listing` which are stored directly to database
+  - **listings** allow user to:
+    - view all (paginated) listings (visible) with image and short information
+    - search_ by `Keywords` (description), `City`, `State`, `Bedrooms` and `Max Price`
+      - search for  `City`, `State`, `Bedrooms`, `Sqft`, `Garage` and `User` via tags in short info  
+    *All queries are sorted in descending order* 
+    - view detailed information about viewed property
+      - if owner user can access edit / delete views
+      - if logged in but not the owner user can contact the owner via direct message
+    - edit listing (if owner)
+    - delete listing (if owner)
+    - add new listing (if user is authenticated)  
+      *I decided to go for 3 step process...*
+      - `add_house`
+        - main view adding new house. The data are also stored in session till user did not pay for the listing to prevent losing the data and re-entering it again after
+      - `preview_house`
+        - preview submitted data
+        - go back to edit the form data
+        - continue to pay fee
+      - `pay_fee`
+        - one time fee of $10 is charged to the user processed via **Stripe**  
+        *For testing use CN: 4242424242424242, CVV: 111 and Exp Date: Any valid date*  
+  - **pages**
+    - only to hold `index`  
+    *Originally I had more use for this app but I decided to scrap them all.*
 
 *For more detail information please visit [**Changelog and Fixes**](#changelog-and-fixes)*
 
@@ -185,15 +221,17 @@ HTML / CSS | 5 |
 *I decided to use Postgres database.*
 
 - **Models**
-  - [Property](/listings/models.py)
-  - [Enquiries (user messages)](/enquiries/models.py)
+  - [Listing](/listings/models.py) (`Listing`)
+  - [Enquiries (user messages)](/enquiries/models.py) (`ContactMessage`)
+  - [Enquiries (user conversations)](/enquiries/models.py) (`PropertyEnquire`)
+  - [User](/accounts/models.py) (`User`)
   - [User profile](/accounts/models.py) (extend `User` model from Django `auth`)
-  
-#### Existing apps
 
 [**To top**](#Table-of-Contents)
 
+
 ### Features left to implement
+
 
 [**To top**](#Table-of-Contents)
 
@@ -235,12 +273,12 @@ HTML / CSS | 5 |
 - **0.2**
   - Created fundamental for `listings` app (for pages such as `houses.html`, `house.html` or `search.html`)
   - separated `templates` and `static` for each of the app
-  - Added testing via Django build in tests
+  - added testing via Django build in tests
 
 - **0.3**  
   *As I did not have enough data as well as I thought that this project will be too similar to my 4th project I decided to change the project slightly.*
   - Changed `plants.html` and `plant.html` to match the project definition
-  - Added env variables to hide keys
+  - Added venv variables to hide keys
   - Added `if` statement to swap between testing and production database
   - Created single listing model
   - Added fundamental for `accounts` app
