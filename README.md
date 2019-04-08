@@ -471,6 +471,7 @@ HTML / CSS | 5 |
     - added mainly to warn user if he has a unsaved listing
   - **Enquires app**
     - slightly changed the fields names in `ContactForm` for better understanding
+  - validated HTML / CSS / JS
 - **Fixes**
   - **Enquires app**
     - `send_contact_message()` added form validation
@@ -485,12 +486,24 @@ HTML / CSS | 5 |
 
 - **Front End**
   - [W3C Markup Validation Service](https://validator.w3.org/)
+    - 1 error due to BS4 rendering info
+      - [Error](https://validator.w3.org/nu/?doc=http%3A%2F%2Fwww.keykeepers.co%2Faccounts%2Fregister%2F%3Fnext%3D%2F)
 
   - [W3C CSS Validation Service](https://jigsaw.w3.org/css-validator/)
+    - Sorry! We found the following errors (32)
+      - Due to the BS4 and Lightbox css
+    - Warnings (1023)
+      - Due to the BS4 and Lightbox css
 
   - [JSHint](https://jshint.com/) (Report of all custom JS functions)
     - **Metrics**
-      - 
+      - There are 46 functions in this file.
+      - Function with the largest signature take 2 arguments, while the median is 0.
+      - Largest function has 17 statements in it, while the median is 3.
+      - The most complex function has a cyclomatic complexity value of 7 while the median is 1.
+    - **Five unused variables**  
+      - As thier are called from templates
+
 - **Back End**
   - [Visual Studio Python debugger](https://code.visualstudio.com/docs/python/debugging)
 

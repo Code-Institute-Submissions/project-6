@@ -2,8 +2,8 @@
 Nav
 */
 
-$(function() {
-	$(".user-messages").click(function() {
+$(function () {
+	$(".user-messages").click(function () {
 		$("#message-inner .card-body").slideUp();
 		$("#message-inner .fa-caret-up")
 			.parent()
@@ -26,19 +26,19 @@ $(function() {
 Get messages 
 */
 
-$(function() {
+$(function () {
 	(function messages_poll() {
-		setTimeout(function() {
+		setTimeout(function () {
 			$.ajax({
 				type: "GET",
 				url: `/enquiries/get_messages/`,
-				success: function(data) {
+				success: function (data) {
 					let conversations = new Conversations(data);
 					return conversations.create_conversations();
 				},
 				dataType: "json",
 				complete: messages_poll,
-				error: function(xhr) {
+				error: function (xhr) {
 					console.log(xhr);
 				}
 			});
@@ -59,7 +59,7 @@ class Conversations {
 			.val()
 			.split(",");
 	}
-	parseData = function() {
+	parseData = function () {
 		let parsedData = [];
 		this.json.forEach(ele => {
 			parsedData.push(JSON.parse(ele));
@@ -69,22 +69,22 @@ class Conversations {
 		} else {
 			return [];
 		}
-	};
+	}
 
-	is_sender = function(conversation) {
+	is_sender = function (conversation) {
 		if (this.user_id == conversation.sender_id) {
 			return true;
 		} else {
 			return false;
 		}
-	};
+	}
 
-	sort_conversations = function() {
+	sort_conversations = function () {
 		let new_conversations = [];
 		let old_conversations = [];
 		let conversations = this.parseData();
 		for (let i = 0; i < conversations.length; i++) {
-			for (let z = 0; z < conversations[i].length; z++) {				
+			for (let z = 0; z < conversations[i].length; z++) {
 				let message = conversations[i][z].fields;
 				if (this.user_id == message.to_id && message.new_to) {
 					new_conversations.push(conversations[i]);
@@ -99,8 +99,8 @@ class Conversations {
 			new_conversations: new_conversations,
 			old_conversations: old_conversations
 		};
-	};
-	nav_btn = function(counter) {
+	}
+	nav_btn = function (counter) {
 		if (counter == 0) {
 			$(".user-messages button").html(`
 			<i class="fas fa-envelope fa-fw"></i>
@@ -111,12 +111,12 @@ class Conversations {
 			<i class="fas fa-envelope fa-fw"></i>
 			<span class="badge badge-danger">${
 				this.sort_conversations().new_conversations.length
-			}</span>
+				}</span>
 			<i class="fas fa-caret-down"></i>
 		`);
 		}
-	};
-	no_conversations = function() {
+	}
+	no_conversations = function () {
 		$("#message-inner").html(`
 		<div class="col-12 loader">
 				<div class="row justify-content-center py-5">
@@ -125,8 +125,8 @@ class Conversations {
 				</div>
 			</div>
 	`);
-	};
-	create_conversations = function() {
+	}
+	create_conversations = function () {
 		if (this.json.length == 0) {
 			this.nav_btn(0);
 			this.no_conversations();
@@ -162,7 +162,7 @@ class Conversations {
 				}
 			}
 		}
-	};
+	}
 }
 
 /* 
@@ -170,8 +170,8 @@ Class for innering conversarions Header / Messages / Reply form
 */
 class Templates {
 	constructor(conversation, new_conversation) {
-		this.conversation = conversation;		
-		this.text_color = function() {
+		this.conversation = conversation;
+		this.text_color = function () {
 			if (new_conversation != true) {
 				return "text-secondary";
 			} else {
@@ -196,11 +196,11 @@ class Templates {
 			data = data.toLocaleDateString("en-UK");
 			return data;
 		}
-		function conversation_member () {
+		function conversation_member() {
 			if (user_id == header_data.to_id) {
-				return header_data.sender_id
+				return header_data.sender_id;
 			} else {
-				return header_data.to_id
+				return header_data.to_id;
 			}
 		}
 		$("#message-inner").append(`
@@ -255,7 +255,7 @@ class Templates {
 	}
 	conversation_template() {
 		let conversation = [];
-		let messages_ids = []
+		let messages_ids = [];
 		for (let i = 0; i < this.conversation.length; i++) {
 			let message = `
 			<div class="col-12 pt-5">				
@@ -280,7 +280,7 @@ class Templates {
 		}
 		return {
 			c: conversation,
-			ids : messages_ids
+			ids: messages_ids
 		};
 	}
 
@@ -312,7 +312,7 @@ class Templates {
 				<input type="checkbox" name="new_to" class="form-check-input d-none" checked>
 			</form>
 		</div>
-			`
+			`;
 		} else {
 			return `
 			<div class="row justify-content-center">
@@ -336,9 +336,9 @@ class Templates {
 					<input type="checkbox" name="new_to" class="form-check-input d-none" checked>
 				</form>
 			</div>
-			`
-		};
-	} 
+			`;
+		}
+	}
 }
 
 /* 
@@ -358,7 +358,7 @@ function expand_message(btn, url) {
 			</button>
 			`
 		);
-	toggle_read(url)
+	toggle_read(url);
 	setTimeout(() => {
 		$(btn)
 			.addClass('btn-secondary')
@@ -410,7 +410,7 @@ Toggle read
 */
 
 function toggle_read(url_id) {
-	let url = `/enquiries/toggle_read/${url_id}`
+	let url = `/enquiries/toggle_read/${url_id}`;
 	$.ajax({
 		type: "POST",
 		url: url,
@@ -448,17 +448,17 @@ function delete_message(url, conversation_id) {
 		type: "POST",
 		url: url,
 		data: "delete_message",
-		beforeSend: function(xhr) {
+		beforeSend: function (xhr) {
 			xhr.setRequestHeader("X-CSRFToken", $.cookie("csrftoken"));
 		},
-		success: function(data) {
+		success: function (data) {
 			if (data) {
 				$(conversation_id).slideUp(1000);
 				toggle_modal("#delete-message-modal");
 				$("#delete-message-modal .modal-footer").empty();
 			}
 		},
-		error: function(xhr) {
+		error: function (xhr) {
 			console.log(xhr);
 		}
 	});

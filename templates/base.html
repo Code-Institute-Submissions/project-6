@@ -42,16 +42,16 @@
 
 
 	<!-- JS messages -->
-	<section id="js-alerts" class="container-fluid fixed-top">
+	<div id="js-alerts" class="container-fluid fixed-top">
 		<div class="row pb-3">
 			<div class="alert col-12 text-center font-weight-bold"></div>
 		</div>
-	</section>
+	</div>
 
 	
 	{% if messages %}
 	<!-- Bootstrap messages -->
-	<section class="container-fluid fixed-top">
+	<div class="container-fluid fixed-top">
 		<div class="row pb-3">
 			<div class="alert col-12 text-center font-weight-bold">
 				{% for message in messages %}
@@ -59,7 +59,7 @@
 				{% endfor %}
 			</div>
 		</div>
-	</section>
+	</div>
 	{% endif %}
 	
 	{% block page_header %}

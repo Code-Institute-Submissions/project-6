@@ -14,10 +14,6 @@ General
 	list-style: none;
 }
 
-.errorlist:first {
-	color: red;
-}
-
 .navbar-light .navbar-brand {
 	color: #5cb85c;
 	opacity: 0.7;
@@ -66,7 +62,7 @@ Nav
 
 #nav {
 	z-index: 1031;
-	font-weight: 650;
+	font-weight: 700;
 	background-color: rgba(255, 255, 255, 0.2);
 }
 
