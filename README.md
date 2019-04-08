@@ -76,7 +76,6 @@ I decided to create my own project.
 
 ## **UX**
 
-
 ### **Requirements**
 
 #### Users
@@ -164,6 +163,20 @@ HTML / CSS | 5 |
 ## **Features**
 
 ### Existing features
+
+- **aph** (*The project*)
+  - **accounts** allow user to:
+    - register new account together with extended profile
+    - log in with existing account
+    - view profile / view added listings / access edit profile
+    - edit his profile
+  - **enquiries** allow user to:
+    - send direct message to admins only
+    - to contact owner of the property
+    - exchange messages between users
+  - **fake_data_gen**
+    - *purely created for testing purposes...*
+      - generate fake `User`, `UserProfile` and `Listing` which are stored directly to database
 
 *For more detail information please visit [**Changelog and Fixes**](#changelog-and-fixes)*
 
@@ -299,12 +312,12 @@ HTML / CSS | 5 |
   - **Listing app**
     - added fundamentals for `preview_house()`
     - created partial template as [_large_listing.html](/listings/templates/partials/_large_listing.html) is now used in [preview_house.html](/listings/templates/preview_house.html) as well as [house.html](/listings/templates/house.html)
-    - moved progrresion bar to separate partial template [_progress_bar.html](/listings/templates/partials/_progress_bar.html)
+    - moved progression bar to separate partial template [_progress_bar.html](/listings/templates/partials/_progress_bar.html)
 - **Fixes**
   - **Listings app**
     - `add_house()`
       - `is_valid()` now properly validate the form including `clean_zipcode()`
-      - added separate `return` statment to prevent the form to reset after an error
+      - added separate `return` statement to prevent the form to reset after an error
     - `forms.py`
       - zipcode is now striped of all white spaces and lower cased in `clean_zipcode()` for more security
       - added more validations to form (`max` and `min`) **bedrooms**, **bathrooms** and **garage** field
@@ -329,8 +342,8 @@ HTML / CSS | 5 |
   - **Listing app**
     - removed `unique=True` from `zipcode` in [models.py](/listings/models.py) as this was throwing form error while using the same model for edit hose.  
     *This does not effect `AddListingForm` due to `clean_zipcode()`.*
-	- added simple `if` statment to `edit_house()` to prevent user acidentaly overwrite other user listing while entering zipcode which already exist in database  
-	*Did not use `clean_zipcode()` as this was throwing validation error while rendering the form.*
+    - added simple `if` statment to `edit_house()` to prevent user accidentally overwrite other user listing while entering zipcode which already exist in database  
+    *Did not use `clean_zipcode()` as this was throwing validation error while rendering the form.*
 
 #### 1.4
 
@@ -344,7 +357,7 @@ HTML / CSS | 5 |
     - added "pooling" (via **JQ Ajax**) user messages and enquiries from the server for logged in users
     - added [_user_messages_modal.html](/enquiries\templates/partials/modals/_user_messages_modal.html) to display unread / read messages and enquiries to user
     - added [create_conversations.py](/enquiries/create_conversations.py)  
-    *Create conversations from received and sended messages.*  
+    *Create conversations from received and sent messages.*  
   - **Nav**
     - added separate `.user-messages` btn to [_navbar.html](/templates/partials/_navbar.html).  
     *One for mobile and for large screens.*  
@@ -353,7 +366,7 @@ HTML / CSS | 5 |
     - fixed 500 error in [house.html](/listings/templates/house.html) due to injecting [_delete_house_modal.html](/listings/templates/partials/modals/_delete_house_modal.html) and [_enquire_modal.html](/listings/templates/partials/modals/_enquire_modal.html) even when user was not authenticated
   - **Enquire app**
     - [_user_messages_modal.html](enquiries/templates/partials/modals/_user_messages_modal.html)
-      - added loader as there is 3s delay before messages are innered to the modal
+      - added loader as there is 3s delay before messages are inhered to the modal
     - [models.py](/enquiries/models.py)
       - **PropertyEnquire**
         - changed **house_id** to **IntegerField** due to the 500 error when listing has been deleted
@@ -380,7 +393,7 @@ HTML / CSS | 5 |
   - **[_navbar.html](/templates/partials/_navbar.html)**
     - fixed issue when message btn was showing even when user was not authenticated in mobile view
   - **[_search_form.html](/listings/templates/partials/_search_form.html)**
-    - removed countries from and decided to use just states as this makes the app much smipler to work with
+    - removed countries from and decided to use just states as this makes the app much simpler to work with
     - removed currency selection from now and working with dollars only as again I did not want to go trough converting currencies depends on where the user is based.
   - user is now properly redirected back to last visited page after login / register (`next_url`)
 
@@ -389,7 +402,7 @@ HTML / CSS | 5 |
 - **Changelog**
   - added **Sendgrid** for sending real emails to user
   - **Django User Auth**
-    - cretaed many custom templates to overwirte the basic **Django** auth templates including
+    - created many custom templates to overwrite the basic **Django** auth templates including
       - [base_site.html](/templates/admin/base_site.html)
       - [login.html](/templates/admin/login.html)
       - [logged_out.html](/templates/registration/logged_out.html)
@@ -403,16 +416,16 @@ HTML / CSS | 5 |
     - added [auth.css](/accounts/static/css/custom/auth.css) form more custom styles in auth templates
 - **Fixes**
   - **[views.py](/accounts/views.py)**
-    - fixed issue with incorrect redirect when user is anthenticaded when vieving `register()`
+    - fixed issue with incorrect redirect when user is authenticated when viewing `register()`
   - fixed issue with `nav` in mobile view. The `nav` will always turn white when the `.navbar-toggler` is pressed to avoid hard reading of `nav` content
-  - added more styles accross the page to fix many styles issues
+  - added more styles across the page to fix many styles issues
 
 #### 1.8
 
 - **Changelog**
   - **[profile.html](/accounts/templates/profile.html)**
-    - added user information section to dysplay his details
-    - added listing section to dysplay the user's listings (if any) or let user to create one
+    - added user information section to display his details
+    - added listing section to display the user's listings (if any) or let user to create one
   - **[edit_profile.html](/accounts/templates/edit_profile.html)**
     - added functionality for user to edit his `User` model and / or `User Profile`
   - **[_footer.html](/templates/partials/_footer.html)**
@@ -438,15 +451,15 @@ HTML / CSS | 5 |
       - save generated invoice to pdf file. Used for `send_pdf()`
     - `send_pdf()`
       - attach generated pdf to email and send the email to user with [email template](/assets/email_templates/invoice-email-template-example.html)
-    - [pay_fee.html](/listings/templates/pay_fee.html) submit btn is now disabled after submiting the form to preven user to accidemtaly pay twice
+    - [pay_fee.html](/listings/templates/pay_fee.html) submit btn is now disabled after submitting the form to prevent user to accidentally pay twice
 - **Fixes**
   - **[_navbar.html](/templates/partials/_navbar.html)**
     - added `.active` class for user to see on which page he is on
-    - added `if` statment to check for user rights for access to Django admin
-    - removed unecessary links
+    - added `if` statement to check for user rights for access to Django admin
+    - removed unnecessary links
   - **Listing app**
     - [house.html](/listings/templates/house.html) decided to change the short description to links for user to be able search by clicked tag
-    - `add_house()` added initail values for better UX
+    - `add_house()` added initial values for better UX
     - `pay_fee()`
       - user is now redirected to `index` if he already paid to prevent the user pay twice
       - email with attached invoice as pdf is now send to user after successful payment is made
@@ -502,7 +515,7 @@ HTML / CSS | 5 |
       - Largest function has 17 statements in it, while the median is 3.
       - The most complex function has a cyclomatic complexity value of 7 while the median is 1.
     - **Five unused variables**  
-      - As thier are called from templates
+      - As their are called from templates
 
 - **Back End**
   - [Visual Studio Python debugger](https://code.visualstudio.com/docs/python/debugging)
@@ -574,7 +587,7 @@ HTML / CSS | 5 |
 - **Postgres Database**
   - installed Postgres
   - created new Postgres database
-  - created new user in the database and gave him all privilages
+  - created new user in the database and gave him all privileges
 - **Folders set up**
   - created new dir
   - cloned the repository to the created dir
@@ -598,7 +611,7 @@ HTML / CSS | 5 |
   - installed NGINX
   - created new folder in the project to hold the setting
   - added NGINX setting as per documentation and adjust it to the project
-  - added 10Mb max rule to **NGINX** config to allow users to upload large imgs
+  - added 10Mb max rule to **NGINX** config to allow users to upload large images
   - tested NGINX config
   - removed port 8000 from firewall and add new port 80 (*NGINX*)
 - restarted **Gunicorn** and **NGINX**
@@ -653,9 +666,9 @@ HTML / CSS | 5 |
 
   *All of you gave me constructive feedback which made the project better* 😊
 
-
 ### Need to add
 
 - email verification on register / add Terms as required before saving the profile
 - add more fields to listing form (first line of address and so on)
 - much more JS and less Python for better user experiences
+
