@@ -30,6 +30,7 @@
 			- [1.7](#17)
 			- [1.8](#18)
 			- [1.9](#19)
+			- [2.0](#20)
 	- [**Testing**](#testing)
 		- [Tools used for testing](#tools-used-for-testing)
 		- [Testing before version 1](#testing-before-version-1)
@@ -446,7 +447,7 @@ HTML / CSS | 5 |
   - **Listing app**
     - [house.html](/listings/templates/house.html) decided to change the short description to links for user to be able search by clicked tag
     - `add_house()` added initail values for better UX
-    - `pay_fee()` 
+    - `pay_fee()`
       - user is now redirected to `index` if he already paid to prevent the user pay twice
       - email with attached invoice as pdf is now send to user after successful payment is made
     - `preview_house()` user is now redirected to `index` if he already paid to prevent the user pay twice
@@ -460,6 +461,12 @@ HTML / CSS | 5 |
         - allow user to view invoice as pdf in separate window
     - confirmation email is now send to user after registration. Example of this email can be viewed [here](/assets/email_templates/registration-email-template-example.html)
 
+#### 2.0
+
+- **Changelog**
+  - **Pages app**
+    - [index.html](pages/templates/index.html)
+      - replaced dummy text and add more content to this section
 
 [**To top**](#Table-of-Contents)
 

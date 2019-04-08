@@ -18,6 +18,7 @@ def register(request):
     """
 
     if request.user.is_authenticated:
+        messages.error(request, "You are registered and logged in already!")
         return redirect('index')
     if request.method == 'POST':
         form = UserProfileForm(request.POST)

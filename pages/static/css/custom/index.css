@@ -107,6 +107,16 @@ More info
 	transform: scale(1.5);
 }
 
+#more-info .card:hover .lead {
+	color: #5cb85c;
+	font-weight: 550;
+}
+
+#more-info .card:hover a {
+	font-weight: 700;
+	border-bottom: 1px solid #5cb85c;
+}
+
 #more-info .card i {
 	color: #ffffff;
 }
