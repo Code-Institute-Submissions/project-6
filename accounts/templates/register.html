@@ -19,15 +19,13 @@
 		<div class="col-12 pt-5">
 			<form method="POST" action="{% url 'register' %}" class="py-5">
 				{% csrf_token %}
-				<fieldset class="form-group">
-					<legend class="text-center">Create a new account</legend>
+				<h2 class="text-center vibes-cursive text-success">Create a new account</h2>
 					<p class="text-center py-5">Already got an account? 
 						<a href="{% url 'login' %}">Login</a>
 					</p>
 			
-					{% bootstrap_form form layout='horizontal' %}			
-			
-				</fieldset>
+					{% bootstrap_form form layout='horizontal' %}	
+
 				<div class="form-group text-right">
 					{% buttons %}
 					<button type="submit" class="btn btn-success">Create account</button>
