@@ -8,6 +8,16 @@ General
 	text-align: center;
 }
 
+.alert li,
+.alert ul {
+	padding-bottom: 20px;
+	list-style: none;
+}
+
+.errorlist:first {
+	color: red;
+}
+
 .navbar-light .navbar-brand {
 	color: #5cb85c;
 	opacity: 0.7;
@@ -28,7 +38,6 @@ General
 .vibes-cursive {
 	font-family: "Great Vibes", cursive;
 }
-
 
 .navbar-brand span,
 #js-alerts {
@@ -92,6 +101,15 @@ Nav
 	}
 }
 
+.dropdown-menu {
+	border: 0;
+}
+
+.dropdown-item.active,
+.dropdown-item:active {
+	background-color: transparent;
+}
+
 /* 
 Page Header
 */
@@ -106,9 +124,7 @@ Page Header
 	background-size: cover;
 }
 
-
-
-#user-messages-modal {	
+#user-messages-modal {
 	height: 100vh;
 }
 
@@ -129,7 +145,6 @@ Main
 main {
 	min-height: 100vh;
 }
-
 
 /* 
 Footer 

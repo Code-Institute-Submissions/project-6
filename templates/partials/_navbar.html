@@ -34,9 +34,9 @@
 				<div class="dropdown ml-1 text-right">
 					<button class="btn btn-secondary dropdown-toggle" type="button" id="user-menu" data-toggle="dropdown"
 					 aria-haspopup="true" aria-expanded="false"><i class="fas fa-user-alt"></i></button>
-					<div class="dropdown-menu" aria-labelledby="user-menu">
+					<div class="dropdown-menu text-center" aria-labelledby="user-menu">
 						<a class="dropdown-item" href="{% url 'profile' %}">Profile</a>
-						<a class="dropdown-item" href="{% url 'logout' %}">Log-out</a>
+						<a class="dropdown-item" data-toggle="modal" data-target="#log-out-modal">Log-out</a>
 					</div>
 				</div>
 				{% else %}

@@ -4,13 +4,19 @@ from .models import ContactMessage, PropertyEnquire
 
 class ContactForm(forms.ModelForm):
 
-    """ 
-    Users messages form 
-    """
+	""" 
+	Users messages form 
+	"""
 
-    class Meta:
-        model = ContactMessage
-        fields = ['enquire', 'username', 'email', 'message']
+
+	subject = forms.CharField(max_length=50)
+	your_name = forms.CharField(max_length=50)
+	email = forms.EmailField(max_length=100)
+	message = forms.CharField(min_length=15, widget=forms.Textarea)
+
+	class Meta:
+		model = ContactMessage
+		fields = ['subject', 'your_name', 'email', 'message']
 
 
 class EnquiryForm(forms.ModelForm):

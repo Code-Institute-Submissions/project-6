@@ -121,25 +121,3 @@ More info
 	color: #ffffff;
 }
 
-/* 
-Contact Us
-*/
-
-#contact-us {
-	height: auto;
-}
-#contact-us ::-webkit-input-placeholder,
-#contact-us select[name="enquire"] {
-	color: #5cb85c;
-}
-
-#contact-us select[name="enquire"],
-#contact-us input,
-.form-control {
-	border: 0;
-	background-color: #f8f9fa;
-	border: 1px solid #5cb85c;
-}
-#contact-us label {
-	display: none;
-}

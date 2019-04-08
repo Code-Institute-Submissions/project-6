@@ -467,6 +467,13 @@ HTML / CSS | 5 |
   - **Pages app**
     - [index.html](pages/templates/index.html)
       - replaced dummy text and add more content to this section
+  - **[modal.html](/templates/partials/modals/_log-out-modal.html)**
+    - added mainly to warn user if he has a unsaved listing
+  - **Enquires app**
+    - slightly changed the fields names in `ContactForm` for better understanding
+- **Fixes**
+  - **Enquires app**
+    - `send_contact_message()` added form validation
 
 [**To top**](#Table-of-Contents)
 
@@ -485,11 +492,7 @@ HTML / CSS | 5 |
     - **Metrics**
       - 
 - **Back End**
-  - [Jupyter Notebook](https://jupyter.org/index.html)
-    - *Most of the functions has been pre-written and tested in **Jupyter Notebook**.*
-
   - [Visual Studio Python debugger](https://code.visualstudio.com/docs/python/debugging)
-    - *Mostly used after **Jupyter Notebook** testing.*
 
 ### Testing before version 1
 

@@ -18,6 +18,9 @@ def send_contact_message(request):
             form = ContactForm()
             messages.success(request, "Thank you for your message!")
             return redirect('/#contact-us')
+        else:
+        	messages.error(request, form.errors)
+        	return redirect('/#contact-us')
     else:
         return redirect('index')
 

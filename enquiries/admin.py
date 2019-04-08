@@ -3,8 +3,8 @@ from .models import *
 
 
 class EnquireMessageAdminFields(admin.ModelAdmin):
-    list_display = ('enquire', 'username', 'email', 'message')
-    list_display_links = ('username', 'message',)
+    list_display = ('subject', 'your_name', 'email', 'message')
+    list_display_links = ('your_name', 'message',)
 
 
 class PropertyEnquireAdminFields(admin.ModelAdmin):
