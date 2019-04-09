@@ -37,7 +37,6 @@
 	- [**How to run the project locally?**](#how-to-run-the-project-locally)
 	- [**Credits**](#credits)
 		- [Special thanks to](#special-thanks-to)
-		- [Need to add](#need-to-add)
 
 <hr />
 
@@ -235,7 +234,8 @@ HTML / CSS | 5 |
   - **enquiries** 
     - if user send message to admins this should create a new conversation as admin is forced to create new conversation manually in admin area to be able to reply the user
     - unfortunately this app only works for "property enquiries". Could use the system for admin messages as well as for confirmation after payment / registration
-  - **listings** 
+  - **listings**
+    - add more fields to listing form (first line of address and so on)
     - generated invoices needs better design. Unfortunately I had many problems with parsing Embedded CSS while generating the pdf. In almost every case I was forced to use Inline CSS styles. As every template comes with Embedded CSS I was forced to create something simple with inline styles.
     - all houses in database has the same (hardcoded value). As I faked all data the addresses does not exist. Therefore the Google map is for showing the layout only
     - search form is very basic
@@ -251,15 +251,13 @@ HTML / CSS | 5 |
   - More comments across all files
   - More content across all pages
   - Media folder is pushed to git just for the purpose of testing project locally
+  - Unfortunately due to limited time the last sections of README is not in many details as write all down will require much more time with this project
 
 [**To top**](#Table-of-Contents)
 
 <hr />
 
 ## **Technologies used**
-
-- [Stripe](https://stripe.com/docs/stripe-js/reference)
-  - used to fake real payments
 
 ### Front End
 
@@ -273,8 +271,24 @@ HTML / CSS | 5 |
   - used to create slide show of additional images (if any)
 - [jQ cookie](https://github.com/js-cookie/js-cookie)
   - used to retrieve `csrf_token` from session
+- [Stripe](https://stripe.com/docs/stripe-js/reference)
+  - used to fake real payments 
 
 ### Back End
+
+- [Django 2.1](https://docs.djangoproject.com/en/2.2/)
+  - used build the project
+- [Django Bootstrap 4](https://pypi.org/project/django-bootstrap4/)
+  - mainly used for form rendering and styling including form errors
+- [Sendgrid Django 4.2](https://pypi.org/project/sendgrid-django/)
+  - used to send real emails to user together with **Sendgrid** transactional template.
+  - also used for Django auth reset password emails
+- [xhtml2pdf](https://docs.djangoproject.com/en/2.2/)
+  - used generate invoice from HTML template to PDF file
+    - render the template as request
+    - attach a PDF file to an email and send it to user
+- [Faker 0.9](https://docs.djangoproject.com/en/2.2/)
+  - to fake the data in database
 
 [**To top**](#Table-of-Contents)
 
@@ -284,12 +298,12 @@ HTML / CSS | 5 |
 
 *[Git](https://git-scm.com/) has been used for version control.*
 
-- There are xxxxxxxxx different branches:
+- There are 12 different branches:
 
   - [master branch](https://github.com/MiroslavSvec/project-5/tree/master) used in production.  
-    - *The application is built from this branch on **Heroku***
+    - *The application is built from this branch on **Digital Ocean**
 
-  - *xxxxxxxx other branches has been created for development purpose only. Where each branch represent different version of the application.*
+  - *11 other branches has been created for development purpose only. Where each branch represent different version of the application.*
 
 ### Before version 1
 
@@ -589,7 +603,7 @@ HTML / CSS | 5 |
       - As their are called from templates
 
 - **Back End**
-  - [Visual Studio Python debugger](https://code.visualstudio.com/docs/python/debugging)
+  - [Visual Studio Django debugger](https://code.visualstudio.com/docs/python/debugging)
 
 ### Testing before version 1
 
@@ -638,7 +652,12 @@ HTML / CSS | 5 |
 
 *I decided to deploy the project to **Digital Ocean** as I wanted to learn something new in process.*
 
-- [Python 3.6.3](https://www.python.org/downloads/release/python-363/) and [Django](https://docs.djangoproject.com/en/2.1/)
+
+- [Digital Ocean](https://cloud.digitalocean.com)
+
+- [Name Cheap](https://www.namecheap.com)
+
+- [Python 3.6.3](https://www.python.org/downloads/release/python-363/) and [Django 2.1](https://docs.djangoproject.com/en/2.1/)
 - created [requirements.txt]
 
 - **Pre-requirements**
@@ -695,9 +714,18 @@ HTML / CSS | 5 |
 
 ## **How to run the project locally?**
 
-*Please note that the project can not be run locally without database user name and password.*
+*Please note that not every feature of the project can be run locally as I do not provide me secret keys.*
 
 *Due to the security reasons I do not publish any of those and therefore the project can not be really run locally.*
+
+*If you like to test those features please visit the [website](http://www.keykeepers.co/)*
+
+*Also the project comes with local setting and pre-pulated database with users thier profiles and listings.*
+
+- ***su***
+  - username: **ci**
+  - password: **codeinstitute**
+
 
 1. Download and install [Python 3](https://www.python.org/downloads/)
 2. Clone or download the project
@@ -709,15 +737,24 @@ HTML / CSS | 5 |
    - `pip install -r requirements.txt`
 6. Set **venv** variables
    - IP `0.0.0.0`
-   - PORT `5000`
-   - 
-   - SECRET_KEY `my_secret_key`
+   - PORT `8000`
    - DEVELOPMENT `True`
+   - STRIPE_PUBLISHABLE `your_key`
+   - STRIPE_SECRET `your_key`
+   - SENDGRID_API_KEY `your_key`
 7. Database
-   - 
+   *You can skip this steps if you use the database suplied with the project*  
+   - `python manage.py makemigrations`
+   - `python manage.py migrate`
+   - `python manage.py createsuperuser`
+   - `python manage.py collectstatic`
 8. Run the application
-   - 
+   - `python manage.py runserver`
 9.  The application should now run on your `localhost:8000`
+10. Fake data
+    - make sure that the `DEBUG` is set to `TRUE`
+    - visit `localhost:8000/fake-data/`
+    - go back to terminal and enter how many records you wish to have
 
 [**To top**](#Table-of-Contents)
 
@@ -730,10 +767,3 @@ HTML / CSS | 5 |
 - **everyone for finding few minutes to test the project!**
 
   *All of you gave me constructive feedback which made the project better* 😊
-
-### Need to add
-
-- email verification on register / add Terms as required before saving the profile
-- add more fields to listing form (first line of address and so on)
-- much more JS and less Python for better user experiences
-
