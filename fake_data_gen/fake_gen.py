@@ -6,6 +6,12 @@ from listings.models import Listing
 from accounts.models import UserProfile
 
 
+
+""" 
+If DEBUG
+	visit host/fake-data
+"""
+
 class FakeData:
 
     """

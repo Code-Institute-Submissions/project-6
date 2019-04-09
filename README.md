@@ -35,7 +35,6 @@
 		- [Testing before version 1](#testing-before-version-1)
 	- [**Deployment**](#deployment)
 	- [**How to run the project locally?**](#how-to-run-the-project-locally)
-	- [**What could be done better?**](#what-could-be-done-better)
 	- [**Credits**](#credits)
 		- [Special thanks to](#special-thanks-to)
 		- [Need to add](#need-to-add)
@@ -181,7 +180,8 @@ HTML / CSS | 5 |
       - access Django admin area  
       *I decided to change the styles a bit to match at least the colour scheme* 
   - **enquiries** allow user to:
-    - view unread messages in `nav`
+    - view unread messages in `nav`   
+    *Refresh every 3s* 
     - send direct message to admins only
     - to contact owner of the property
     - exchange messages between users
@@ -224,14 +224,33 @@ HTML / CSS | 5 |
   - [Listing](/listings/models.py) (`Listing`)
   - [Enquiries (user messages)](/enquiries/models.py) (`ContactMessage`)
   - [Enquiries (user conversations)](/enquiries/models.py) (`PropertyEnquire`)
-  - [User](/accounts/models.py) (`User`)
+  - [Default Django auth User](/accounts/models.py) (`User`)
   - [User profile](/accounts/models.py) (extend `User` model from Django `auth`)
 
 [**To top**](#Table-of-Contents)
 
-
 ### Features left to implement
 
+- **aph** (*The project*)
+  - **enquiries** 
+    - if user send message to admins this should create a new conversation as admin is forced to create new conversation manually in admin area to be able to reply the user
+    - unfortunately this app only works for "property enquiries". Could use the system for admin messages as well as for confirmation after payment / registration
+  - **listings** 
+    - generated invoices needs better design. Unfortunately I had many problems with parsing Embedded CSS while generating the pdf. In almost every case I was forced to use Inline CSS styles. As every template comes with Embedded CSS I was forced to create something simple with inline styles.
+    - all houses in database has the same (hardcoded value). As I faked all data the addresses does not exist. Therefore the Google map is for showing the layout only
+    - search form is very basic
+    - add / edit listing
+      - every time there is a validation error or the form is edited the images must be uploaded again. This is very bad approach. The user should not need to do this if he does not wish to change the image. Also user should have access to his uploaded images.
+      - even if the listing is deleted the images still persist
+
+- **Others**
+  - Automated testing as 99% tests has been done manually
+  - CSS styles are very basic as I was focusing on the functionality and UX of the project. 
+  - More JS for better UX and animations as the page is very static
+  - More form validations across all forms
+  - More comments across all files
+  - More content across all pages
+  - Media folder is pushed to git just for the purpose of testing project locally
 
 [**To top**](#Table-of-Contents)
 
@@ -239,7 +258,21 @@ HTML / CSS | 5 |
 
 ## **Technologies used**
 
+- [Stripe](https://stripe.com/docs/stripe-js/reference)
+  - used to fake real payments
+
 ### Front End
+
+- [Bootstrap 4.0](https://getbootstrap.com/docs/4.0/getting-started/introduction/)
+  - used to build the layout and style the project
+- [Font Awesome 5.3](https://fontawesome.com/)
+  - used for icons
+- [jQuery 3.2](https://jquery.com/download/)
+  - used for DOM / Sending requests to server
+- [Light box](http://ashleydw.github.io/lightbox/)
+  - used to create slide show of additional images (if any)
+- [jQ cookie](https://github.com/js-cookie/js-cookie)
+  - used to retrieve `csrf_token` from session
 
 ### Back End
 
@@ -685,12 +718,6 @@ HTML / CSS | 5 |
 8. Run the application
    - 
 9.  The application should now run on your `localhost:8000`
-
-[**To top**](#Table-of-Contents)
-
-<hr />
-
-## **What could be done better?**
 
 [**To top**](#Table-of-Contents)
 

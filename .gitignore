@@ -6,8 +6,6 @@ aph/static/img
 .vscode
 *.ipynb
 .bashrc
-/plants-data
-/settings
 2019
 
 ### Django ###
@@ -15,7 +13,6 @@ aph/static/img
 *.pot
 *.pyc
 __pycache__/
-local_settings.py
 migrations/
 db.sqlite3
 # /media 
