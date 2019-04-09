@@ -37,6 +37,7 @@
 	- [**How to run the project locally?**](#how-to-run-the-project-locally)
 	- [**Credits**](#credits)
 		- [Special thanks to](#special-thanks-to)
+		- [Media](#media)
 
 <hr />
 
@@ -283,11 +284,11 @@ HTML / CSS | 5 |
 - [Sendgrid Django 4.2](https://pypi.org/project/sendgrid-django/)
   - used to send real emails to user together with **Sendgrid** transactional template.
   - also used for Django auth reset password emails
-- [xhtml2pdf](https://docs.djangoproject.com/en/2.2/)
+- [xhtml2pdf](https://github.com/xhtml2pdf/xhtml2pdf)
   - used generate invoice from HTML template to PDF file
     - render the template as request
     - attach a PDF file to an email and send it to user
-- [Faker 0.9](https://docs.djangoproject.com/en/2.2/)
+- [Faker 0.9](https://github.com/joke2k/django-faker)
   - to fake the data in database
 
 [**To top**](#Table-of-Contents)
@@ -742,7 +743,7 @@ HTML / CSS | 5 |
    - STRIPE_PUBLISHABLE `your_key`
    - STRIPE_SECRET `your_key`
    - SENDGRID_API_KEY `your_key`
-7. Database
+7. Database  
    *You can skip this steps if you use the database suplied with the project*  
    - `python manage.py makemigrations`
    - `python manage.py migrate`
@@ -755,6 +756,10 @@ HTML / CSS | 5 |
     - make sure that the `DEBUG` is set to `TRUE`
     - visit `localhost:8000/fake-data/`
     - go back to terminal and enter how many records you wish to have
+11. Additional requirements
+    - you will need to own or register new account at [sendgrid.com](https://sendgrid.com/) 
+    - add 2 Transactional Templates one for [registration-email-template-example.html](/assets/email_templates/registration-email-template-example.html) and one for [invoice-email-template-example.html](/assets/email_templates/invoice-email-template-example.html). You can import each of them via `.txt` files in [/assets/email_templates]([/assets/email_templates](https://github.com/MiroslavSvec/project-5/tree/master/assets/email_templates))
+    - lastly you will need to change your templates id in both `registration_email_template_id` and `invoice_template_id`
 
 [**To top**](#Table-of-Contents)
 
@@ -764,6 +769,14 @@ HTML / CSS | 5 |
 
 ### Special thanks to
 
+- **[Brad Traversy](https://www.youtube.com/channel/UC29ju8bIPH5as8OGnQzwJyA)**
+  - for his incredible **Django 2** and **Python** tutorials
+
 - **everyone for finding few minutes to test the project!**
 
   *All of you gave me constructive feedback which made the project better* 😊
+
+### Media
+
+- all images has been borowed from [pexels.com](https://www.pexels.com/)
+- favicon was generated at [favicon-generator.org](https://www.favicon-generator.org/)
