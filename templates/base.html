@@ -4,118 +4,117 @@
 
 <!DOCTYPE html>
 <html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta http-equiv="X-UA-Compatible" content="ie=edge">
+		<!-- Font Awesome -->
+		<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+		crossorigin="anonymous">
+		<!-- Favicon -->
+		<link rel="shortcut icon" href="/media/img/favicon.ico">
+		<!-- Bootstrap -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
+		crossorigin="anonymous">
+		<!-- Light box -->
+		<link rel="stylesheet" href="{% static 'css/vendor/lightbox.min.css' %}">
+		<!-- Fonts -->
+		<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
+		<!-- Custom CSS -->
+		<link rel="stylesheet" href="{% static 'css/custom/footer-links-animation.css' %}">
+		<link rel="stylesheet" href="{% static 'css/custom/styles.css' %}">
 
-<head>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<meta http-equiv="X-UA-Compatible" content="ie=edge">
-	<!-- Font Awesome -->
-	<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.3.1/css/all.css" integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
-	 crossorigin="anonymous">
-	<!-- Favicon -->
-	<link rel="shortcut icon" href="/media/img/favicon.ico">
-	<!-- Bootstrap -->
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm"
-	 crossorigin="anonymous">
-	<!-- Light box -->
-	<link rel="stylesheet" href="{% static 'css/vendor/lightbox.min.css' %}">
-	<!-- Fonts -->
-	<link href="https://fonts.googleapis.com/css?family=Great+Vibes" rel="stylesheet">
-	<!-- Custom CSS -->
-	<link rel="stylesheet" href="{% static 'css/custom/footer-links-animation.css' %}">
-	<link rel="stylesheet" href="{% static 'css/custom/styles.css' %}">
+		{% block css %} {% endblock css %}
 
-	{% block css %} {% endblock css %}
+		<!-- Scripts -->
+		{% block head_js %} {% endblock head_js %}
 
-	<!-- Scripts -->
-	{% block head_js %} {% endblock head_js %}
+		<title> Key Keepers </title>
+	</head>
 
-	<title> Key Keepers </title>
-</head>
+	<body>
 
-<body>
-
-	{% block nav %}
-	<!-- Navigation -->
-	{% include "partials/_navbar.html" %}
-	{% endblock nav %}
+		{% block nav %}
+		<!-- Navigation -->
+		{% include "partials/_navbar.html" %}
+		{% endblock nav %}
 
 
-	<!-- JS messages -->
-	<div id="js-alerts" class="container-fluid fixed-top">
-		<div class="row pb-3">
-			<div class="alert col-12 text-center font-weight-bold"></div>
-		</div>
-	</div>
-
-	
-	{% if messages %}
-	<!-- Bootstrap messages -->
-	<div class="container-fluid fixed-top">
-		<div class="row pb-3">
-			<div class="alert col-12 text-center font-weight-bold">
-				{% for message in messages %}
-				<p>{{ message }}</p>
-				{% endfor %}
+		<!-- JS messages -->
+		<div id="js-alerts" class="container-fluid fixed-top">
+			<div class="row pb-3">
+				<div class="alert col-12 text-center font-weight-bold"></div>
 			</div>
 		</div>
-	</div>
-	{% endif %}
-	
-	{% block page_header %}
-	<!-- Page Header -->
-	<header id="page-header" class="container-fluid pb-5">
-			<div class="row py-4">
-				<h1 class="vibes-cursive col-12 pt-5 pb-4 mt-5 text-center text-light">
-					{% if  page_title %}
-					{{ page_title }}
-					{% else %}
-					  Key Keepers
-					{% endif %}
-					
-				</h1>
+
+		
+		{% if messages %}
+		<!-- Bootstrap messages -->
+		<div class="container-fluid fixed-top">
+			<div class="row pb-3">
+				<div class="alert col-12 text-center font-weight-bold">
+					{% for message in messages %}
+					<p>{{ message }}</p>
+					{% endfor %}
+				</div>
 			</div>
-			{% block header_content %} {% endblock header_content %}
-	</header>
-	{% endblock page_header %}
+		</div>
+		{% endif %}
+		
+		{% block page_header %}
+		<!-- Page Header -->
+		<header id="page-header" class="container-fluid pb-5">
+				<div class="row py-4">
+					<h1 class="vibes-cursive col-12 pt-5 pb-4 mt-5 text-center text-light">
+						{% if  page_title %}
+						{{ page_title }}
+						{% else %}
+						Key Keepers
+						{% endif %}
+						
+					</h1>
+				</div>
+				{% block header_content %} {% endblock header_content %}
+		</header>
+		{% endblock page_header %}
 
-	<!-- Main Content -->
-	{% block main %}
-	<main class="bg-light">
-		{% block main_content %} {% endblock main_content %}
-	</main>
-	{% endblock main %}
+		<!-- Main Content -->
+		{% block main %}
+		<main class="bg-light">
+			{% block main_content %} {% endblock main_content %}
+		</main>
+		{% endblock main %}
 
-	<!-- Footer -->
-	{% include "partials/_footer.html" %}
+		<!-- Footer -->
+		{% include "partials/_footer.html" %}
 
-	<!-- Modals -->
-	{% if user.is_authenticated %}
-	<!-- User messages modal -->
-	{% include "partials/modals/_user_messages_modal.html" %}
-	{% include "partials/modals/_log-out-modal.html" %}
-	{% endif %}
-	{% block modals %}
-	  
-	{% endblock modals %}
-	<!-- Scripts -->
-	<!-- Bootstrap core JavaScript-->
-	<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
-	 crossorigin="anonymous"></script>
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
-	 crossorigin="anonymous"></script>
-	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
-	 crossorigin="anonymous"></script>
-	{% if user.is_authenticated %}
-	<!-- jQ cookie -->
-	<script src="{% static 'js/vendor/jquery.cookie.js' %}"></script>
-	<!-- User messages -->
-	<script src="{% static 'js/custom/enquiries.js' %}"></script>
-	{% endif %}
-	<!-- Custom JS -->
-	<script src="{% static 'js/custom/main.js' %}"></script>
-	
-	{% block js %} {% endblock js %}
-</body>
+		<!-- Modals -->
+		{% if user.is_authenticated %}
+		<!-- User messages modal -->
+		{% include "partials/modals/_user_messages_modal.html" %}
+		{% include "partials/modals/_log-out-modal.html" %}
+		{% endif %}
+		{% block modals %}
+		
+		{% endblock modals %}
+		<!-- Scripts -->
+		<!-- Bootstrap core JavaScript-->
+		<script src="https://code.jquery.com/jquery-3.2.1.min.js" integrity="sha256-hwg4gsxgFZhOsEEamdOYGBf13FyQuiTwlAQgxVSNgt4="
+		crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q"
+		crossorigin="anonymous"></script>
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
+		crossorigin="anonymous"></script>
+		{% if user.is_authenticated %}
+		<!-- jQ cookie -->
+		<script src="{% static 'js/vendor/jquery.cookie.js' %}"></script>
+		<!-- User messages -->
+		<script src="{% static 'js/custom/enquiries.js' %}"></script>
+		{% endif %}
+		<!-- Custom JS -->
+		<script src="{% static 'js/custom/main.js' %}"></script>
+		
+		{% block js %} {% endblock js %}
+	</body>
 
 </html>
